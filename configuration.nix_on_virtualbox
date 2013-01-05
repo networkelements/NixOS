@@ -51,31 +51,23 @@
 	};
 
   environment.systemPackages = with pkgs; [
-//mozc dependencies
+# mozc dependencies
 	#libibus-1.0-dev
 	#libssl-dev
-#	libssl
 	#libdbus-1-dev
-#	libdbus
 	#libglib2.0-dev
 	subversion
 	#devscripts
 	#debhelper
 	#libqt4-dev
-#	libqt4
 	#libzinnia-dev
-#	libzinnia
 	#tegaki-zinnia-japanese
 	#libgtk2.0-dev
-#	libgtk
 	#libxcb-xfixes0-dev
+# ibus dependencies
+	iso-codes
 	gcc
 	python
-//ibus dependencies
-	dbus-glib
-	dbus-python
-	#notify-python
-	iso-codes
 	curl
 	firefox
 	sudo
