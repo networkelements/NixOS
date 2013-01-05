@@ -15,9 +15,9 @@
   services.virtualbox.enable = true;
 
   boot.loader.grub = {
-  version = 2;
-  enable = true;
-	device = "/dev/sda";
+	  version = 2;
+	  enable = true;
+	  device = "/dev/sda";
 	};
 
   fileSystems =
@@ -51,19 +51,24 @@
 	};
 
   environment.systemPackages = with pkgs; [
-#libibus-1.0-dev
-#libssl-dev
-#libdbus-1-dev
-#libglib2.0-dev
-#subversion
-#devscripts
-#debhelper
-#libqt4-dev
-#libzinnia-dev
-#tegaki-zinnia-japanese
-#libgtk2.0-dev
-#libxcb-xfixes0-dev
-python
+	#libibus-1.0-dev
+	#libssl-dev
+#	libssl
+	#libdbus-1-dev
+#	libdbus
+	#libglib2.0-dev
+	subversion
+	#devscripts
+	#debhelper
+	#libqt4-dev
+#	libqt4
+	#libzinnia-dev
+#	libzinnia
+	#tegaki-zinnia-japanese
+	#libgtk2.0-dev
+#	libgtk
+	#libxcb-xfixes0-dev
+	python
 	gcc
 	curl
 	firefox
