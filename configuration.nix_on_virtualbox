@@ -64,10 +64,9 @@
 	#tegaki-zinnia-japanese
 	#libgtk2.0-dev
 	#libxcb-xfixes0-dev
-# ibus dependencies
-	iso-codes
 	gcc
 	python
+# useful?
 	curl
 	firefox
 	sudo
