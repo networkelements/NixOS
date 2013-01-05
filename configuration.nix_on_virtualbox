@@ -71,6 +71,8 @@
 	firefox
 	sudo
 	strace
+	unrar
+	unzip
 	wget
 	zsh
 	kde4.kde_baseapps
