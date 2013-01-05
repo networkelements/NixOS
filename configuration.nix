@@ -7,12 +7,10 @@
     <nixos/modules/installer/scan/not-detected.nix>
   ];
 
-  boot.initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "virtio-pci" "virtio-blk" ];
-  boot.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "ehci_hcd" "ahci" "usbhid" "btrfs" "ext4" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   nix.maxJobs = 4;
-
-  services.virtualbox.enable = true;
 
   boot.loader.grub = {
   version = 2;
@@ -23,7 +21,7 @@
   fileSystems =
 	[{ mountPoint = "/";
 	   device = "/dev/disk/by-label/nixos";
-	   fsType = "ext4";
+	   fsType = "btrfs";
 	 }
 	];
 
@@ -51,6 +49,16 @@
 	};
 
   environment.systemPackages = with pkgs; [
+	acpitool
+	ddrescue
+	flashplayer
+	glxinfo
+	hdparm
+	mssys
+	ntfs3g
+	rsync	
+	screen
+	smartmontools
 	curl
 	firefox
 	gcc
@@ -58,7 +66,19 @@
 	strace
 	wget
 	zsh
+	kde4.ark
+	kde4.gwenview
+	kde4.k3b
+	kde4.k9copy
+	kde4.kate
 	kde4.kde_baseapps
+	kde4.kde_workspace
+	kde4.konsole
+	kde4.ksnapshot
+	kde4.kuser
 	kde4.l10n.ja
+	kde4.okular
+	kde4.oxygen_icons
+	kde4.polkit_kde_agent
 	];
 }
