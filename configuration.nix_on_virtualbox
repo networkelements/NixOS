@@ -51,9 +51,22 @@
 	};
 
   environment.systemPackages = with pkgs; [
+#libibus-1.0-dev
+#libssl-dev
+#libdbus-1-dev
+#libglib2.0-dev
+#subversion
+#devscripts
+#debhelper
+#libqt4-dev
+#libzinnia-dev
+#tegaki-zinnia-japanese
+#libgtk2.0-dev
+#libxcb-xfixes0-dev
+python
+	gcc
 	curl
 	firefox
-	gcc
 	sudo
 	strace
 	wget
