@@ -66,6 +66,10 @@
 	#libxcb-xfixes0-dev
 	gcc
 	python
+# ibus dependencies
+	gnome-common
+	#autoconf-2.53
+	#automake-1.10
 # useful?
 	curl
 	firefox
