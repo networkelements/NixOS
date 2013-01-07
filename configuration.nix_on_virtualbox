@@ -44,7 +44,7 @@
 	desktopManager.xfce.enable = true;
 #	windowManager.xmonad.enable = true;
 #	windowManager.awesome.enable = true;
-	desktopManager.default = "kde4";
+	desktopManager.default = "xfce";
 	displayManager.kdm.enable = true;
 #	displayManager.slim.enable = true;
 	autorun = false;
