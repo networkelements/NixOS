@@ -57,6 +57,11 @@
 	};
 
   environment.systemPackages = with pkgs; [
+#must
+	kde4.kde_baseapps
+	kde4.l10n.ja
+	ubuntu-font-family
+	xmodmap
 # mozc dependencies
 	#libibus-1.0-dev
 	#libssl-dev
@@ -73,7 +78,7 @@
 	gcc
 	python
 # ibus dependencies
-	gnome-common
+	#gnome-common
 	#autoconf-2.53
 	#automake-1.10
 # useful?
@@ -81,13 +86,10 @@
 	firefox
 	sudo
 	strace
-	ubuntu-font-family
 	unrar
 	unzip
 	wget
 	zsh
-	kde4.kde_baseapps
-	kde4.l10n.ja
 #HDD
 	acpitool
 	hdparm
