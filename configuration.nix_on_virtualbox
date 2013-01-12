@@ -57,7 +57,7 @@
 	};
 
   environment.systemPackages = with pkgs; [
-#must
+# must
 	kde4.kde_baseapps
 	kde4.l10n.ja
 	#ubuntu-font-family
@@ -90,9 +90,10 @@
 	unzip
 	wget
 	zsh
-#HDD
+# HDD
 	acpitool
 	hdparm
+	parted
 	rsync
 	smartmontools
 	#sshfs
