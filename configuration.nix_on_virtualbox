@@ -60,7 +60,7 @@
 #must
 	kde4.kde_baseapps
 	kde4.l10n.ja
-	ubuntu-font-family
+	#ubuntu-font-family
 	xmodmap
 # mozc dependencies
 	#libibus-1.0-dev
