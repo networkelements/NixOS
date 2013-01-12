@@ -96,5 +96,7 @@
 	rsync
 	smartmontools
 	testdisk
+	sshfs
+	mbm
 	];
 }
