@@ -95,8 +95,8 @@
 	hdparm
 	rsync
 	smartmontools
+	#sshfs
 	testdisk
-	sshfs
 	mbm
 	];
 }
