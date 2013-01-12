@@ -36,6 +36,12 @@
 	timeZone = "Asia/Tokyo";
 	};
 
+#nixos/doc/config-examples at master · NixOS/nixos · GitHub
+#https://github.com/NixOS/nixos/tree/master/doc/config-examples
+#  fonts = {
+#	enableFontConfig = true;
+#	};
+
   services.xserver = {
 	enable = true;
 	layout = "jp";
@@ -82,5 +88,10 @@
 	zsh
 	kde4.kde_baseapps
 	kde4.l10n.ja
+#HDD
+	smartmontools
+	acpitool
+	hdparm
+	rsync
 	];
 }
