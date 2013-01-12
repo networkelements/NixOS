@@ -89,9 +89,10 @@
 	kde4.kde_baseapps
 	kde4.l10n.ja
 #HDD
-	smartmontools
 	acpitool
 	hdparm
 	rsync
+	smartmontools
+	testdisk
 	];
 }
