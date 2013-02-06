@@ -13,7 +13,13 @@
   kernelPackages = [ pkgs.kernelPackages_3_7_5 ];
   services.virtualbox.enable = true;
   services.ntp.servers = [ "ntp.nict.jp" ];
-  hardware.pulseaudio.enable = true;
+#http://nixos.org/wiki/Audio_HOWTO
+# hardware.pulseaudio.enable = true;
+# hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
+  hardware.pulseaudio = {
+	enable = true;
+	package = pkgs.pulseaudio.override.jackaudioSupport = true;
+	};
   services.acpid.enable = true;
 # powerManagement.enable = true;
 # powerManagement.powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sdb";
