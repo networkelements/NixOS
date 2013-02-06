@@ -7,17 +7,26 @@
     <nixos/modules/installer/scan/not-detected.nix>
   ];
 
-  boot.initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" ];
+  boot.initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "kvm_intel" "zram" "i915" ];
   boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
-  nix.maxJobs = 4;
-
+  boot.extraModulePackages = [ pkgs.linuxPackages.virtualbox ];
+  kernelPackages = [ pkgs.kernelPackages_3_7_5 ];
   services.virtualbox.enable = true;
-
+  services.ntp.servers = [ "ntp.nict.jp" ];
+  hardware.pulseaudio.enable = true;
+  services.acpid.enable = true;
+# powerManagement.enable = true;
+# powerManagement.powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sdb";
+#Add the NixOS Manual on virtual console 8
+  services.nixosManual.showManual = true;
+  nix.maxJobs = 4;
+   
   boot.loader.grub = {
 	  version = 2;
 	  enable = true;
 	  device = "/dev/sda";
+	  options = "data=journal,noatime";
+#	  options = "data=journal,realtime";
 	};
 
   fileSystems =
@@ -27,34 +36,60 @@
 	 }
 	];
 
-  i18n = {
-	consoleKeyMap = "jp106";
-	defaultLocale = "ja_JP.UTF-8";
-	};
-
   time = {
 	timeZone = "Asia/Tokyo";
 	};
 
+i18n = {
+#consoleFontは不明。パッケージ存在せず？
+#	consoleFont = "jfbterm";
+#	consoleFont = "kon2";
+#	consoleFont = "unifont";
+	consoleKeyMap = "jp106";
+	defaultLocale = "ja_JP.UTF-8";
+	};
 #nixos/doc/config-examples at master · NixOS/nixos · GitHub
 #https://github.com/NixOS/nixos/tree/master/doc/config-examples
-#  fonts = {
-#	enableFontConfig = true;
-#	};
+  fonts = {
+	enableFontConfig = true;
+	};
 
   services.xserver = {
 	enable = true;
 	layout = "jp";
 	xkbModel = "jp106";
+	videoDriver = "i915";
+	driSupport = true;
 	desktopManager.kde4.enable = true;
 	desktopManager.xfce.enable = true;
 #	windowManager.xmonad.enable = true;
 #	windowManager.awesome.enable = true;
 	desktopManager.default = "xfce";
+#これでも問題ない？
+#	sessionType = "kde4";
 	displayManager.kdm.enable = true;
 #	displayManager.slim.enable = true;
 	autorun = false;
 	};
+
+# users = {
+#   extraUsers = [
+#	{ name = "tony";
+#          uid = 500;
+#          description = "Tony";
+#          home = "/home/tony";
+#          createHome = true;
+#          group = "tony";
+#          extraGroups = [ "users" "wheel" ];
+#          shell = "/bin/sh";
+#        }
+#      ];
+#    extraGroups = [
+#        { name = "tony";
+#          gid = 500;
+#        }
+#      ];
+#	};
 
   environment.systemPackages = with pkgs; [
 # must
@@ -81,6 +116,14 @@
 	#gnome-common
 	#autoconf-2.53
 	#automake-1.10
+# HDD
+	acpitool
+	hdparm
+	parted
+	rsync
+	smartmontools
+	#sshfs
+	testdisk
 # useful?
 	curl
 	firefox
@@ -90,13 +133,6 @@
 	unzip
 	wget
 	zsh
-# HDD
-	acpitool
-	hdparm
-	parted
-	rsync
-	smartmontools
-	#sshfs
-	testdisk
+	chrome
 	];
 }
