@@ -86,9 +86,7 @@
 #https://github.com/NixOS/nixos/tree/master/doc/config-examples
   fonts = {
 	enableFontConfig = true;
-	};
-  extraFonts = {
-        default = [ pkgs.ubuntu-font-family ];
+	extraFonts = [ pkgs.ubuntu-font-family ];
       };
 
   services.xserver = {
