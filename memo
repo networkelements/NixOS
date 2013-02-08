@@ -85,23 +85,53 @@ python
 gcc
 
 //configuration.nixでないとインストール不可？
+gcc
 gtk+-2.
 gtk+-3.
 perlPackages.XMLParser
-
-intltool
-gettext
-glib
 pkgconfig
-pango
-cairo
-atk
-freetype 
-libX11
-xproto
-kbproto
-gnumake
-iso-codes
+
+[blue@nixos:~]$ nix-env -qa gcc
+error: selector `gcc' matches no derivations
+[blue@nixos:~]$ nix-env -qa perlPackages.XMLParser
+error: selector `perlPackages.XMLParser' matches no derivations
+[blue@nixos:~]$ nix-env -qa pkgconfig
+error: selector `pkgconfig' matches no derivations
+
+[blue@nixos:~]$ nix-env -qa python
+python-2.6.8
+python-2.6.8-wrapper
+python-2.7.3
+python-2.7.3-wrapper
+$ nix-env -qa intltool
+intltool-0.40.6
+intltool-0.50.2
+$ nix-env -qa gettext
+gettext-0.17
+gettext-0.18.1.1
+$ nix-env -qa glib
+glib-2.34.0
+$ nix-env -qa pango
+pango-1.30.1
+$ nix-env -qa cairo
+cairo-1.12.4
+$ nix-env -qa atk
+atk-2.6.0
+$ nix-env -qa freetype
+freetype-2.4.10
+$ nix-env -qa libX11
+libX11-1.5.0
+$ nix-env -qa xproto
+xproto-7.0.23
+$ nix-env -qa kbproto
+kbproto-1.0.6
+$ nix-env -qa gnumake
+gnumake-3.80
+gnumake-3.81
+gnumake-3.82
+$ nix-env -qa iso-codes
+iso-codes-3.40
+
 
 $cp /nix/var/nix/profiles/default/share/pkgconfig/iso-codes.pc /nix/var/nix/profiles/default/lib/pkgconfig/ 
 $./configure --disable-gtk3 --disable-dconf
