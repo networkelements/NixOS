@@ -96,7 +96,6 @@
   environment.systemPackages = with pkgs; [
 	acpitool
 	ddrescue
-	flashplayer
 	glxinfo
 	hdparm
 	mssys
@@ -169,12 +168,17 @@
 	#tegaki-zinnia-japanese
 	#libgtk2.0-dev
 	#libxcb-xfixes0-dev
-	gcc
-	python
+	#gcc
+	#python
 # ibus dependencies
 	#gnome-common
 	#autoconf-2.53
 	#automake-1.10
+	gcc
+	gtk+-2.
+	gtk+-3.
+	perlPackages.XMLParser
+	pkgconfig
 # HDD
 	acpitool
 	hdparm
@@ -189,6 +193,7 @@
 	#xmodmap
 	curl
 	firefox
+	flashplayer
 	git
 	sudo
 	strace
