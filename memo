@@ -1,7 +1,84 @@
+★★★NixOSのインストール手順とあとほかの
+
+//rootでログインする
+# root
+//日本語キーボードを認識させる
+# loadkeys jp106
+//マウントされているデバイスのパーティション情報を表示する
+# fdisk -l
+//今回は/dev/sdaのドライブを使えることがわかった（マウントされていた）ので使用する
+# fdisk /dev/sda
+------------------------------------------------------------------------
+Command (m for help):n
+Partition type:
+  p primary (0 primary, 0 extended, 4 free)
+  e extended
+ Select (default p):p
+ Partition number (1-4, default 1): 1
+ First sector(2048-16777215, default 2048):
+ Using default value 2048
+ Last sector, +sectors or +size{K,M,G} (204a8-16777215, default 16777215):
+ Using default Value 16777215
+
+ Command (m for help):a
+ Command (m for help):1
+ Command (m for help):w
+------------------------------------------------------------------------
+//パーティションの変更を認識させる(flashing？)
+# partprobe /dev/sda
+//存在するパーティションを表示
+# ls /dev/sda*
+//パーティション1のファイルシステムを決める。ext4（またはbtrfs）、ラベルをnixosとする
+# mkfs.ext4 -j -L nixos /dev/sda1
+// /mntに一旦移す
+# mount LABEL=nixos /mnt
+//作業用にディレクトリ作成
+# mkdir -p /mnt/etc/nixos
+
+①楽にする方法
+//wgetがインストールされていないのでインストールする
+# nix-env -i wget
+//Githubにおいてある私のconfiguration.nixから丸パクリしてタイポを防ぐ
+# wget https://raw.github.com/bleuscr/NixOS/master/configuration.nix_on_virtualbox -O /mnt/etc/nixos/configuration.nix
+
+②じぶんでconfiguration.nixをゴリゴリ書く方法（公式マニュアルの手順。正直だるい）
+//スクリプトを走らせる？
+# nixos-hardware-scan > /mnt/etc/nixos/configuration.nix
+②．５　//自分で設定を書く
+# nano /etc/nixos/configuration.nix
+
+●　①か②の手順終わったら
+//インストールさせる。いらないパッケージ入れたりしてるとかなり時間かかる
+# nixos-install
+//segmentation faultとかクソなこと起きなければそのまま再起動。
+# reboot
+//エラー吐いたら②．５の作業して怪しいところを#でコメントアウトしていく
+
+●　再起動後
+//ログイン
+# root
+//ユーザーを作成する(/bin/bash　のほうがいい？)
+# useradd -m -g users -G wheel -s /bin/zsh "username"
+//パスワードを決める
+# passwd "username"
+Enter new UNIX password：*************
+Retype new UNIX password：*************
+passwd　～～～
+
+やっとXを起動できるようになる
+
+//NixOS 0.1preだとこれでGUIのログイン画面にいける
+# start xserver
+
+//NixOS 0.2 preだと？（NixOS graphical LiveCDでインストールしたので不明）
+//バージョン：NixOS 0.2pre4463_5e88e9b-cc877f45(x86_64）
+# start display-manager
+
+//kdmでログイン後、仮想端末を開いてxmodmapとubuntu-font-familyのインストール
+$ nix-env -i xmodmap ubuntu-font-family
+
+
+
+--古いまとめ
 Linux初心者のためのNixOS - ごみばこ
 http://bleuscr.hatenablog.jp/entry/2012/12/13/Linux%E5%88%9D%E5%BF%83%E8%80%85%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AENixOS
-Ubuntu Font Family
-http://font.ubuntu.com/
-
-http://ux.getuploader.com/nyaaaaaaaaa/download/21/Ricty-Bold.ttf
-http://ux.getuploader.com/nyaaaaaaaaa/download/22/Ricty-Regular.ttf
