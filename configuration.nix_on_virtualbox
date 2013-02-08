@@ -184,8 +184,8 @@
 	#autoconf-2.53
 	#automake-1.10
 	gcc
-	gtk+-2.
-	gtk+-3.
+	gtk2
+	gtk3
 	perlPackages.XMLParser
 	pkgconfig
 # HDD
