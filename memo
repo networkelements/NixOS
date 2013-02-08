@@ -77,7 +77,34 @@ passwd　～～～
 //kdmでログイン後、仮想端末を開いてxmodmapとubuntu-font-familyのインストール
 $ nix-env -i xmodmap ubuntu-font-family
 
+$ nix-env-qa
+$ nix-env -i
 
+//configuration.nixに追加済み
+python
+gcc
+
+//configuration.nixでないとインストール不可？
+gtk+-2.
+gtk+-3.
+perlPackages.XMLParser
+
+intltool
+gettext
+glib
+pkgconfig
+pango
+cairo
+atk
+freetype 
+libX11
+xproto
+kbproto
+gnumake
+iso-codes
+
+$cp /nix/var/nix/profiles/default/share/pkgconfig/iso-codes.pc /nix/var/nix/profiles/default/lib/pkgconfig/ 
+$./configure --disable-gtk3 --disable-dconf
 
 --古いまとめ
 Linux初心者のためのNixOS - ごみばこ
