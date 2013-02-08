@@ -1,4 +1,4 @@
-[blue@nixos:~/ibus-1.5.1]$ ./configure
+[blue@nixos:~/ibus-1.5.1]$ ./configure --disable-gtk3 --disable-dconf
 checking for a BSD-compatible install... /run/current-system/sw/bin/install -c
 checking whether build environment is sane... yes
 checking for a thread-safe mkdir -p... /run/current-system/sw/bin/mkdir -p
@@ -44,7 +44,11 @@ checking for libintl.h... yes
 checking for ngettext in libc... yes
 checking for dgettext in libc... yes
 checking for bind_textdomain_codeset... yes
-checking for msgfmt... no
+checking for msgfmt... /home/blue/.nix-profile/bin/msgfmt
+checking for dcgettext... yes
+checking if msgfmt accepts -c... yes
+checking for gmsgfmt... /home/blue/.nix-profile/bin/msgfmt
+checking for xgettext... /home/blue/.nix-profile/bin/xgettext
 checking for gcc... (cached) gcc
 checking whether we are using the GNU C compiler... (cached) yes
 checking whether gcc accepts -g... (cached) yes
@@ -63,7 +67,11 @@ checking for libintl.h... (cached) yes
 checking for ngettext in libc... (cached) yes
 checking for dgettext in libc... (cached) yes
 checking for bind_textdomain_codeset... (cached) yes
-checking for msgfmt... (cached) no
+checking for msgfmt... (cached) /home/blue/.nix-profile/bin/msgfmt
+checking for dcgettext... (cached) yes
+checking if msgfmt accepts -c... yes
+checking for gmsgfmt... (cached) /home/blue/.nix-profile/bin/msgfmt
+checking for xgettext... (cached) /home/blue/.nix-profile/bin/xgettext
 checking for library containing strerror... none required
 checking for ANSI C header files... (cached) yes
 checking build system type... x86_64-unknown-linux-gnu
@@ -112,6 +120,14 @@ checking if libtool supports shared libraries... yes
 checking whether to build shared libraries... yes
 checking whether to build static libraries... no
 checking whether NLS is requested... yes
-./configure: line 14724: intltool-update: command not found
-checking for intltool >= 0.35.0...  found
-configure: error: Your intltool is too old.  You need intltool 0.35.0 or later.
+checking for intltool >= 0.35.0... 0.50.2 found
+checking for intltool-update... /home/blue/.nix-profile/bin/intltool-update
+checking for intltool-merge... /home/blue/.nix-profile/bin/intltool-merge
+checking for intltool-extract... /home/blue/.nix-profile/bin/intltool-extract
+checking for xgettext... (cached) /home/blue/.nix-profile/bin/xgettext
+checking for msgmerge... /home/blue/.nix-profile/bin/msgmerge
+checking for msgfmt... (cached) /home/blue/.nix-profile/bin/msgfmt
+checking for gmsgfmt... (cached) /home/blue/.nix-profile/bin/msgfmt
+checking for perl... /run/current-system/sw/bin/perl
+checking for perl >= 5.8.1... 5.14.2
+checking for XML::Parser... configure: error: XML::Parser perl module is required for intltool
