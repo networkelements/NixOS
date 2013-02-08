@@ -10,7 +10,6 @@
   boot = {
       initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "ntfs" "kvm_intel" "zram" "i915" "i815"];
       kernelModules = [ ];
-      extraModulePackages = [ "pkgs.linuxPackages.virtualbox" "kernel.virtualboxGuestAdditions" ];
       #extraModulePackages = [ "pkgs.linuxPackages.virtualbox" "kernel.virtualboxGuestAdditions" ];
       #postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
       };
@@ -26,11 +25,11 @@
 #	package = pkgs.pulseaudio.override { jackaudioSupport = true; };
 #	};
 
-  powerManagement = {
-	enable = true;
-	powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
-	powerManagement.cpuFreqGovernor = "performance";
-	};
+#  powerManagement = {
+#	enable = true;
+#	powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
+#	powerManagement.cpuFreqGovernor = "performance";
+#	};
 
 #  security.pam.loginLimits = [
 #    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
@@ -87,7 +86,7 @@
 #https://github.com/NixOS/nixos/tree/master/doc/config-examples
   fonts = {
 	enableFontConfig = true;
-	extraFonts = [ pkgs.ubuntu-font-family ];
+	#extraFonts = [ pkgs.ubuntu-font-family ];
       };
 
   services.xserver = {
