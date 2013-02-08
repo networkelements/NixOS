@@ -144,7 +144,7 @@
 	#ubuntu-font-family
 	#xmodmap
 # xfce
-	gtk # To get GTK+'s themes.
+#	gtk # To get GTK+'s themes.
 	hicolor_icon_theme
 	shared_mime_info
 	which # Needed by the xfce's xinitrc script.
@@ -192,8 +192,8 @@
 	#autoconf-2.53
 	#automake-1.10
 	gcc
-	gtk2.0
-	gtk3.0
+	gtk2
+	gtk3
 	perlPackages.XMLParser
 	pkgconfig
 # HDD
