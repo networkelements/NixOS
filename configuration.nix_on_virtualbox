@@ -131,8 +131,16 @@
 
   environment.systemPackages = with pkgs; [
 # must
-#	kde4.kde_baseapps
-#	kde4.l10n.ja
+	kde4.kde_baseapps
+	kde4.l10n.ja
+	kde4.kate
+	kde4.kde_workspace
+	kde4.konsole
+	kde4.ksnapshot
+	kde4.kuser
+	kde4.okular
+	kde4.oxygen_icons
+	kde4.polkit_kde_agent
 	#ubuntu-font-family
 	#xmodmap
 # xfce
@@ -184,8 +192,8 @@
 	#autoconf-2.53
 	#automake-1.10
 	gcc
-	gtk-2.0
-	gtk-3.0
+	gtk2.0
+	gtk3.0
 	perlPackages.XMLParser
 	pkgconfig
 # HDD
@@ -201,6 +209,7 @@
 	curl
 	firefox
 	git
+	midori
 	sudo
 	strace
 	unrar
