@@ -10,6 +10,7 @@
   boot = {
       initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "ntfs" "kvm_intel" "zram" "i915" "i815"];
       kernelModules = [ ];
+      extraModulePackages = [ ];
       #extraModulePackages = [ "pkgs.linuxPackages.virtualbox" "kernel.virtualboxGuestAdditions" ];
       #postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
       };
@@ -86,7 +87,7 @@
 #https://github.com/NixOS/nixos/tree/master/doc/config-examples
   fonts = {
 	enableFontConfig = true;
-	#extraFonts = [ pkgs.ubuntu-font-family ];
+#	extraFonts = [ pkgs.ubuntu-font-family ];
       };
 
   services.xserver = {
@@ -96,11 +97,11 @@
 	videoDriver = "intel";
 #	videoDrivers = mkOverride 50 [ "virtualbox" ];
 	driSupport = true;
-	desktopManager.kde4.enable = true;
-#	desktopManager.xfce.enable = true;
-#	windowManager.xmonad.enable = true;
-#	windowManager.awesome.enable = true;
-	desktopManager.default = "kde4";
+#	desktopManager.kde4.enable = true;
+	desktopManager.xfce.enable = true;
+	windowManager.xmonad.enable = true;
+	windowManager.awesome.enable = true;
+	desktopManager.default = "xfce";
 #これでも問題ない？
 #	sessionType = "kde4";
 #	sessionType = "xfce";
@@ -130,39 +131,39 @@
 
   environment.systemPackages = with pkgs; [
 # must
-	kde4.kde_baseapps
-	kde4.l10n.ja
+#	kde4.kde_baseapps
+#	kde4.l10n.ja
 	#ubuntu-font-family
 	#xmodmap
 # xfce
-#	gtk # To get GTK+'s themes.
-#	hicolor_icon_theme
-#	shared_mime_info
-#       which # Needed by the xfce's xinitrc script.
-#       xfce.exo
-#        xfce.gtk_xfce_engine
-#        xfce.libxfcegui4 # For the icons.
-#        xfce.ristretto
-#        xfce.terminal
-#        xfce.thunar
-#        xfce.xfce4icontheme
-#        xfce.xfce4panel
-#        xfce.xfce4session
-#        xfce.xfce4settings
-#        xfce.xfce4mixer
-#        xfce.xfceutils
-#        xfce.xfconf
-#        xfce.xfdesktop
-#        xfce.xfwm4
-#        # This supplies some "abstract" icons such as
-#        # "utilities-terminal" and "accessories-text-editor".
-#        gnome.gnomeicontheme
-#        desktop_file_utils
-#        xfce.libxfce4ui
-#        xfce.garcon
-#        xfce.thunar_volman
-#        xfce.gvfs
-#        xfce.xfce4_appfinder
+	gtk # To get GTK+'s themes.
+	hicolor_icon_theme
+	shared_mime_info
+	which # Needed by the xfce's xinitrc script.
+	xfce.exo
+	xfce.gtk_xfce_engine
+	xfce.libxfcegui4 # For the icons.
+	xfce.ristretto
+	xfce.terminal
+	xfce.thunar
+	xfce.xfce4icontheme
+	xfce.xfce4panel
+	xfce.xfce4session
+	xfce.xfce4settings
+	xfce.xfce4mixer
+	xfce.xfceutils
+	xfce.xfconf
+	xfce.xfdesktop
+	xfce.xfwm4
+# This supplies some "abstract" icons such as
+# "utilities-terminal" and "accessories-text-editor".
+	gnome.gnomeicontheme
+	desktop_file_utils
+	xfce.libxfce4ui
+	xfce.garcon
+	xfce.thunar_volman
+	xfce.gvfs
+	xfce.xfce4_appfinder
 # mozc dependencies
 	#libibus-1.0-dev
 	#libssl-dev
@@ -191,13 +192,14 @@
 	#sshfs
 #	testdisk
 # useful?
-#	alsamixer
-#	curl
+	#alsamixer
+	curl
 	firefox
-#	sudo
-#	strace
-#	unrar
-#	unzip
+	git
+	sudo
+	strace
+	unrar
+	unzip
 	wget
 	zsh
 	];
