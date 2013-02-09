@@ -11,7 +11,6 @@
       initrd.kernelModules = [ "ehci_hcd" "ahci" "usbhid" "i915" "btrfs" "ext4" "ntfs" ];
       kernelModules = [ "zram" "kvm-intel" ];
       extraModulePackages = [ ];
-      #extraModulePackages = [ "pkgs.linuxPackages.virtualbox" "kernel.virtualboxGuestAdditions" ];
       postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
       };
 
@@ -22,7 +21,7 @@
   powerManagement = {
 	enable = true;
 	powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
-	powerManagement.cpuFreqGovernor = "performance";
+	cpuFreqGovernor = "performance";
 	};
 
   security.pam.loginLimits = [
