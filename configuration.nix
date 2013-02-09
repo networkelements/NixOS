@@ -8,8 +8,8 @@
   ];
 
   boot = {
-      initrd.kernelModules = [ "ehci_hcd" "ahci" "usbhid" "i915" "btrfs" "ext4" "ntfs" ];
-      kernelModules = [ "zram" "kvm-intel" ];
+      initrd.kernelModules = [ "ehci_hcd" "ahci" "usbhid" "i915" "btrfs" "ext4" "ntfs" "zram" ];
+      kernelModules = [ "kvm-intel" ];
       extraModulePackages = [ ];
       postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
       };
