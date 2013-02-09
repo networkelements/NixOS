@@ -8,8 +8,8 @@
   ];
 
   boot = {
-      initrd.kernelModules = [ "ehci_hcd" "ahci" "usbhid" "i915" "btrfs" "ext4" "ntfs" "zram" ];
-      kernelModules = [ "kvm-intel" ];
+      initrd.kernelModules = [ "ehci_hcd" "ahci" "usbhid" "i915" "btrfs" "ext4" "ntfs" ];
+      boot.kernelModules = [ "zram" "kvm-intel" ];
       extraModulePackages = [ ];
       postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
       };
@@ -31,7 +31,6 @@
 
   services = {
       nixosManual.showManual = true;			#Add the NixOS Manual on virtual console 8
-      virtualbox.enable = true;
 #Enable helpful DBus services.(Xfce)
      udisks.enable = true;
      upower.enable = config.powerManagement.enable;
@@ -100,7 +99,6 @@
 	kde4.ark
 	kde4.gwenview
 	kde4.k3b
-	kde4.k9copy
 	kde4.kate
 	kde4.kde_workspace
 	kde4.konsole
@@ -158,8 +156,8 @@
 	#autoconf-2.53
 	#automake-1.10
 	gcc
-	gtk2.0
-	gtk3.0
+	gtk2
+	gtk3
 	perlPackages.XMLParser
 	pkgconfig
 # HDD
