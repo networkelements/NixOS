@@ -86,30 +86,14 @@
 	desktopManager.xfce.enable = true;
 	desktopManager.kde4.enable = true;
 #	windowManager.xmonad.enable = true;
-#	windowManager.awesome.enable = true;
+	windowManager.awesome.enable = true;
 #	displayManager.slim.enable = true;
 	displayManager.kdm.enable = true;
-	desktopManager.default = "xfce";
-	autorun = false;
+	desktopManager.default = "kde4";
+	autorun = true;
 	};
 
   environment.systemPackages = with pkgs; [
-	acpitool
-	ddrescue
-	glxinfo
-	hdparm
-	mssys
-	ntfs3g
-	rsync	
-	screen
-	smartmontools
-	curl
-	firefox
-	gcc
-	sudo
-	strace
-	wget
-	zsh
 # minimal KDE
 	kde4.kde_baseapps
 	kde4.l10n.ja
@@ -181,7 +165,11 @@
 	pkgconfig
 # HDD
 	acpitool
+	ddrescue
 	hdparm
+	mssys
+	hdparm
+	ntfs3g
 	parted
 	rsync
 	smartmontools
@@ -195,6 +183,7 @@
 	firefox
 	flashplayer
 	git
+	glxinfo
 	sudo
 	strace
 	unrar
