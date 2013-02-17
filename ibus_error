@@ -1,4 +1,5 @@
-[~/ibus-1.5.1]$ ./configure --disable-gtk3 --disable-dconfchecking for a BSD-compatible install... /run/current-system/sw/bin/install -c
+[~/ibus-1.5.1]$ ./configure --disable-gtk3 --disable-dconf
+checking for a BSD-compatible install... /run/current-system/sw/bin/install -c
 checking whether build environment is sane... yes
 checking for a thread-safe mkdir -p... /run/current-system/sw/bin/mkdir -p
 checking for gawk... gawk
@@ -138,19 +139,38 @@ checking for GLIB2... yes
 checking for GOBJECT2... yes
 checking for GIO2... yes
 checking for GTHREAD2... yes
-checking for GTK2... no
+checking for GTK2... yes
+checking for GDK2... yes
+checking for X11... yes
+checking X11/XKBlib.h usability... no
+checking X11/XKBlib.h presence... no
+checking for X11/XKBlib.h... no
+checking for gobject-introspection... no
+checking for pkg-config... (cached) /run/current-system/sw/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for vapigen... no
+checking for gtkdoc-check... no
+checking for gtkdoc-rebase... no
+checking for gtkdoc-mkpdf... no
+checking whether to build gtk-doc documentation... no
+checking for DBUS... yes
+checking for env... /run/current-system/sw/bin/env
+checking for a Python interpreter with version >= 2.5... python
+checking for python... /home/blue/.nix-profile/bin/python
+checking for python version... 2.7
+checking for python platform... linux2
+checking for python script directory... ${prefix}/lib/python2.7/site-packages
+checking for python extension module directory... ${exec_prefix}/lib/python2.7/site-packages
+checking for ISOCODES... no
 configure: error: Package requirements (
-        gtk+-2.0
-    ) were not met:
+    iso-codes
+) were not met:
 
-Package gdk-pixbuf-2.0 was not found in the pkg-config search path.
-Perhaps you should add the directory containing `gdk-pixbuf-2.0.pc'
-to the PKG_CONFIG_PATH environment variable
-Package 'gdk-pixbuf-2.0', required by 'GDK', not found
+No package 'iso-codes' found
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables GTK2_CFLAGS
-and GTK2_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables ISOCODES_CFLAGS
+and ISOCODES_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
