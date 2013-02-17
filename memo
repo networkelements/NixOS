@@ -138,6 +138,7 @@ created 2042 symlinks in user environment
 
 $ nix-env -i python-2.7.3-wrapper intltool-0.50.2 gettext-0.18.1.1 glib-2.34.0 pango-1.30.1 cairo-1.12.4 atk-2.6.0 freetype-2.4.10 libX11-1.5.0 xproto-7.0.23 kbproto-1.0.6 gnumake-3.82 iso-codes-3.40
 $ cp /nix/var/nix/profiles/default/share/pkgconfig/iso-codes.pc /nix/var/nix/profiles/default/lib/pkgconfig/
+cp: 通常ファイル `/iso-codes.pc/nix/var/nix/profiles/default/lib/pkgconfig' を作成できません: No such file or directory
 
 # find / |grep iso-codes.pc
 $ cp /nix/store/a4agkk4dyyf87h2mamazvjyf0yana44r-iso-codes-3.40/share/pkgconfig/iso-codes.pc /iso-codes.pc /nix/var/nix/profiles/default/lib/pkgconfig/
