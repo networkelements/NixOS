@@ -143,8 +143,10 @@ $ cp /nix/var/nix/profiles/default/share/pkgconfig/iso-codes.pc /nix/var/nix/pro
 $ cp /nix/store/a4agkk4dyyf87h2mamazvjyf0yana44r-iso-codes-3.40/share/pkgconfig/iso-codes.pc /iso-codes.pc /nix/var/nix/profiles/default/lib/pkgconfig/
 cp: 通常ファイル `/iso-codes.pc/nix/var/nix/profiles/default/lib/pkgconfig' を作成できません: No such file or directory
 
+[blue@nixos:/nix/var/nix/profiles]$ cp /nix/store/a4agkk4dyyf87h2mamazvjyf0yana44r-iso-codes-3.40/share/pkgconfig/iso-codes.pc /iso-codes.pc /home/blue/.nix-profile/lib/pkgconfig/
+cp: 通常ファイル `/home/blue/.nix-profile/lib/pkgconfig/iso-codes.pc' を作成できません: Read-only file system
+cp: `/iso-codes.pc' を stat できません: No such file or directory
 
-$ cp /nix/store/a4agkk4dyyf87h2mamazvjyf0yana44r-iso-codes-3.40/share/pkgconfig/iso-codes.pc /iso-codes.pc /home/blue/.nix-profile/lib/pkgconfig/
 $./configure --disable-gtk3 --disable-dconf
 
 --古いまとめ
