@@ -1,0 +1,14 @@
+$ kate /etc/nixos/configuration.nix
+QDBusConnection: session D-Bus connection created before QCoreApplication. Application may misbehave.
+Connecting to deprecated signal QDBusConnectionInterface::serviceOwnerChanged(QString,QString,QString)
+QDBusConnection: session D-Bus connection created before QCoreApplication. Application may misbehave.
+QDBusConnection: session D-Bus connection created before QCoreApplication. Application may misbehave.
+kbuildsycoca4 running...
+kbuildsycoca4(6460) KConfigGroup::readXdgListEntry: List entry MimeType in "/nix/store/6i0a6qkic3kh8qb0319yp37b2gp4lhga-mousepad-0.2.16/share/applications/mousepad.desktop" is not compliant with XDG standard (missing trailing semicolon). 
+kate(6451)/kdecore (trader) KServiceTypeTrader::defaultOffers: KServiceTypeTrader: serviceType  "Kate/Plugin"  not found 
+KCrash: Application 'kate' crashing...
+KCrash: Attempting to start  from kdeinit
+sock_file=/home/blue/.kde/socket-nixos/kdeinit4__0
+Could not find '' executable.
+KCrash: Attempting to start  directly
+KCrash failed to exec(), errno = 2
