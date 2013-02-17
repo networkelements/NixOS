@@ -196,12 +196,7 @@
 	gtk3
 	perlPackages.XMLParser
 	pkgconfig
-	#gdk-pixbuf-2.0
-	gdk-pixbuf2
-	#gdk-pixbuf
- 	#pixbuf-2.0
-	#pixbuf2
- 	#pixbuf
+#	gdk-pixbuf
 # HDD
 #	acpitool
 #	hdparm
