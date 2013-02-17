@@ -393,3 +393,222 @@ Will find package 'gstreamer-netbuffer-0.10' in file '/run/current-system/sw/lib
 Cannot open directory '/nix/store/w6bwp1sq5w24n3vnmx0yifiqdq696fyf-pkg-config-0.23/lib/pkgconfig' in package search path: No such file or directory
 Cannot open directory '/nix/store/w6bwp1sq5w24n3vnmx0yifiqdq696fyf-pkg-config-0.23/share/pkgconfig' in package search path: No such file or directory
 Must specify package names on the command line
+
+[blue@nixos:/nix/var/nix/profiles]$ pkg-config --debug iso-codes
+Option --debug seen
+Error printing disabled by default, value of --print-errors: 0
+Error printing disabled
+Adding virtual 'pkg-config' package to list of known packages
+Scanning directory '/home/blue/.nix-profile/lib/pkgconfig'
+File 'cairo-png.pc' appears to be a .pc file
+Will find package 'cairo-png' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-png.pc'
+File 'gmodule-export-2.0.pc' appears to be a .pc file
+Will find package 'gmodule-export-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/gmodule-export-2.0.pc'
+File 'cairo-xlib.pc' appears to be a .pc file
+Will find package 'cairo-xlib' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-xlib.pc'
+File 'xproto.pc' appears to be a .pc file
+Will find package 'xproto' in file '/home/blue/.nix-profile/lib/pkgconfig/xproto.pc'
+File 'pangoxft.pc' appears to be a .pc file
+Will find package 'pangoxft' in file '/home/blue/.nix-profile/lib/pkgconfig/pangoxft.pc'
+File 'cairo-script.pc' appears to be a .pc file
+Will find package 'cairo-script' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-script.pc'
+File 'cairo-xcb-shm.pc' appears to be a .pc file
+Will find package 'cairo-xcb-shm' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-xcb-shm.pc'
+File 'glib-2.0.pc' appears to be a .pc file
+Will find package 'glib-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/glib-2.0.pc'
+File 'kbproto.pc' appears to be a .pc file
+Will find package 'kbproto' in file '/home/blue/.nix-profile/lib/pkgconfig/kbproto.pc'
+File 'gdk-pixbuf-xlib-2.0.pc' appears to be a .pc file
+Will find package 'gdk-pixbuf-xlib-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/gdk-pixbuf-xlib-2.0.pc'
+File 'freetype2.pc' appears to be a .pc file
+Will find package 'freetype2' in file '/home/blue/.nix-profile/lib/pkgconfig/freetype2.pc'
+File 'gio-unix-2.0.pc' appears to be a .pc file
+Will find package 'gio-unix-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/gio-unix-2.0.pc'
+File 'cairo-ps.pc' appears to be a .pc file
+Will find package 'cairo-ps' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-ps.pc'
+File 'cairo-fc.pc' appears to be a .pc file
+Will find package 'cairo-fc' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-fc.pc'
+File 'pangox.pc' appears to be a .pc file
+Will find package 'pangox' in file '/home/blue/.nix-profile/lib/pkgconfig/pangox.pc'
+File 'gmodule-2.0.pc' appears to be a .pc file
+Will find package 'gmodule-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/gmodule-2.0.pc'
+File 'gdk-pixbuf-2.0.pc' appears to be a .pc file
+Will find package 'gdk-pixbuf-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/gdk-pixbuf-2.0.pc'
+File 'atk.pc' appears to be a .pc file
+Will find package 'atk' in file '/home/blue/.nix-profile/lib/pkgconfig/atk.pc'
+Ignoring file '.' in search directory; not a .pc file
+File 'cairo-tee.pc' appears to be a .pc file
+Will find package 'cairo-tee' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-tee.pc'
+File 'cairo-svg.pc' appears to be a .pc file
+Will find package 'cairo-svg' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-svg.pc'
+File 'gio-2.0.pc' appears to be a .pc file
+Will find package 'gio-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/gio-2.0.pc'
+File 'cairo-gobject.pc' appears to be a .pc file
+Will find package 'cairo-gobject' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-gobject.pc'
+File 'cairo-pdf.pc' appears to be a .pc file
+Will find package 'cairo-pdf' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-pdf.pc'
+File 'gthread-2.0.pc' appears to be a .pc file
+Will find package 'gthread-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/gthread-2.0.pc'
+File 'cairo-xcb.pc' appears to be a .pc file
+Will find package 'cairo-xcb' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-xcb.pc'
+File 'cairo-xlib-xrender.pc' appears to be a .pc file
+Will find package 'cairo-xlib-xrender' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-xlib-xrender.pc'
+Ignoring file '..' in search directory; not a .pc file
+File 'pango.pc' appears to be a .pc file
+Will find package 'pango' in file '/home/blue/.nix-profile/lib/pkgconfig/pango.pc'
+File 'x11.pc' appears to be a .pc file
+Will find package 'x11' in file '/home/blue/.nix-profile/lib/pkgconfig/x11.pc'
+File 'pangocairo.pc' appears to be a .pc file
+Will find package 'pangocairo' in file '/home/blue/.nix-profile/lib/pkgconfig/pangocairo.pc'
+File 'gobject-2.0.pc' appears to be a .pc file
+Will find package 'gobject-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/gobject-2.0.pc'
+File 'pangoft2.pc' appears to be a .pc file
+Will find package 'pangoft2' in file '/home/blue/.nix-profile/lib/pkgconfig/pangoft2.pc'
+File 'x11-xcb.pc' appears to be a .pc file
+Will find package 'x11-xcb' in file '/home/blue/.nix-profile/lib/pkgconfig/x11-xcb.pc'
+File 'gmodule-no-export-2.0.pc' appears to be a .pc file
+Will find package 'gmodule-no-export-2.0' in file '/home/blue/.nix-profile/lib/pkgconfig/gmodule-no-export-2.0.pc'
+File 'cairo.pc' appears to be a .pc file
+Will find package 'cairo' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo.pc'
+File 'cairo-ft.pc' appears to be a .pc file
+Will find package 'cairo-ft' in file '/home/blue/.nix-profile/lib/pkgconfig/cairo-ft.pc'
+Cannot open directory '/nix/var/nix/profiles/default/lib/pkgconfig' in package search path: No such file or directory
+Scanning directory '/run/current-system/sw/lib/pkgconfig'
+File 'libsystemd-journal.pc' appears to be a .pc file
+Will find package 'libsystemd-journal' in file '/run/current-system/sw/lib/pkgconfig/libsystemd-journal.pc'
+File 'gstreamer-tag-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-tag-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-tag-0.10.pc'
+File 'gstreamer-pbutils-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-pbutils-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-pbutils-0.10.pc'
+File 'uuid.pc' appears to be a .pc file
+Will find package 'uuid' in file '/run/current-system/sw/lib/pkgconfig/uuid.pc'
+File 'mount.pc' appears to be a .pc file
+Will find package 'mount' in file '/run/current-system/sw/lib/pkgconfig/mount.pc'
+File 'libxfce4kbd-private-2.pc' appears to be a .pc file
+Will find package 'libxfce4kbd-private-2' in file '/run/current-system/sw/lib/pkgconfig/libxfce4kbd-private-2.pc'
+File 'libudev.pc' appears to be a .pc file
+Will find package 'libudev' in file '/run/current-system/sw/lib/pkgconfig/libudev.pc'
+File 'gtk+-unix-print-3.0.pc' appears to be a .pc file
+Will find package 'gtk+-unix-print-3.0' in file '/run/current-system/sw/lib/pkgconfig/gtk+-unix-print-3.0.pc'
+File 'gstreamer-interfaces-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-interfaces-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-interfaces-0.10.pc'
+File 'e2p.pc' appears to be a .pc file
+Will find package 'e2p' in file '/run/current-system/sw/lib/pkgconfig/e2p.pc'
+File 'gdk-3.0.pc' appears to be a .pc file
+Will find package 'gdk-3.0' in file '/run/current-system/sw/lib/pkgconfig/gdk-3.0.pc'
+File 'libxfcegui4-1.0.pc' appears to be a .pc file
+Will find package 'libxfcegui4-1.0' in file '/run/current-system/sw/lib/pkgconfig/libxfcegui4-1.0.pc'
+File 'gstreamer-app-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-app-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-app-0.10.pc'
+File 'ss.pc' appears to be a .pc file
+Will find package 'ss' in file '/run/current-system/sw/lib/pkgconfig/ss.pc'
+File 'gstreamer-sdp-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-sdp-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-sdp-0.10.pc'
+File 'gstreamer-floatcast-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-floatcast-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-floatcast-0.10.pc'
+File 'gail.pc' appears to be a .pc file
+Will find package 'gail' in file '/run/current-system/sw/lib/pkgconfig/gail.pc'
+File 'gstreamer-fft-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-fft-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-fft-0.10.pc'
+File 'gstreamer-cdda-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-cdda-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-cdda-0.10.pc'
+File 'xorg-server.pc' appears to be a .pc file
+Will find package 'xorg-server' in file '/run/current-system/sw/lib/pkgconfig/xorg-server.pc'
+File 'quota.pc' appears to be a .pc file
+Will find package 'quota' in file '/run/current-system/sw/lib/pkgconfig/quota.pc'
+File 'libxfce4panel-1.0.pc' appears to be a .pc file
+Will find package 'libxfce4panel-1.0' in file '/run/current-system/sw/lib/pkgconfig/libxfce4panel-1.0.pc'
+File 'gdk-x11-3.0.pc' appears to be a .pc file
+Will find package 'gdk-x11-3.0' in file '/run/current-system/sw/lib/pkgconfig/gdk-x11-3.0.pc'
+File 'thunarx-2.pc' appears to be a .pc file
+Will find package 'thunarx-2' in file '/run/current-system/sw/lib/pkgconfig/thunarx-2.pc'
+File 'libntfs-3g.pc' appears to be a .pc file
+Will find package 'libntfs-3g' in file '/run/current-system/sw/lib/pkgconfig/libntfs-3g.pc'
+File 'libsystemd-login.pc' appears to be a .pc file
+Will find package 'libsystemd-login' in file '/run/current-system/sw/lib/pkgconfig/libsystemd-login.pc'
+File 'liblzma.pc' appears to be a .pc file
+Will find package 'liblzma' in file '/run/current-system/sw/lib/pkgconfig/liblzma.pc'
+File 'gudev-1.0.pc' appears to be a .pc file
+Will find package 'gudev-1.0' in file '/run/current-system/sw/lib/pkgconfig/gudev-1.0.pc'
+Ignoring file '.' in search directory; not a .pc file
+File 'gdk-2.0.pc' appears to be a .pc file
+Will find package 'gdk-2.0' in file '/run/current-system/sw/lib/pkgconfig/gdk-2.0.pc'
+File 'gtk+-x11-3.0.pc' appears to be a .pc file
+Will find package 'gtk+-x11-3.0' in file '/run/current-system/sw/lib/pkgconfig/gtk+-x11-3.0.pc'
+File 'polkit-agent-1.pc' appears to be a .pc file
+Will find package 'polkit-agent-1' in file '/run/current-system/sw/lib/pkgconfig/polkit-agent-1.pc'
+File 'libcurl.pc' appears to be a .pc file
+Will find package 'libcurl' in file '/run/current-system/sw/lib/pkgconfig/libcurl.pc'
+File 'libsystemd-daemon.pc' appears to be a .pc file
+Will find package 'libsystemd-daemon' in file '/run/current-system/sw/lib/pkgconfig/libsystemd-daemon.pc'
+File 'blkid.pc' appears to be a .pc file
+Will find package 'blkid' in file '/run/current-system/sw/lib/pkgconfig/blkid.pc'
+File 'xfce4-icon-theme-1.0.pc' appears to be a .pc file
+Will find package 'xfce4-icon-theme-1.0' in file '/run/current-system/sw/lib/pkgconfig/xfce4-icon-theme-1.0.pc'
+File 'polkit-backend-1.pc' appears to be a .pc file
+Will find package 'polkit-backend-1' in file '/run/current-system/sw/lib/pkgconfig/polkit-backend-1.pc'
+File 'com_err.pc' appears to be a .pc file
+Will find package 'com_err' in file '/run/current-system/sw/lib/pkgconfig/com_err.pc'
+File 'garcon-1.pc' appears to be a .pc file
+Will find package 'garcon-1' in file '/run/current-system/sw/lib/pkgconfig/garcon-1.pc'
+File 'gtk+-3.0.pc' appears to be a .pc file
+Will find package 'gtk+-3.0' in file '/run/current-system/sw/lib/pkgconfig/gtk+-3.0.pc'
+File 'gstreamer-audio-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-audio-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-audio-0.10.pc'
+File 'gstreamer-plugins-base-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-plugins-base-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-plugins-base-0.10.pc'
+Ignoring file '..' in search directory; not a .pc file
+File 'upower-glib.pc' appears to be a .pc file
+Will find package 'upower-glib' in file '/run/current-system/sw/lib/pkgconfig/upower-glib.pc'
+File 'gstreamer-rtp-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-rtp-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-rtp-0.10.pc'
+File 'xfce4-session-2.0.pc' appears to be a .pc file
+Will find package 'xfce4-session-2.0' in file '/run/current-system/sw/lib/pkgconfig/xfce4-session-2.0.pc'
+File 'ext2fs.pc' appears to be a .pc file
+Will find package 'ext2fs' in file '/run/current-system/sw/lib/pkgconfig/ext2fs.pc'
+File 'gdk-x11-2.0.pc' appears to be a .pc file
+Will find package 'gdk-x11-2.0' in file '/run/current-system/sw/lib/pkgconfig/gdk-x11-2.0.pc'
+File 'fontconfig.pc' appears to be a .pc file
+Will find package 'fontconfig' in file '/run/current-system/sw/lib/pkgconfig/fontconfig.pc'
+File 'libpci.pc' appears to be a .pc file
+Will find package 'libpci' in file '/run/current-system/sw/lib/pkgconfig/libpci.pc'
+File 'gtk+-2.0.pc' appears to be a .pc file
+Will find package 'gtk+-2.0' in file '/run/current-system/sw/lib/pkgconfig/gtk+-2.0.pc'
+File 'gstreamer-video-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-video-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-video-0.10.pc'
+File 'libxfconf-0.pc' appears to be a .pc file
+Will find package 'libxfconf-0' in file '/run/current-system/sw/lib/pkgconfig/libxfconf-0.pc'
+File 'dbus-1.pc' appears to be a .pc file
+Will find package 'dbus-1' in file '/run/current-system/sw/lib/pkgconfig/dbus-1.pc'
+File 'gtk+-x11-2.0.pc' appears to be a .pc file
+Will find package 'gtk+-x11-2.0' in file '/run/current-system/sw/lib/pkgconfig/gtk+-x11-2.0.pc'
+File 'gtk+-unix-print-2.0.pc' appears to be a .pc file
+Will find package 'gtk+-unix-print-2.0' in file '/run/current-system/sw/lib/pkgconfig/gtk+-unix-print-2.0.pc'
+File 'gstreamer-riff-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-riff-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-riff-0.10.pc'
+File 'devmapper.pc' appears to be a .pc file
+Will find package 'devmapper' in file '/run/current-system/sw/lib/pkgconfig/devmapper.pc'
+File 'libsystemd-id128.pc' appears to be a .pc file
+Will find package 'libsystemd-id128' in file '/run/current-system/sw/lib/pkgconfig/libsystemd-id128.pc'
+File 'exo-1.pc' appears to be a .pc file
+Will find package 'exo-1' in file '/run/current-system/sw/lib/pkgconfig/exo-1.pc'
+File 'gstreamer-rtsp-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-rtsp-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-rtsp-0.10.pc'
+File 'libxfce4ui-1.pc' appears to be a .pc file
+Will find package 'libxfce4ui-1' in file '/run/current-system/sw/lib/pkgconfig/libxfce4ui-1.pc'
+File 'polkit-gobject-1.pc' appears to be a .pc file
+Will find package 'polkit-gobject-1' in file '/run/current-system/sw/lib/pkgconfig/polkit-gobject-1.pc'
+File 'lvm2app.pc' appears to be a .pc file
+Will find package 'lvm2app' in file '/run/current-system/sw/lib/pkgconfig/lvm2app.pc'
+File 'libkmod.pc' appears to be a .pc file
+Will find package 'libkmod' in file '/run/current-system/sw/lib/pkgconfig/libkmod.pc'
+File 'gail-3.0.pc' appears to be a .pc file
+Will find package 'gail-3.0' in file '/run/current-system/sw/lib/pkgconfig/gail-3.0.pc'
+File 'gstreamer-netbuffer-0.10.pc' appears to be a .pc file
+Will find package 'gstreamer-netbuffer-0.10' in file '/run/current-system/sw/lib/pkgconfig/gstreamer-netbuffer-0.10.pc'
+Cannot open directory '/nix/store/w6bwp1sq5w24n3vnmx0yifiqdq696fyf-pkg-config-0.23/lib/pkgconfig' in package search path: No such file or directory
+Cannot open directory '/nix/store/w6bwp1sq5w24n3vnmx0yifiqdq696fyf-pkg-config-0.23/share/pkgconfig' in package search path: No such file or directory
+Looking for package 'iso-codes'
+Looking for package 'iso-codes-uninstalled'
+Looking for 'iso-codes' using legacy -config scripts
+Calling gnome-config
