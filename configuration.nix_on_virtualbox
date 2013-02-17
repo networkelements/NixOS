@@ -97,7 +97,7 @@
 	videoDriver = "intel";
 #	videoDrivers = mkOverride 50 [ "virtualbox" ];
 	driSupport = true;
-	desktopManager.kde4.enable = true;
+#	desktopManager.kde4.enable = true;
 	desktopManager.xfce.enable = true;
 	windowManager.xmonad.enable = true;
 	windowManager.awesome.enable = true;
@@ -119,7 +119,7 @@
 #          createHome = true;
 #          group = "tony";
 #          extraGroups = [ "users" "wheel" ];
-#          shell = "/bin/zsh";
+#          shell = "/bin/sh";
 #        }
 #      ];
 #    extraGroups = [
@@ -196,9 +196,6 @@
 	gtk3
 	perlPackages.XMLParser
 	pkgconfig
-	gdk-pixbuf-2.0
-	pixbuf-2.0
-	pixbuf-2.0 
 # HDD
 #	acpitool
 #	hdparm
