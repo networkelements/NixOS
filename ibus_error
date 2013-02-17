@@ -1,3 +1,6 @@
+[~/ibus-1.5.1]$ cp /nix/var/nix/profiles/default/share/pkgconfig/iso-codes.pc /nix/var/nix/profiles/default/lib/pkgconfig/
+cp: `/nix/var/nix/profiles/default/share/pkgconfig/iso-codes.pc' を stat できません: No such file or directory
+
 [~/ibus-1.5.1]$ ./configure --disable-gtk3 --disable-dconf
 checking for a BSD-compatible install... /run/current-system/sw/bin/install -c
 checking whether build environment is sane... yes
