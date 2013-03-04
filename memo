@@ -77,14 +77,30 @@ passwd　～～～
 //kdmでログイン後、仮想端末を開いてxmodmapとubuntu-font-familyのインストール
 $ nix-env -i xmodmap ubuntu-font-family
 
-$ nix-env-qa
-$ nix-env -i
+--コマンドの基本的な使い方
+Install/remove software - Nix Wiki
+http://nixos.org/wiki/Install/remove_software#nix-channels
 
-//configuration.nixに追加済み
-python
-gcc
+//リポジトリの登録？
+$ nix-channel --add http://nixos.org/releases/nixos/channels/nixos-unstable
+//あっぷでーと
+$ nix-channel --update
+$ nixos-rebuild switch
 
-//configuration.nixでないとインストール不可？
+//パッケージを探す（完全一致）
+$ nix-env-qa パッケージ名
+
+//パッケージをインストール
+$ nix-env -i パッケージ名
+
+//パッケージをアンインストール
+$ nix-env -u パッケージ名
+
+
+
+--ibusのビルド手順ログ（まだできないまま）
+========================================================================================================================
+//configuration.nixに追記しないとインストール不可？
 gcc
 gtk+-2.
 gtk+-3.
@@ -148,7 +164,13 @@ cp: 通常ファイル `/home/blue/.nix-profile/lib/pkgconfig/iso-codes.pc' を�
 cp: `/iso-codes.pc' を stat できません: No such file or directory
 
 $./configure --disable-gtk3 --disable-dconf
+========================================================================================================================
 
---古いまとめ
+
+
+
+
+
+--古いまとめ（NixOSがどんな感じなのか的な）
 Linux初心者のためのNixOS - ごみばこ
 http://bleuscr.hatenablog.jp/entry/2012/12/13/Linux%E5%88%9D%E5%BF%83%E8%80%85%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AENixOS
