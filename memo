@@ -96,6 +96,16 @@ $ nix-env -i パッケージ名
 
 //パッケージをアンインストール
 $ nix-env -u パッケージ名
+
+-要root
+//configuration.nixの編集
+$ sudo nano /etc/nixos/configuration.nix
+/**Xfceだとmousepadが使えます。KDEできちんと起動できなくなったのでkateを使うのは厳しかもしれません**/
+$ sudo mousepad /etc/nixos/configuration.nix
+
+//configuration.nixを編集してSaveしたら
+$ sudo nixos-rebuild switch
+
 ========================================================================================================================
 
 
