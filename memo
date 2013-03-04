@@ -86,7 +86,6 @@ http://nixos.org/wiki/Install/remove_software#nix-channels
 $ nix-channel --add http://nixos.org/releases/nixos/channels/nixos-unstable
 //あっぷでーと
 $ nix-channel --update
-$ nixos-rebuild switch
 
 //パッケージを探す（完全一致）
 $ nix-env-qa パッケージ名
