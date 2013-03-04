@@ -11,17 +11,17 @@
       initrd.kernelModules = [ "ehci_hcd" "ahci" "usbhid" "i915" "btrfs" "ext4" "ntfs" ];
       boot.kernelModules = [ "zram" "kvm-intel" ];
       extraModulePackages = [ ];
-      postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
+      #postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
       };
 
-  hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
+# hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
 
   powerManagement = {
 	enable = true;
-	powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
-	cpuFreqGovernor = "performance";
+#	powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
+#	cpuFreqGovernor = "performance";
 	};
 
   security.pam.loginLimits = [
@@ -174,8 +174,6 @@
 	testdisk
 # useful
 	#alsamixer
-	#ubuntu-font-family
-	#xmodmap
 	curl
 	firefox
 	flashplayer
