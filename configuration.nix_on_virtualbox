@@ -19,39 +19,39 @@
 # hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
 
 #http://nixos.org/wiki/Audio_HOWTO
-# hardware.pulseaudio.enable = true;
-# hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
+ hardware.pulseaudio.enable = true;
+ hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
 #  hardware.pulseaudio = {
 #	enable = true;
 #	package = pkgs.pulseaudio.override { jackaudioSupport = true; };
 #	};
 
-#  powerManagement = {
-#	enable = true;
+  powerManagement = {
+	enable = true;
 #	powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
 #	powerManagement.cpuFreqGovernor = "performance";
-#	};
+	};
 
-#  security.pam.loginLimits = [
-#    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
-#    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
-#  ];
+  security.pam.loginLimits = [
+    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
+    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
+  ];
 
   services = {
       nixosManual.showManual = true;			#Add the NixOS Manual on virtual console 8
       virtualbox.enable = true;
 # Enable helpful DBus services.(Xfce)
-#     udisks.enable = true;
-#     upower.enable = config.powerManagement.enable;
+     udisks.enable = true;
+     upower.enable = config.powerManagement.enable;
       ntp.servers = [ "ntp.nict.jp" ];
       acpid.enable = true;
-#      udev = {
-#	packages = [ pkgs.ffado ]; # If you have a FireWire audio interface
-#	extraRules = ''
-#	  KERNEL=="rtc0", GROUP="audio"
-#	  KERNEL=="hpet", GROUP="audio"
-#	'';
-#      };
+      udev = {
+	packages = [ pkgs.ffado ]; # If you have a FireWire audio interface
+	extraRules = ''
+	  KERNEL=="rtc0", GROUP="audio"
+	  KERNEL=="hpet", GROUP="audio"
+	'';
+      };
     };
 
   nix.maxJobs = 4;
@@ -87,8 +87,18 @@
 #https://github.com/NixOS/nixos/tree/master/doc/config-examples
   fonts = {
 	enableFontConfig = true;
-	#extraFonts = [ pkgs.ubuntu-font-family ];
+#	extraFonts = [ pkgs.ubuntu-font-family ];
       };
+
+
+  security.apparmor.enable = true;
+  security.sudo.enable = true;
+  security.sudo.wheelNeedsPassword = true;
+  security.rtkit.enable = true;
+  security.polkit.enable = true;
+  security.rngd.enable = true;
+  security.pam.usb.enable = true;
+  
 
   services.xserver = {
 	enable = true;
@@ -99,7 +109,7 @@
 	driSupport = true;
 #	desktopManager.kde4.enable = true;
 	desktopManager.xfce.enable = true;
-	windowManager.xmonad.enable = true;
+#	windowManager.xmonad.enable = true;
 	windowManager.awesome.enable = true;
 	desktopManager.default = "xfce";
 #これでも問題ない？
@@ -130,7 +140,7 @@
 #	};
 
   environment.systemPackages = with pkgs; [
-# must
+# must	
 	kde4.kde_baseapps
 	kde4.l10n.ja
 	kde4.kate
@@ -144,7 +154,7 @@
 	#ubuntu-font-family
 	#xmodmap
 # xfce
-#	gtk # To get GTK+'s themes.
+	gtk # To get GTK+'s themes.
 	hicolor_icon_theme
 	shared_mime_info
 	which # Needed by the xfce's xinitrc script.
@@ -185,8 +195,8 @@
 	#tegaki-zinnia-japanese
 	#libgtk2.0-dev
 	#libxcb-xfixes0-dev
-	#gcc
-	#python
+	gcc
+	python
 # ibus dependencies
 	#gnome-common
 	#autoconf-2.53
@@ -196,22 +206,28 @@
 	gtk3
 	perlPackages.XMLParser
 	pkgconfig
-#	gdk-pixbuf
 # HDD
-#	acpitool
-#	hdparm
-#	parted
-#	rsync
-#	smartmontools
+	acpitool
+	ddrescue
+	hdparm
+	mssys
+	hdparm
+	ntfs3g
+	parted
+	rsync
+	smartmontools
 	#sshfs
-#	testdisk
+	testdisk
+# security
+	pmount
+	polkit
+	rng_tools
+	sudo
 # useful?
 	#alsamixer
 	curl
 	firefox
 	git
-	midori
-	sudo
 	strace
 	unrar
 	unzip
