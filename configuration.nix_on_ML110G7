@@ -91,8 +91,10 @@
 	xserver = {
 	enable = true;
 	driSupport = true;
-	videoDriver = "intel";
-	layout = "jp";
+
+#	videoDriver = "intel";
+
+layout = "jp";
 	xkbModel = "jp106";
 	desktopManager.xfce.enable = true;
 #	desktopManager.kde4.enable = true;
@@ -108,14 +110,14 @@
   environment.systemPackages = with pkgs; [
 # minimal KDE
 #	kde4.kde_baseapps
-#	kde4.l10n.ja
+	kde4.l10n.ja
 # KDE#	kde4.ark
 #	kde4.gwenview
 #	kde4.k3b
 #	kde4.kate
 #	kde4.kde_workspace
 #	kde4.konsole
-#	kde4.ksnapshot
+	kde4.ksnapshot
 #	kde4.kuser
 #	kde4.okular
 	kde4.oxygen_icons
