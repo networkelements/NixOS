@@ -14,6 +14,8 @@
       #postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
       };
 
+  nix.maxJobs = 2;
+
 # hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
@@ -34,25 +36,6 @@
     { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
     { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
   ];
-
-  services = {
-      nixosManual.showManual = true;			#Add the NixOS Manual on virtual console 8
-#Enable helpful DBus services.(Xfce)
-     udisks.enable = true;
-     upower.enable = config.powerManagement.enable;
-      ntp.servers = [ "ntp.nict.jp" ];
-      acpid.enable = true;
-      udev = {
-	packages = [ pkgs.ffado ]; # If you have a FireWire audio interface
-	extraRules = ''
-	  KERNEL=="rtc0", GROUP="audio"
-	  KERNEL=="hpet", GROUP="audio"
-	'';
-      };
-    };
-
-
-  nix.maxJobs = 2;
 
   boot.loader.grub = {
   version = 2;
@@ -81,7 +64,25 @@
 	timeZone = "Asia/Tokyo";
 	};
 
-  services.xserver = {
+  services = {
+# Add the NixOS Manual on virtual console 8
+	nixosManual.showManual = true;
+	sshd.enable = true;
+	openssh.enable = true;
+# Enable helpful DBus services.(Xfce)
+	udisks.enable = true;
+	upower.enable = config.powerManagement.enable;
+	ntp.servers = [ "ntp.nict.jp" ];
+	acpid.enable = true;
+	udev = {
+		packages = [ pkgs.ffado ]; # If you have a FireWire audio interface
+		extraRules = ''
+		KERNEL=="rtc0", GROUP="audio"
+		KERNEL=="hpet", GROUP="audio"
+	'';
+	};
+# GUI settings
+	xserver = {
 	enable = true;
 	driSupport = true;
 	videoDriver = "intel";
@@ -91,28 +92,28 @@
 	desktopManager.kde4.enable = true;
 #	windowManager.xmonad.enable = true;
 	windowManager.awesome.enable = true;
-#	displayManager.slim.enable = true;
 	displayManager.kdm.enable = true;
+#	displayManager.slim.enable = true;
 	desktopManager.default = "kde4";
-	autorun = true;
+	autorun = false;
 	};
+  };
 
   environment.systemPackages = with pkgs; [
 # minimal KDE
-#	kde4.kde_baseapps
-#	kde4.l10n.ja
-# KDE
-#	kde4.ark
-#	kde4.gwenview
+	kde4.kde_baseapps
+	kde4.l10n.ja
+# KDE#	kde4.ark
+	kde4.gwenview
 #	kde4.k3b
 	kde4.kate
-#	kde4.kde_workspace
+	kde4.kde_workspace
 #	kde4.konsole
 	kde4.ksnapshot
 #	kde4.kuser
-#	kde4.okular
+	kde4.okular
 	kde4.oxygen_icons
-#	kde4.polkit_kde_agent
+	kde4.polkit_kde_agent
 # xfce
 #	gtk # To get GTK+'s themes.
 #	hicolor_icon_theme
@@ -187,7 +188,7 @@
 	#alsamixer
 	curl
 	firefox
-  midori
+	midori
 	git
 	strace
 	unrar
