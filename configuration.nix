@@ -9,7 +9,7 @@
 
   boot = {
       initrd.kernelModules = [ "ehci_hcd" "ahci" "usbhid" "btrfs" "ext4" "ntfs" ];
-      boot.kernelModules = [ "zram" "kvm-intel" ];
+      kernelModules = [ "zram" "kvm-intel" ];
       extraModulePackages = [ ];
       #postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
       };
@@ -88,12 +88,12 @@
 	layout = "jp";
 	xkbModel = "jp106";
 #	desktopManager.xfce.enable = true;
-#	desktopManager.kde4.enable = true;
+	desktopManager.kde4.enable = true;
 #	windowManager.xmonad.enable = true;
 	windowManager.awesome.enable = true;
 	displayManager.slim.enable = true;
 #	displayManager.kdm.enable = true;
-	desktopManager.default = "awesome";
+	desktopManager.default = "kde4";
 	autorun = true;
 	};
 
