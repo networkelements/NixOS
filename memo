@@ -125,7 +125,7 @@ mkfs.btrfsでnixosのラベルを付けられないのでなにか間違えた�
 //スクリプトを走らせる？　また、インストール後にこれをやるとconfiguration.nixがまっさらになるので注意。
 # nixos-hardware-scan > /mnt/etc/nixos/configuration.nix
 //自分で設定を書く（※必ずパーティション構成等を追記すること。起動出来なくなる）
-# nano /etc/nixos/configuration.nix
+# nano /mnt/etc/nixos/configuration.nix
 
 ②楽な方法（）
 //Githubにおいてある私のconfiguration.nixから丸パクリしてタイポを防ぐ
