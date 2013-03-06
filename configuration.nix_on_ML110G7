@@ -191,6 +191,7 @@
 	#alsamixer
 	curl
 	firefox
+	flashplayer
 	midori
 	git
 	strace
