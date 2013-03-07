@@ -11,17 +11,26 @@
       initrd.kernelModules = [ "ehci_hcd" "i915" "btrfs" "ext4" "ntfs" ];
       boot.kernelModules = [ "zram" "kvm-intel" ];
       extraModulePackages = [ ];
-      postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
+#     postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
+#なおたせんせーの
+#https://gist.github.com/anonymous/4263038
+#Xサーバーのエラーログを見る限りKVMを使うと下記の作業が必要になる？
+#NixOS pre2ではまだ試していない
+	blacklistedKernelModules = [ "cirrusfb" ];
+#	extraKernelParams = [ "nomodeset" ];
+
       };
 
-  hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
+  nix.maxJobs = 4;
+
+# hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
 
   powerManagement = {
 	enable = true;
-	powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
-	cpuFreqGovernor = "performance";
+#	powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
+#	cpuFreqGovernor = "performance";
 	};
 
   security.pam.loginLimits = [
@@ -29,24 +38,18 @@
     { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
   ];
 
-  services = {
-      nixosManual.showManual = true;			#Add the NixOS Manual on virtual console 8
-#Enable helpful DBus services.(Xfce)
-     udisks.enable = true;
-     upower.enable = config.powerManagement.enable;
-      ntp.servers = [ "ntp.nict.jp" ];
-      acpid.enable = true;
-      udev = {
-	packages = [ pkgs.ffado ]; # If you have a FireWire audio interface
-	extraRules = ''
-	  KERNEL=="rtc0", GROUP="audio"
-	  KERNEL=="hpet", GROUP="audio"
-	'';
-      };
-    };
+  security.apparmor.enable = true;
+  security.sudo.enable = true;
+  security.sudo.wheelNeedsPassword = true;
+  security.rtkit.enable = true;
+  security.polkit.enable = true;
+  security.rngd.enable = true;
+  security.pam.loginLimits = [
+    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
+    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
+  ];
 
-
-  nix.maxJobs = 4;
+  networking.firewall.enable = true;
 
   boot.loader.grub = {
   version = 2;
@@ -82,13 +85,13 @@
 	layout = "jp";
 	xkbModel = "jp106";
 	desktopManager.xfce.enable = true;
-	desktopManager.kde4.enable = true;
+#	desktopManager.kde4.enable = true;
 #	windowManager.xmonad.enable = true;
 	windowManager.awesome.enable = true;
 #	displayManager.slim.enable = true;
 	displayManager.kdm.enable = true;
-	desktopManager.default = "kde4";
-	autorun = true;
+	desktopManager.default = "xfce";
+	autorun = false;
 	};
 
   environment.systemPackages = with pkgs; [
@@ -159,8 +162,7 @@
 	gtk2
 	gtk3
 	perlPackages.XMLParser
-	pkgconfig
-# HDD
+	pkgconfig# HDD
 	acpitool
 	ddrescue
 	hdparm
@@ -172,16 +174,19 @@
 	smartmontools
 	#sshfs
 	testdisk
-# useful
+# security
+	iptables
+	pmount
+	polkit
+	rng_tools
+	sudo
+# useful?
 	#alsamixer
-	#ubuntu-font-family
-	#xmodmap
 	curl
 	firefox
 	flashplayer
+	midori
 	git
-	glxinfo
-	sudo
 	strace
 	unrar
 	unzip
