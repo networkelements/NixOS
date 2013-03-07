@@ -8,12 +8,24 @@
   ];
 
   boot = {
-      initrd.kernelModules = [ "ehci_hcd" "ata_piix" "uhci_hcd" "usbhid" "btrfs" "ext4" "ntfs" ];
+      initrd.kernelModules = [ 
+	"ehci_hcd" "ata_piix" "uhci_hcd" "usbhid" 
+#ここまでは$ nixos-hardware-scan > /mnt/etc/nixos/configuration.nix　したときの結果である。
+#個人的によく使うファイルシステムの３つを追加
+	"btrfs" "ext4" "ntfs" 
+#HP ProLiant／ML110 G7 - wiki@nothing
+#http://wiki.nothing.sh/page/HP%20ProLiant%A1%BFML110%20G7#v08f3a07
+#オンボードVGA	Matrox　G200eH (16MB)
+#用のモジュール？
+#services.xserver.videoDriver = "mga" "m9x";では不可能なようなので
+#LCD-MF234XNRでD-sub端子使ったがワイドに対応してないので画面がぼやけて仕方がない
+#やはりサーバのスペックなのでデスクトップで使おうとしたらビデオカードが必要である。まぁわかってたことなんだけどさ
+	"mga" "m9x"];
       kernelModules = [ "zram" "kvm-intel" ];
       extraModulePackages = [ ];
       #postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
       };
-
+#ML110 G7はデュアルコアなので$ nixos-hardware-scan > /mnt/etc/nixos/configuration.nix　すると下のようになる
   nix.maxJobs = 2;
 
 # hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
@@ -91,10 +103,8 @@
 	xserver = {
 	enable = true;
 	driSupport = true;
-
 #	videoDriver = "intel";
-
-layout = "jp";
+	layout = "jp";
 	xkbModel = "jp106";
 	desktopManager.xfce.enable = true;
 #	desktopManager.kde4.enable = true;
