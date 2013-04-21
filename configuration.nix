@@ -8,7 +8,7 @@
   ];
 
   boot = {
-      initrd.kernelModules = [ "ehci_hcd" "ahci" "usbhid" "btrfs" "ext4" "ntfs" ];
+      initrd.kernelModules = [ "ata_piix" "ohci_hcd" "usbhid" "btrfs" "ext4" "ntfs" ];
       kernelModules = [ "zram" "kvm-intel" ];
       extraModulePackages = [ ];
       };
