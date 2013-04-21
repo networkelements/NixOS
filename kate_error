@@ -12,3 +12,26 @@ sock_file=/home/blue/.kde/socket-nixos/kdeinit4__0
 Could not find '' executable.
 KCrash: Attempting to start  directly
 KCrash failed to exec(), errno = 2
+
+
+sh-4.2$ kate
+QDBusConnection: session D-Bus connection created before QCoreApplication. Application may misbehave.
+kate(1718)/kate-filetree KateFileTreePluginView::KateFileTreePluginView: BEGIN: mw: Kate::MainWindow(0x1af1ed0)
+kate(1718)/kate-filetree ProxyItem::ProxyItem: ProxyItem(0x1b87360,0x0,-1,QObject(0x0) ,"m_root")
+kate(1718)/kate-filetree ProxyItem::ProxyItem: ProxyItem(0x1ab61e0,0x0,-1,QObject(0x0) ,"Untitled")
+kate(1718)/kate-filetree KateFileTreeModel::documentOpened: before add: ProxyItem(0x1ab61e0,0x0,-1,KateDocument(0x18d3310) , "Untitled" )
+kate(1718)/kate-filetree KateFileTreeModel::setupIcon: BEGIN!
+kate(1718)/kate-filetree KateFileTreeModel::setupIcon: END!
+kate(1718)/kate-filetree KateFileTreeModel::handleInsert: BEGIN!
+kate(1718)/kate-filetree KateFileTreeModel::handleInsert: empty item
+kate(1718)/kate-filetree ProxyItem::addChild: added ProxyItem(0x1ab61e0,0x1b87360,0,KateDocument(0x18d3310) , "Untitled" )   to ProxyItemDir(0x1b87360,0x0,-1,"m_root", children:1)
+kate(1718)/kate-filetree KateFileTreeModel::documentOpened: after add: ProxyItem(0x1ab61e0,0x1b87360,0,KateDocument(0x18d3310) , "Untitled" )
+kate(1718)/kate-filetree KateFileTreeProxyModel::KateFileTreeProxyModel: BEGIN!
+kate(1718)/kate-filetree KateFileTreePluginView::setListMode: BEGIN
+kate(1718)/kate-filetree KateFileTreePluginView::setListMode: treeMode
+kate(1718)/kate-filetree KateFileTreePluginView::setListMode: END
+KCrash: Application 'kate' crashing...
+KCrash: Attempting to start /run/current-system/sw/lib/kde4/libexec/drkonqi from kdeinit
+sock_file=/home/bsod/.kde/socket-nixos/kdeinit4__0
+
+[1]+  Stopped(SIGSTOP)        kate
