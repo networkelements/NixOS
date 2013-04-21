@@ -31,8 +31,9 @@
   ];
 
   services = {
-      ntp.servers = [ "ntp.nict.jp" ];
-      acpid.enable = true;
+	virtualbox.enable = true;
+	ntp.servers = [ "ntp.nict.jp" ];
+	acpid.enable = true;
     };
 
 
