@@ -108,8 +108,8 @@
 #	videoDrivers = mkOverride 50 [ "virtualbox" ];
 	driSupport = true;
 	desktopManager.kde4.enable = true;
-#	desktopManager.xfce.enable = true;
-#	windowManager.xmonad.enable = true;
+	desktopManager.xfce.enable = true;
+	windowManager.xmonad.enable = true;
 	windowManager.awesome.enable = true;
 	desktopManager.default = "kde4";
 #これでも問題ない？
@@ -142,15 +142,15 @@
   environment.systemPackages = with pkgs; [
 # must	
 	kde4.kde_baseapps
-#	kde4.l10n.ja
-#	kde4.kate
-#	kde4.kde_workspace
-#	kde4.konsole
-#	kde4.ksnapshot
-#	kde4.kuse
-#	kde4.okular
-#	kde4.oxygen_icons
-#	kde4.polkit_kde_agent
+	kde4.l10n.ja
+	kde4.gwenview
+	kde4.kate
+	kde4.kde_workspace
+	kde4.konsole
+	kde4.ksnapshot
+	kde4.okular
+	kde4.oxygen_icons
+	kde4.polkit_kde_agent
 	#ubuntu-font-family
 	#xmodmap
 # xfce
@@ -224,13 +224,15 @@
 	rng_tools
 	sudo
 # useful?
-	#alsamixer
+	chromium
 	curl
 	firefox
 	git
+	sakura
 	strace
 	unrar
 	unzip
+	vlc
 	wget
 	zsh
 	];
