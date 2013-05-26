@@ -120,24 +120,24 @@
 	autorun = false;
 	};
 
-# users = {
-#   extraUsers = [
-#	{ name = "tony";
-#          uid = 500;
-#          description = "Tony";
-#          home = "/home/tony";
-#          createHome = true;
-#          group = "tony";
-#          extraGroups = [ "users" "wheel" ];
-#          shell = "/bin/sh";
-#        }
-#      ];
+ users = {
+   extraUsers = [
+	{ name = "bsod";
+          uid = 1000;
+          description = "bsod";
+          home = "/home/bsod";
+          createHome = true;
+          group = "bsod";
+          extraGroups = [ "users" "wheel" ];
+          shell = pkgs.zsh + "/bin/zsh";
+        }
+      ];
 #    extraGroups = [
-#        { name = "tony";
+#        { name = "bsod";
 #          gid = 500;
 #        }
 #      ];
-#	};
+	};
 
   environment.systemPackages = with pkgs; [
 # must	
