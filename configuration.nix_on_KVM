@@ -33,10 +33,6 @@
 #	cpuFreqGovernor = "performance";
 	};
 
-  security.pam.loginLimits = [
-    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
-    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
-  ];
 
   security.apparmor.enable = true;
   security.sudo.enable = true;
@@ -60,7 +56,7 @@
   fileSystems =
 	[{ mountPoint = "/";
 	   device = "/dev/disk/by-label/nixos";
-	   fsType = "btrfs";
+	   fsType = "ext4";
 	 }
 	];
 
