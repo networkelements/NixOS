@@ -101,34 +101,4 @@
           shell = pkgs.zsh + "/bin/zsh";
         }
       ];
- 
-  environment.systemPackages = with pkgs; [
-# must        
-        kde4.kde_baseapps
-        kde4.l10n.ja
-        kde4.gwenview
-        kde4.kate
-        kde4.kde_workspace
-        kde4.konsole
-        kde4.ksnapshot
-        kde4.oxygen_icons
-        #ubuntu-font-family
-        #xmodmap
-# security
-        pmount
-        polkit
-        rng_tools
-        sudo
-# useful?
-        curl
-        firefox
-        git
-        sakura
-        strace
-        unrar
-        unzip
-        vlc
-        wget
-        zsh
-        ];
 }
