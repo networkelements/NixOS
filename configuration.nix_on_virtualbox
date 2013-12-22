@@ -10,36 +10,243 @@
       ./hardware-configuration.nix
     ];
  
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # Define on which hard drive you want to install Grub.
-  # boot.loader.grub.device = "/dev/sda";
- 
+
+  boot = {
+    initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "ntfs" "kvm_intel" "zram" "i915" "i815"];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
+    # Use the GRUB 2 boot loader.
+    # Define on which hard drive you want to install Grub.
+    loader.grub = {
+                    enable = true;
+                    version = 2;
+                    grub.device = "/dev/sda";
+                  }
+    extraModulePackages = [ "pkgs.linuxPackages.virtualbox" "kernel.virtualboxGuestAdditions" ];
+    #postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
+    };
+      
+# kernelPackages = [ pkgs.kernelPackages_3_7_5 ];
+  hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
+
+#http://nixos.org/wiki/Audio_HOWTO
+ hardware.pulseaudio.enable = true;
+ hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
+#  hardware.pulseaudio = {
+#        enable = true;
+#        package = pkgs.pulseaudio.override { jackaudioSupport = true; };
+#        };
+
+  powerManagement = {
+        enable = true;
+#        powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
+#        powerManagement.cpuFreqGovernor = "performance";
+        };
+
+  security.pam.loginLimits = [
+    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
+    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
+  ];
+
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless.
- 
-  # Select internationalisation properties.
-  # i18n = {
-  #   consoleFont = "lat9w-16";
-  #   consoleKeyMap = "us";
-  #   defaultLocale = "en_US.UTF-8";
-  # };
- 
-  # List services that you want to enable:
- 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
- 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
- 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
- 
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.kdm.enable = true;
-  # services.xserver.desktopManager.kde4.enable = true;
+
+  services = {
+      nixosManual.showManual = true;                        #Add the NixOS Manual on virtual console 8
+      virtualbox.enable = true;
+# Enable helpful DBus services.(Xfce)
+     udisks.enable = true;
+     upower.enable = config.powerManagement.enable;
+      ntp.servers = [ "ntp.nict.jp" ];
+      acpid.enable = true;
+      udev = {
+        packages = [ pkgs.ffado ]; # If you have a FireWire audio interface
+        extraRules = ''
+          KERNEL=="rtc0", GROUP="audio"
+          KERNEL=="hpet", GROUP="audio"
+        '';
+      };
+    };
+
+#CPUのコア数にあわせて数値を設定すること
+#  nix.maxJobs = 4;
+   
+#  boot.loader.grub = {
+#         version = 2;
+#         enable = true;
+#         device = "/dev/sda";
+#         options = "data=journal";
+#         options = "data=realtime";
+#        };
+  fileSystems =
+        [{ mountPoint = "/";
+           device = "/dev/disk/by-label/nixos";
+           fsType = "ext4";
+         }
+        ];
+  time = {
+        timeZone = "Asia/Tokyo";
+        };
+
+# Select internationalisation properties.
+  i18n = {
+        consoleFont = "fbterm";
+#       consoleFont = "kon2";
+#       consoleFont = "unifont";
+        consoleKeyMap = "jp106";
+        defaultLocale = "ja_JP.UTF-8";
+        };
+#nixos/doc/config-examples at master · NixOS/nixos · GitHub
+#https://github.com/NixOS/nixos/tree/master/doc/config-examples
+  fonts = {
+        enableFontConfig = true;
+#        extraFonts = [ pkgs.ubuntu-font-family ];
+      };
+
+  security.apparmor.enable = true;
+  security.sudo.enable = true;
+  security.sudo.wheelNeedsPassword = true;
+  security.rtkit.enable = true;
+  security.polkit.enable = true;
+  security.rngd.enable = true;
+  security.pam.usb.enable = true;
+
+
+  services.xserver = {
+        enable = true;
+        layout = "jp";
+        xkbModel = "jp106";
+        xkbOptions = "japan:kana,grp_led:scroll";
+#        videoDriver = "intel";
+        videoDrivers = mkOverride 50 [ "virtualbox" ];
+        driSupport = true;
+        desktopManager.kde4.enable = true;
+        desktopManager.xfce.enable = true;
+        windowManager.xmonad.enable = true;
+        windowManager.awesome.enable = true;
+        desktopManager.default = "kde4";
+#これでも問題ない？
+#        sessionType = "kde4";
+#        sessionType = "xfce";
+        displayManager.kdm.enable = true;
+#        displayManager.slim.enable = true;
+        autorun = false;
+        };
+
+ users = {
+   extraUsers = [
+        { name = "nixos";
+          uid = 1000;
+          description = "nixos";
+          home = "/home/nixos";
+          createHome = true;
+          group = "bsod";
+          extraGroups = [ "users" "wheel" "video" ];
+          shell = pkgs.zsh + "/bin/zsh";
+        }
+      ];
+#    extraGroups = [
+#        { name = "bsod";
+#          gid = 500;
+#        }
+#      ];
+        };
+
+  environment.systemPackages = with pkgs; [
+# must        
+        kde4.kde_baseapps
+        kde4.l10n.ja
+        kde4.gwenview
+        kde4.kate
+        kde4.kde_workspace
+        kde4.konsole
+        kde4.ksnapshot
+        kde4.okular
+        kde4.oxygen_icons
+        kde4.polkit_kde_agent
+        #ubuntu-font-family
+        #xmodmap
+# xfce
+#        gtk # To get GTK+'s themes.
+#        hicolor_icon_theme
+#        shared_mime_info
+#        which # Needed by the xfce's xinitrc script.
+#        xfce.exo
+#        xfce.gtk_xfce_engine
+#        xfce.libxfcegui4 # For the icons.
+#        xfce.ristretto
+#        xfce.terminal
+#        xfce.thunar
+#        xfce.xfce4icontheme
+#        xfce.xfce4panel
+#        xfce.xfce4session
+#        xfce.xfce4settings
+#        xfce.xfce4mixer
+#        xfce.xfceutils
+#        xfce.xfconf
+#        xfce.xfdesktop
+#        xfce.xfwm4
+# This supplies some "abstract" icons such as
+# "utilities-terminal" and "accessories-text-editor".
+#        gnome.gnomeicontheme
+#        desktop_file_utils
+#        xfce.libxfce4ui
+#        xfce.garcon
+#        xfce.thunar_volman
+#        xfce.gvfs
+#        xfce.xfce4_appfinder
+# mozc dependencies
+        #libibus-1.0-dev
+        #libssl-dev
+        #libdbus-1-dev
+        #libglib2.0-dev
+        subversion
+        #devscripts
+        #debhelper
+        #libqt4-dev
+        #libzinnia-dev
+        #tegaki-zinnia-japanese
+        #libgtk2.0-dev
+        #libxcb-xfixes0-dev
+        gcc
+        python
+# ibus dependencies
+        #gnome-common
+        #autoconf-2.53
+        #automake-1.10
+        #gcc
+        #gtk2
+        #gtk3
+        #perlPackages.XMLParser
+        #pkgconfig
+# HDD
+        acpitool
+        ddrescue
+        hdparm
+        mssys
+        hdparm
+        ntfs3g
+        parted
+        rsync
+        smartmontools
+        #sshfs
+        testdisk
+# security
+        pmount
+        polkit
+        rng_tools
+        sudo
+# useful?
+        chromium
+        curl
+        firefox
+        git
+        sakura
+        strace
+        unrar
+        unzip
+        vlc
+        wget
+        zsh
+        ];
 }
