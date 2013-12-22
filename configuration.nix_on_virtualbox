@@ -13,31 +13,12 @@
  
   boot = {
     initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "ntfs" "kvm_intel" "zram" "i915" "i815"];
-    #kernelModules = [ ];
-    extraModulePackages = [ ];
-    # Use the GRUB 2 boot loader.
-    # Define on which hard drive you want to install Grub.
-    #loader.grub = {
-    #                enable = true;
-    #                version = 2;
-    #                grub.device = "/dev/sda";
-    #              }
-    extraModulePackages = [ "pkgs.linuxPackages.virtualbox" "kernel.virtualboxGuestAdditions" ];
-    #postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
     };
- 
-# kernelPackages = [ pkgs.kernelPackages_3_7_5 ];
-# hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
  
 #http://nixos.org/wiki/Audio_HOWTO
   hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = 
-true; };
-# hardware.pulseaudio = {
-#      enable = true;
-#      package = pkgs.pulseaudio.override { jackaudioSupport = true; };
-#      };
- 
+  hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
+
   powerManagement = {
         enable = true;
 #        powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
@@ -52,8 +33,7 @@ true; };
 # networking.wireless.enable = true;  # Enables wireless.
  
   services = {
-      nixosManual.showManual = true;                        #Add the NixOS 
-Manual on virtual $
+      nixosManual.showManual = true;
       virtualbox.enable = true;
 # Enable helpful DBus services.(Xfce)
       udisks.enable = true;
@@ -140,7 +120,7 @@ Manual on virtual $
           description = "nixos";
           home = "/home/nixos";
           createHome = true;
-          group = "bsod";
+          group = "nixos";
           extraGroups = [ "users" "wheel" "video" ];
           shell = pkgs.zsh + "/bin/zsh";
         }
@@ -153,5 +133,33 @@ Manual on virtual $
 #      ];
 #     };
  
-
+  environment.systemPackages = with pkgs; [
+# must        
+        kde4.kde_baseapps
+        kde4.l10n.ja
+        kde4.gwenview
+        kde4.kate
+        kde4.kde_workspace
+        kde4.konsole
+        kde4.ksnapshot
+        kde4.oxygen_icons
+        #ubuntu-font-family
+        #xmodmap
+# security
+        pmount
+        polkit
+        rng_tools
+        sudo
+# useful?
+        curl
+        firefox
+        git
+        sakura
+        strace
+        unrar
+        unzip
+        vlc
+        wget
+        zsh
+        ]; 
 }
