@@ -12,8 +12,7 @@
  
  
   boot = {
-    initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "ntfs" 
-"kvm_intel" "zram" $
+    initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "ntfs" "kvm_intel" "zram" "i915" "i815"];
     kernelModules = [ ];
     extraModulePackages = [ ];
     # Use the GRUB 2 boot loader.
