@@ -104,7 +104,7 @@ Number　Start　　End　　　Size 　　File System　Name　Flags
 //パーティション1のファイルシステムを決める。ext4、ラベルをnixosとする
 # mkfs.ext4 -j -L nixos /dev/sda1
 
-//btrfsの場合
+//btrfsの場合、うまくラベルを付けられないので諦めた
 # mkfs.btrfs -L nixos /dev/sda1
 WARNING! -Btrfs Btrfs v0.19 IS EXPERIMENTAL
 WARNING! - see http://btrfs.wiki.kernel.org before using
@@ -114,10 +114,12 @@ error checking /dev/sda1 mount status
 ❸ここまでめんどくさかったらGPartedとかを使ってみてもいいかも
 mkfs.btrfsでnixosのラベルを付けられないのでなにか間違えたっぽい
 ==============================================================================================================================================================================
-// /mntに一旦移す
-# mount LABEL=nixos /mnt
-//作業用にディレクトリ作成
-# mkdir -p /mnt/etc/nixos
+// http://nixos.org/nixos/manual/#ex-install-sequence を参考に残りの作業を進める。
+// ココらへんの仕様が随分と変わってしまった？
+# mount /dev/disk/by-label/nixos /mnt
+# nixos-generate-config --root /mnt
+# nano /mnt/etc/nixos/configuration.nix
+
 
 //NixOS独自の設定ファイル、/etc/nixos/configuration.nixを書く。まだインストールし終わってないので/mnt/etc/nixos/configuration.nixにあります
 ==============================================================================================================================================================================
