@@ -15,38 +15,23 @@
     initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "ntfs" "kvm_intel" "zram" "i915" "i815"];
     };
  
-#http://nixos.org/wiki/Audio_HOWTO
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
-
   powerManagement = {
         enable = true;
-#        powerUpCommands="/var/run/current-system/sw/sbin/hdparm -y /dev/sda";
-#        powerManagement.cpuFreqGovernor = "performance";
         };
  
   security.pam.loginLimits = [
     { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
     { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
   ];
+
 # networking.hostName = "nixos"; # Define your hostname.
 # networking.wireless.enable = true;  # Enables wireless.
  
   services = {
       nixosManual.showManual = true;
       virtualbox.enable = true;
-# Enable helpful DBus services.(Xfce)
-      udisks.enable = true;
-      upower.enable = config.powerManagement.enable;
       ntp.servers = [ "ntp.nict.jp" ];
       acpid.enable = true;
-      udev = {
-        packages = [ pkgs.ffado ]; # If you have a FireWire audio interface
-        extraRules = ''
-          KERNEL=="rtc0", GROUP="audio"
-          KERNEL=="hpet", GROUP="audio"
-        '';
-      };
     };
  
 #CPUのコア数にあわせて数値を設定すること
@@ -56,9 +41,8 @@
          version = 2;
          enable = true;
          device = "/dev/sda";
-#        options = "data=journal";
-#        options = "data=realtime";
         };
+        
   fileSystems =
         [{ mountPoint = "/";
            device = "/dev/disk/by-label/nixos";
@@ -73,11 +57,10 @@
 # Select internationalisation properties.
   i18n = {
         consoleFont = "fbterm";
-#       consoleFont = "kon2";
-#       consoleFont = "unifont";
         consoleKeyMap = "jp106";
         defaultLocale = "ja_JP.UTF-8";
         };
+        
 #nixos/doc/config-examples at master · NixOS/nixos · GitHub
 #https://github.com/NixOS/nixos/tree/master/doc/config-examples
   fonts = {
@@ -88,16 +71,12 @@
   security.apparmor.enable = true;
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = true;
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  security.rngd.enable = true;
-  security.pam.usb.enable = true;
+  
  services.xserver = {
         enable = true;
         layout = "jp";
         xkbModel = "jp106";
         xkbOptions = "japan:kana,grp_led:scroll";
-#       videoDriver = "intel";
         videoDrivers = mkOverride 50 [ "virtualbox" ];
         driSupport = true;
         desktopManager.kde4.enable = true;
@@ -105,9 +84,6 @@
         windowManager.xmonad.enable = true;
         windowManager.awesome.enable = true;
         desktopManager.default = "kde4";
-#これでも問題ない？
-#       sessionType = "kde4";
-#       sessionType = "xfce";
         displayManager.kdm.enable = true;
 #       displayManager.slim.enable = true;
         autorun = false;
@@ -125,13 +101,6 @@
           shell = pkgs.zsh + "/bin/zsh";
         }
       ];
-      
-#    extraGroups = [
-#        { name = "nixos";
-#          gid = 500;
-#        }
-#      ];
-#     };
  
   environment.systemPackages = with pkgs; [
 # must        
@@ -161,5 +130,5 @@
         vlc
         wget
         zsh
-        ]; 
+        ];
 }
