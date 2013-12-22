@@ -11,7 +11,7 @@
     ];
  
   boot = {
-   initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "ntfs" "kvm_intel" "zram" "i915" "i815"];
+   initrd.kernelModules = [ "ata_piix" "ohci_hcd"  "btrfs" "ext4" "ntfs" "kvm_intel" "zram" "i915" ];
    };
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -67,5 +67,4 @@
 #       displayManager.slim.enable = true;
         autorun = false;
         };
-        
 }
