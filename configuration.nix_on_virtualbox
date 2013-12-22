@@ -22,7 +22,7 @@
                     version = 2;
                     grub.device = "/dev/sda";
                   }
-    extraModulePackages = [ "pkgs.linuxPackages.virtualbox" "kernel.virtualboxGuestAdditions" ];
+    #extraModulePackages = [ "pkgs.linuxPackages.virtualbox" "kernel.virtualboxGuestAdditions" ];
     #postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
     };
       
