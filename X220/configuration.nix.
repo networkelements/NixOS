@@ -1,0 +1,10 @@
+
+  boot.initrd.kernelModules = [ "usb_storage" ];
+
+
+  boot.initrd.luks.devices = [
+    { name = "luksroot"; device = "/dev/sda2"; }
+  ];
+
+
+
