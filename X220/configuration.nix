@@ -90,6 +90,7 @@
   # $ nix-env -qaP | grep wget
    environment.systemPackages = with pkgs; 
    [
+      curl
       wget
       (fcitx-with-plugins.override { plugins = [ anthy ]; })
       fcitx-configtool
@@ -97,6 +98,11 @@
       fish
       cryptsetup
       firefox
+      emacs24-nox
+      #neovim
+      #atom
+      #yi
+      #stack
     ];
 
   services = 
