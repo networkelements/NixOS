@@ -18,11 +18,15 @@
       { 
         devices = 
           [
-            { name = "luksroot";
+            { name = "nixos";
               device = "/dev/sda2"; 
-              allowDiscards = true;
+              #allowDiscards = true;
             }
-            #  { name = "swap"; device = "/dev/sda3"; }
+            
+	    { 
+	      name = "swap";
+	      device = "/dev/sda3"; 
+	    }
           ];
         
         cryptoModules = 
@@ -51,10 +55,10 @@
           "usb_storage" 
         ];
         
-      extraModulePackages = 
-        [
-          config.boot.kernelPackages.tp_smapi
-        ];
+      #extraModulePackages = 
+      #  [
+      #    config.boot.kernelPackages.tp_smapi
+      #  ];
     };
     
     loader  = 
@@ -74,8 +78,7 @@
     networking = 
     {
       hostName =  "destroyer";
-      wireless.enable = true;
-      
+      #wireless.enable = true;
     };
 
    i18n = {
@@ -98,10 +101,11 @@
       fish
       cryptsetup
       firefox
-      emacs24-nox
+      #emacs24-nox
       deadbeef
       mpv
       #neovim
+      vim
       #atom
       #yi
       #stack
@@ -109,7 +113,7 @@
 
   services = 
   {
-    openssh.enable = true;
+    openssh.enable = false;
     #printing.enable = true;  #CUPS printing
 
     xserver = 
@@ -151,12 +155,12 @@
     isSystemUser = true;
     #useDefaultShell = true;
     #useDefaultShell = "/usr/bin/fish";
-    useDefaultShell = "/root/.nix-profile/bin/fish";
+    #useDefaultShell = "/root/.nix-profile/bin/fish";
   };
   
-programs.zsh.enable = true;
 
-
+  #programs.zsh.enable = true;
+  programs.fish.enable = true;
 
 
 
