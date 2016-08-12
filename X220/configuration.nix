@@ -149,10 +149,11 @@
     description = "yappari kuchikukan ha saikou daze!";
     extraGroups = [ ];
     isSystemUser = true;
-    useDefaultShell = true;
-    
+    #useDefaultShell = true;
+    useDefaultShell = "/usr/bin/fish";
   };
-
+  
+programs.zsh.enable = true;
 
 
 
