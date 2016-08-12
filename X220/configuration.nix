@@ -99,6 +99,8 @@
       cryptsetup
       firefox
       emacs24-nox
+      deadbeef
+      mpv
       #neovim
       #atom
       #yi
