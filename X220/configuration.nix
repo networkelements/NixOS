@@ -141,7 +141,7 @@
 
   # > which fish
   ## change path fish shell
-  # > sudo useradd -m -g users -G wheel -s /usr/bin/fish muarsame ; passwd murasame
+  # > sudo useradd -m -g users -G wheel -s /root/.nix-profile/bin/fish muarsame ; passwd murasame
   users.extraUsers.username = 
   {
     createHome = true;
@@ -150,7 +150,8 @@
     extraGroups = [ ];
     isSystemUser = true;
     #useDefaultShell = true;
-    useDefaultShell = "/usr/bin/fish";
+    #useDefaultShell = "/usr/bin/fish";
+    useDefaultShell = "/root/.nix-profile/bin/fish";
   };
   
 programs.zsh.enable = true;
