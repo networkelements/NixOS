@@ -71,7 +71,7 @@
           };
         
         gummiboot.enable = true;
-        #efi.canTouchEfiVariables = true;
+        efi.canTouchEfiVariables = true;
       };
   };
   
