@@ -15,19 +15,26 @@
     initrd = 
     { 
       luks = 
-      { 
-        devices = 
-          [
-            { name = "nixos";
-              device = "/dev/sda2"; 
+       { 
+        #devices = 
+        #  [
+        #    { name = "boot";
+        #      device = "/dev/sda1";
               #allowDiscards = true;
-            }
+        #      fsType = "f2fs";
+        #    }
+
+        #    { name = "nixos";
+        #      device = "/dev/sda2"; 
+              #allowDiscards = true;
+	#      fsType = "f2fs";
+        #    }
             
-	    { 
-	      name = "swap";
-	      device = "/dev/sda3"; 
-	    }
-          ];
+	#    { 
+	#      name = "swap";
+	#      device = "/dev/sda3"; 
+	#    }
+       #   ];
         
         cryptoModules = 
           [ 
@@ -75,6 +82,25 @@
       };
   };
   
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-label/boot";
+      fsType = "f2fs";
+    };
+
+  fileSystems."/" =
+    { 
+      device = "/dev/disk/by-label/nixos";
+      fsType = "f2fs";
+    };
+
+  swapDevices = 
+	[
+  	  {
+  	    device = "/dev/disk/by-label/swap";
+  	  } 
+  	];
+  	
     networking = 
     {
       hostName =  "destroyer";
@@ -104,7 +130,7 @@
       #emacs24-nox
       deadbeef
       mpv
-      #neovim
+      neovim
       vim
       #atom
       #yi
