@@ -10,10 +10,10 @@ gdisk /dev/sda
 
 
 mkfs.f2fs -l boot /dev/sda1
-mkfs.f2fs -l cryptroot /dev/sda2
+mkfs.f2fs -l nixos /dev/sda2
 mkswap -L swap /dev/sda3
 swapon /dev/sda3
-mount /dev/disk/by-label/luksroot /mnt
+mount /dev/disk/by-label/nixos /mnt
 nixos-generate-config --root /mnt
 cp /mnt/etc/nixos/configuration.nix /mnt/etc/nixos/configuration.nix.bk
 which fish
@@ -21,6 +21,7 @@ curl https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configu
 sdiff /mnt/etc/nixos/configuration.nix /mnt/etc/nixos/configuration.nix.bk
 nixos-install
 passwd
-passwd murasame
 reboot
+
+passwd murasame
 ```
