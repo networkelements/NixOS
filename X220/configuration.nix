@@ -11,13 +11,19 @@
     ];
   
   boot = 
-  {
+  {     
     initrd = 
     { 
       luks = 
        { 
-        #devices = 
-        #  [
+        devices = 
+          [
+	   {	name = "root";
+		device = "/dev/disk/by-uuid/06e7d974-9549-4be1-8ef2-f013efad727e";
+		preLVM = true;
+		allowDiscards = true;
+	   }
+      
         #    { name = "boot";
         #      device = "/dev/sda1";
               #allowDiscards = true;
@@ -34,17 +40,19 @@
 	#      name = "swap";
 	#      device = "/dev/sda3"; 
 	#    }
-       #   ];
-        
-        cryptoModules = 
-          [ 
-            "aes" 
-            "sha256" 
-            "sha1" 
-            "cbc" 
           ];
-      };
-
+        
+       # cryptoModules = 
+       #   [ 
+       #     "aes" 
+       #     "sha256" 
+       #     "sha1" 
+       #     "cbc" 
+       #   ];
+      #};
+      
+      # https://bugzilla.kernel.org/show_bug.cgi?id=110941
+      kernelParams = [ "intel_pstate=no_hwp" ];
   
       kernelModules = 
         [ 
@@ -74,37 +82,41 @@
           {
             enable = true;
             version = 2;
-            device = "/dev/sda1";
+            device = "nodev";
+	    efiSupport = true;
+	    gfxmodeEfi = "1024x768";
           };
         
-        gummiboot.enable = true;
+        #gummiboot.enable = true;
         efi.canTouchEfiVariables = true;
       };
   };
   
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/boot";
-      fsType = "f2fs";
-    };
+  #fileSystems."/boot" =
+  #  { device = "/dev/disk/by-label/boot";
+  #    fsType = "f2fs";
+  #  };
+    
+   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
-  fileSystems."/" =
-    { 
-      device = "/dev/disk/by-label/nixos";
-      fsType = "f2fs";
-    };
+   #fileSystems."/" =
+   # { 
+   #   device = "/dev/disk/by-label/nixos";
+   #   fsType = "f2fs";
+   # };
 
-  swapDevices = 
-	[
-  	  {
-  	    device = "/dev/disk/by-label/swap";
-  	  } 
-  	];
+  #swapDevices =  
+  #	[
+  #	  {
+  #	    device = "/dev/disk/by-label/swap";
+  #	  } 
+  #	];
   	
     networking = 
     {
       hostName =  "destroyer";
-      #wireless.enable = true;
+      wireless.enable = true;
     };
 
    i18n = {
@@ -130,7 +142,7 @@
       #emacs24-nox
       deadbeef
       mpv
-      neovim
+      #neovim
       vim
       #atom
       #yi
@@ -141,13 +153,14 @@
   {
     openssh.enable = false;
     #printing.enable = true;  #CUPS printing
-
+  
     xserver = 
     {
       enable = true;
       layout = "jp";
       #xkblayout = "jp";
       xkbOptions = "japan";
+      synaptics.enable = true;
 
       #displayManager 
       #{
@@ -159,6 +172,7 @@
       {
         gnome3.enable = true;
         default = "gnome3";
+	xterm.enable = false;
       };
       
       #windowManager = 
@@ -184,7 +198,8 @@
     #useDefaultShell = "/root/.nix-profile/bin/fish";
   };
   
-
+  
+  environment.variables.PATH = ["$HOME/.local/bin"];
   #programs.zsh.enable = true;
   programs.fish.enable = true;
 
@@ -200,5 +215,5 @@
   # };
 
   # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "16.03";
+  system.stateVersion = "16.09";
 }
