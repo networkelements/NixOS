@@ -4,23 +4,31 @@
 
 ## 2. make partition
     $ gdisk /dev/sda
-    1. o
-    2. n
-    3. 1
-    4. 500M
-    5. 1G
-    6. ef00
-    7. Enter
-    8. n
-    9. 2
-    10. Enter
-    11. Enter
-    12. w  --> yes
-    13. p
-    14. q
+    1. p
+    2. o
+    3. n
+    4. 1
+    5. 500M
+    6. 1G
+    7. L
+    8. Enter
+    9. ef00
+    10. n
+    11. 2
+    12. Enter
+    13. Enter
+    14. Enter (default 8300)
+    15. w
+    16. y
+    $ gdisk /dev/sda
+    17. p
+    18.p
 
 ## 3. setup LUKS 
     $ cryptsetup luksFormat /dev/sda2
+    - `YES` (uppercase!)
+    - `Enter passphrase` 
+    - `Verify passphrase`
     $ cryptsetup luksOpen /dev/sda2 enc-pv
     $ pvcreate /dev/mapper/enc-pv
     $ vgcreate vg /dev/mapper/enc-pv
