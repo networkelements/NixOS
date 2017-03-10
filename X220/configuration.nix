@@ -11,7 +11,11 @@
     ];
   
   boot = 
-  {     
+  {
+    loader =
+    {	
+    	systemd-boot.enable = true;
+    }
     initrd = 
     { 
       luks = 
@@ -20,6 +24,7 @@
           [
 	   {	name = "root";
 		device = "/dev/disk/by-uuid/06e7d974-9549-4be1-8ef2-f013efad727e";
+		crypted.device = "/dev/disk/by-uuid/3f6b0024-3a44-4fde-a43a-767b872abe5d";
 		preLVM = true;
 		allowDiscards = true;
 	   }
@@ -97,7 +102,8 @@
   #  { device = "/dev/disk/by-label/boot";
   #    fsType = "f2fs";
   #  };
-    
+  
+   fileSystems."/".device = "/dev/mapper/crypted";
    fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
    #fileSystems."/" =
@@ -215,5 +221,14 @@
   # };
 
   # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "16.09";
+  system =
+  {
+  	stateVersion = "16.09";
+	autoUpgrade =
+	{
+		enable = true;
+		channel = https://nixos.org/channels/nixos-16.09;
+	}  
+  };
+  
 }
