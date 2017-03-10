@@ -22,6 +22,7 @@
 #				version = 2;
 #				efiSupport = true;
 #				#devices = "/dev/sda1";
+#				#devices = "/dev/disk/by-uuid/F178-7B0A";
 #			};   
 #	};
 #   };
@@ -107,7 +108,7 @@
   users.extraUsers.username = 
   {
     createHome = true;
-    home = "/home/hogehoge";
+    home = "/home/flatpack";
     #description = "testing";
     #extraGroups = [ sudo ];
     isSystemUser = true;
