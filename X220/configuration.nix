@@ -9,71 +9,31 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  
-  boot = 
-  {
-    loader =
-    {	
-    	systemd-boot.enable = true;
-        #gummiboot.enable = true;
-        efi.canTouchEfiVariables = true;
-    };
-    initrd = 
-    { 
-      # https://bugzilla.kernel.org/show_bug.cgi?id=110941
-      #kernelParams = [ "intel_pstate=no_hwp" ];
-  
-      kernelModules = 
-        [ 
-          "usb_storage" 
-          "dm_snapshot" 
-          "fbcon" 
-          "kvm-intel"
-          "tp_smapi"
-        ];
-      
-      availableKernelModules = 
-        [ 
-          "ehci_pci" 
-          "ahci" 
-          "usb_storage" 
-        ];
-        
-      #extraModulePackages = 
-      #  [
-      #    config.boot.kernelPackages.tp_smapi
-      #  ];
-    };
-  };
-  
 
-  #fileSystems."/boot" =
-  #  { device = "/dev/disk/by-label/boot";
-  #    fsType = "f2fs";
-  #  };
-  
+#    boot =
+#    {
+#	loader =
+#    	{
+#    		systemd-boot.enable = true;
+#     		efi.canTouchEfiVariables = true;
+#		grub = 
+#			{
+#				enable = true;
+#				version = 2;
+#				efiSupport = true;
+#				#devices = "/dev/sda1";
+#			};   
+#	};
+#   };
 
-   #fileSystems."/" =
-   # { 
-   #   device = "/dev/disk/by-label/nixos";
-   #   fsType = "f2fs";
-   # };
-
-  #swapDevices =  
-  #	[
-  #	  {
-  #	    device = "/dev/disk/by-label/swap";
-  #	  } 
-  #	];
-  	
     networking = 
     {
-      hostName =  "destroyer";
+      hostName =  "X220-16-09";
       #wireless.enable = true;
     };
 
    i18n = {
-  #   consoleFont = "Lat2-Terminus16";
+  #  consoleFont = "Lat2-Terminus16";
      consoleKeyMap = "jp106";
      defaultLocale = "ja.JP_UTF-8";
    };
@@ -86,16 +46,23 @@
    [
       curl
       wget
+      fcitx
       fcitx-configtool
+      fcitx-engines.mozc
       #f2fs-tools
       fish
+      git
       cryptsetup
       firefox
-      #emacs24-nox
+      #chromiumBeta
+      emacs24-nox
       #deadbeef
       #mpv
       #neovim
+      sudo
       vim
+      mosh
+      tmux
       #atom
       #yi
       #stack
@@ -104,7 +71,7 @@
   services = 
   {
     openssh.enable = false;
-    #printing.enable = true;  #CUPS printing
+    printing.enable = true;  #CUPS printing
   
     xserver = 
     {
@@ -136,28 +103,22 @@
 
   # > which fish
   ## change path fish shell
-  # > sudo useradd -m -g users -G wheel -s /root/.nix-profile/bin/fish muarsame ; passwd murasame
+  # > sudo useradd -m -g users -G wheel,sudo -s /root/.nix-profile/bin/fish USERNAME ; passwd USERNAME
   users.extraUsers.username = 
   {
     createHome = true;
-    home = "/home/murasame";
-    description = "yappari kuchikukan ha saikou daze!";
-    extraGroups = [ ];
+    home = "/home/hogehoge";
+    #description = "testing";
+    #extraGroups = [ sudo ];
     isSystemUser = true;
-    #useDefaultShell = true;
+    useDefaultShell = true;
     #useDefaultShell = "/usr/bin/fish";
     #useDefaultShell = "/root/.nix-profile/bin/fish";
   };
   
-  
   environment.variables.PATH = ["$HOME/.local/bin"];
   #programs.zsh.enable = true;
   programs.fish.enable = true;
-
-
-
-
-
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.extraUsers.guest = {
