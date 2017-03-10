@@ -15,49 +15,13 @@
     loader =
     {	
     	systemd-boot.enable = true;
-    }
+        #gummiboot.enable = true;
+        efi.canTouchEfiVariables = true;
+    };
     initrd = 
     { 
-      luks = 
-       { 
-        devices = 
-          [
-	   {	name = "root";
-		device = "/dev/disk/by-uuid/06e7d974-9549-4be1-8ef2-f013efad727e";
-		crypted.device = "/dev/disk/by-uuid/3f6b0024-3a44-4fde-a43a-767b872abe5d";
-		preLVM = true;
-		allowDiscards = true;
-	   }
-      
-        #    { name = "boot";
-        #      device = "/dev/sda1";
-              #allowDiscards = true;
-        #      fsType = "f2fs";
-        #    }
-
-        #    { name = "nixos";
-        #      device = "/dev/sda2"; 
-              #allowDiscards = true;
-	#      fsType = "f2fs";
-        #    }
-            
-	#    { 
-	#      name = "swap";
-	#      device = "/dev/sda3"; 
-	#    }
-          ];
-        
-       # cryptoModules = 
-       #   [ 
-       #     "aes" 
-       #     "sha256" 
-       #     "sha1" 
-       #     "cbc" 
-       #   ];
-      #};
-      
       # https://bugzilla.kernel.org/show_bug.cgi?id=110941
-      kernelParams = [ "intel_pstate=no_hwp" ];
+      #kernelParams = [ "intel_pstate=no_hwp" ];
   
       kernelModules = 
         [ 
@@ -80,21 +44,6 @@
       #    config.boot.kernelPackages.tp_smapi
       #  ];
     };
-    
-    loader  = 
-      {
-        grub = 
-          {
-            enable = true;
-            version = 2;
-            device = "nodev";
-	    efiSupport = true;
-	    gfxmodeEfi = "1024x768";
-          };
-        
-        #gummiboot.enable = true;
-        efi.canTouchEfiVariables = true;
-      };
   };
   
 
@@ -103,8 +52,6 @@
   #    fsType = "f2fs";
   #  };
   
-   fileSystems."/".device = "/dev/mapper/crypted";
-   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
    #fileSystems."/" =
    # { 
@@ -122,7 +69,7 @@
     networking = 
     {
       hostName =  "destroyer";
-      wireless.enable = true;
+      #wireless.enable = true;
     };
 
    i18n = {
@@ -139,15 +86,14 @@
    [
       curl
       wget
-      (fcitx-with-plugins.override { plugins = [ anthy ]; })
       fcitx-configtool
-      f2fs-tools
+      #f2fs-tools
       fish
       cryptsetup
       firefox
       #emacs24-nox
-      deadbeef
-      mpv
+      #deadbeef
+      #mpv
       #neovim
       vim
       #atom
@@ -166,7 +112,6 @@
       layout = "jp";
       #xkblayout = "jp";
       xkbOptions = "japan";
-      synaptics.enable = true;
 
       #displayManager 
       #{
@@ -228,7 +173,7 @@
 	{
 		enable = true;
 		channel = https://nixos.org/channels/nixos-16.09;
-	}  
+	};  
   };
   
 }
