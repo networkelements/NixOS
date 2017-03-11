@@ -21,7 +21,10 @@
         enable = true;
         version = 2;
         efiSupport = true;
-        devices = [ "/dev/sda1" ];
+        device = "nodev";
+        #device = "/dev/sda";
+        #device = "/dev/sda1";
+        #devices = [ "/dev/sda1" ];
         #devices = [ "/dev/sda2" ];
       };
     };
