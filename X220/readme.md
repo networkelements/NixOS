@@ -57,7 +57,7 @@ Number  Size        Code  Name
 - `9. n` (create new partition)
 - `10. 2` (partition number 2)
 - `11. Enter` (set starting point)
-- `12. 1G` (set end point)
+- `12. +1G` (set end point)
 - `13. ef00` (partition type UEFI boot)
 - `14. n` (create new partition)
 - `15. 3` (partition number 3)
