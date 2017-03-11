@@ -29,7 +29,7 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
 2.Exec Konosle - terminal application, shortcut on desktop.  
 3.Logging.  
 
-    # script `date '+%Y%m%d'`.log
+    # script `date '+%Y%m%d-%H:%M:%S'`.log
 
 ## 2. setup keyboard
 But,I can't change keymap...  
@@ -169,8 +169,12 @@ set root password
 # reboot
 ```
 
+troubleshoot
+-------------
+    # curl https://raw.githubusercontent.com/networkelements/NixOS/master/X220/troubleshoot.sh -o troubleshoot.sh ; chmod +x troubleshoot.sh ; sh troubleshoot.sh 
+
 manual
-======
+-------
 [Installation of NixOS with encrypted root](https://gist.github.com/martijnvermaat/76f2e24d0239470dd71050358b4d5134)  
 [Installing NixOS](https://chris-martin.org/2015/installing-nixos)  
 [NixOSのインストール](https://github.com/Tokyo-NixOS/Tokyo-NixOS-Meetup-Wiki/wiki/install)  
