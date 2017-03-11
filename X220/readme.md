@@ -14,37 +14,37 @@ Number  Size        Code  Name
 ```
     $ gdisk /dev/sda
     
-    - `1. p` ()
-    - `2. o` ()
-    - `3. n` ()
-    - `4. 1` ()
-    - `5. Enter` ()
-    - `6. 500M` ()
-    - `7. ef02` ()
-    - `8. n` ()
-    - `9. 2` ()
-    - `10. Enter` ()
-    - `11. 1G` ()
-    - `12. ef00` ()
-    - `13. n` ()
-    - `14. 2` ()
-    - `15. Enter` ()
-    - `16. Enter` ()
-    - `17. Enter` (default 8300)
-    - `18. w` ()
-    - `19. y` ()
+- `1. p` ()
+- `2. o` ()
+- `3. n` ()
+- `4. 1` ()
+- `5. Enter` ()
+- `6. 500M` ()
+- `7. ef02` ()
+- `8. n` ()
+- `9. 2` ()
+- `10. Enter` ()
+- `11. 1G` ()
+- `12. ef00` ()
+- `13. n` ()
+- `14. 2` ()
+- `15. Enter` ()
+- `16. Enter` ()
+- `17. Enter` (default 8300)
+- `18. w` ()
+- `19. y` ()
     
     $ gdisk /dev/sda
 
-    - `17. p` ()
-    - `18. q` ()
+- `17. p` ()
+- `18. q` ()
 
 ## 3. setup LUKS 
     $ cryptsetup luksFormat /dev/sda2
     
-    - `YES` (type uppercase!)
-    - `Enter passphrase` (unreccomend use symbol key on jp106)
-    - `Verify passphrase` (type same passwords)
+- `YES` (type uppercase!)
+- `Enter passphrase` (unreccomend use symbol key on jp106)
+- `Verify passphrase` (type same passwords)
     
     $ cryptsetup luksOpen /dev/sda2 enc-pv
     $ pvcreate /dev/mapper/enc-pv
