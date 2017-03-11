@@ -63,21 +63,14 @@
           {
             name = "root";
             preLVM = true;
-            device = "/dev/disk/by-uuid/748c12c1-dac0-4148-8be7-f9e59d150633";
-            #allowDiscards = true;
-          };
-	  
-          cryptoModules =
-          {
-          	[
-          		"aes"
-          		"xts"
-          		"sha256"
-			"sha1"
-			"cbc"
-          	];
-          };
+            device = "/dev/disk/by-uuid/cef76270-2fbb-418c-80c3-41bd339b10b9";
+          }
         ];
+   
+        #cryptoModules =
+	#{
+        #  	[ "aes" "xts" "sha256" "sha1" "cbc" ];
+        #};
       };
     };
     
@@ -89,13 +82,13 @@
 
   fileSystems."/" =
     { 
-      device = "/dev/disk/by-uuid/748c12c1-dac0-4148-8be7-f9e59d150633";
+      device = "/dev/disk/by-uuid/cef76270-2fbb-418c-80c3-41bd339b10b9";
       fsType = "f2fs";
     };
 
   fileSystems."/boot" =
     { 
-      device = "/dev/disk/by-uuid/2643-DA52";
+      device = "/dev/disk/by-uuid/8FE0-BB9B";
       fsType = "vfat";
     };
 
