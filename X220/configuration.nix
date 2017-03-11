@@ -109,7 +109,7 @@
 	git
 	ipset
 	cryptsetup
-	firefox
+	#firefox
 	#chromiumBeta
 	emacs24-nox
 	#deadbeef
@@ -143,19 +143,19 @@
 	enableGhostscriptFonts = true;
 	fonts = with pkgs;
 	[
-		inconsolata
+		#inconsolata
 		ubuntu_font_family
 		unifont
 		vistafonts
 		ipafont
 		hanazono
-		source-code-pro
-		anonymousPro
-		liberation_ttf
-		liberation_ttf_from_source
-		meslo-lg
+		#source-code-pro
+		#anonymousPro
+		#liberation_ttf
+		#liberation_ttf_from_source
+		#meslo-lg
 		hack-font
-		dejavu_fonts
+		#dejavu_fonts
 	];
   };
   
