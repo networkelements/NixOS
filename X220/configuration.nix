@@ -15,17 +15,82 @@
   {
   	hostName =  "X220-16-09";
 	#wireless.enable = true;
+	firewall =
+	{
+		enable = true;
+		allowPing = true;
+		pingLimit = "--limit 1/minute --limit-burst 10";
+		logRefusedConnections = true;
+		logRefusedPackets = true;
+		checkReversePath = true;	#kernelHasRPFilter;
+		logReversePathDrops = true;
+		
+		connectionTrackingModules =
+		[
+			#"ftp"
+			#"irc"
+			#"sane"
+			#"sip"
+			#"tftp"
+			#"amanda"
+			#"h323"
+			#"netbios_sn"
+			#"pptp"
+			#"snmp"
+		];
+		
+		autoLoadConntrackHelpers = false;	#
+
+		allowedTCPPorts =
+		[
+			# for ssh
+			49156
+			
+			# for https
+			#443
+			
+			# for tfpts server(temporary uses cisco IOS upload/download)
+			#69
+
+			# for samba connection
+			#139
+			#445
+		];
+
+		#allowedUDPPorts =
+		#[
+			# for samba connection
+			#137
+			#138
+		#];
+		
+		allowedUDPPortRanges =
+		[
+			# for mosh connection
+			{
+				from = 60000;
+				to   = 60002;
+			}
+		];
+	};
   };
   
   i18n = 
   {
-  	consoleFont = "ipafont-003.03 hanazono vista-fonts-1";
+  	consoleFont = "ipafont inconsolata ubuntu_font_family";
 	consoleKeyMap = "jp106";
 	defaultLocale = "ja.JP_UTF-8";
 	inputMethod =
 	{
 		enabled = "fcitx";
-		engines = with pkgs.fcitx-engines; [ mozc anthy ];
+		fcitx =
+		{
+			engines = with pkgs.fcitx-engines;
+			[
+				mozc
+				anthy
+			];
+		};
 	};
   };
   
@@ -33,7 +98,8 @@
   
   environment.systemPackages = with pkgs; 
   [
-  	curl
+  	chrony
+	#curl
 	wget
 	fcitx
 	fcitx-configtool
@@ -41,6 +107,7 @@
 	#f2fs-tools
 	fish
 	git
+	ipset
 	cryptsetup
 	firefox
 	#chromiumBeta
@@ -49,7 +116,7 @@
 	#mpv
 	#neovim
 	sudo
-	vim
+	#vim
 	mosh
 	tmux
 	#atom
@@ -58,12 +125,59 @@
 
   ];
   
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config =
+  {
+	allowUnfree = true;
+	chromium =
+	{
+		enablePepperFlash = true;
+		enablepepperPDF = true;
+		enableWideVine = true;
+	};
+
+  };
+    
+  fonts =
+  {
+	enableFontDir = true;
+	enableGhostscriptFonts = true;
+	fonts = with pkgs;
+	[
+		inconsolata
+		ubuntu_font_family
+		unifont
+		vistafonts
+		ipafont
+		hanazono
+		source-code-pro
+		anonymousPro
+		liberation_ttf
+		liberation_ttf_from_source
+		meslo-lg
+		hack-font
+		dejavu_fonts
+	];
+  };
   
   services = 
   {
   	openssh.enable = false;
 	#printing.enable = true;
+
+	chrony =
+	{
+		enable = true;
+		servers =
+		[
+			"ntp.nict.jp iburst"
+			"ats1.e-timing.ne.jp iburst"
+			"ntp1.jpix.ad.jp iburst"
+			"time.google.com iburst"
+			#"ntp.jist.mfeed.ad.jp iburst"
+			#"ntp.ring.go.jp iburst"
+		];
+	};
+	
 	xserver = 
 	{
 		enable = true;
@@ -105,7 +219,7 @@
   users.extraUsers.username =   
   {
   	createHome = true;
-	home = "/home/USERNAME";
+	home = "/home/flatpack";
 	uid = 1000;
 	#description = "testing";
 	#extraGroups = [ sudo ];
@@ -136,5 +250,4 @@
 		channel = https://nixos.org/channels/nixos-16.09;
 	};  
   };
-
 }
