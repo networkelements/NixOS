@@ -10,12 +10,14 @@ I guess because NixOS Live is readonly keymaps config.
 ## 1. install tools
     $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
     $ mkdir $HOME/.emacs.d
-    $ cat > $HOME/.emacs.d/init.el <<"EOF"
-      (require 'linum)
-      (global-linum-mode t)
-      (setq linum-format "%3d  ")
-      EOF
-      
+```
+$ cat > $HOME/.emacs.d/init.el <<"EOF"
+(require 'linum)
+(global-linum-mode t)
+(setq linum-format "%3d  ")
+EOF
+```
+
 ## 2. make partition
 
 change parition like this.
