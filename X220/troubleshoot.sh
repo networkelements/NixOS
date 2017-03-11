@@ -1,8 +1,20 @@
 #!/bin/sh
 #script `date '+%Y%m%d-%H:%M:%S'`.log
 
-nix-env -i cryptsetup f2fs-tools wget vim gptfdisk
-echo "set number" >> $HOME/.vimrc 
+# nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools gptfdisk
+
+# echo "set number" >> $HOME/.vimrc 
+
+mkdir $HOME/.emacs.d
+cat > $HOME/.emacs.d/init.el <<"EOF"
+(require 'linum)
+(global-linum-mode t)
+(setq linum-format "%3d  ")
+EOF
+
+
+
+
 cryptsetup luksOpen /dev/sda3 enc-pv
 
 #lvchange -a y /dev/vg/swap
@@ -17,5 +29,5 @@ mount /dev/sda1 /mnt/boot
 #systemctl start wpa_supplicant
 
 cd /mnt/etc/nixos
-#wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix -O /mnt/etc/nixos/configuration.nix
-#wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix -O /mnt/etc/nixos/hardware-configuration.nix
+#curl https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix -o /mnt/etc/nixos/configuration.nix
+#curl https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix -o /mnt/etc/nixos/hardware-configuration.nix
