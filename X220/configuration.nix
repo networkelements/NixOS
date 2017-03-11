@@ -6,115 +6,106 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  [
+  # Include the results of the hardware scan.
+  	./hardware-configuration.nix
+  ];
+  
+  networking = 
+  {
+  	hostName =  "X220-16-09";
+	#wireless.enable = true;
+  };
+  
+  i18n = 
+  {
+  	consoleFont = "ipafont-003.03 hanazono vista-fonts-1";
+	consoleKeyMap = "jp106";
+	defaultLocale = "ja.JP_UTF-8";
+	inputMethod =
+	{
+		enabled = "fcitx";
+		engines = with pkgs.fcitx-engines; [ mozc anthy ];
+	};
+  };
+  
+  time.timeZone = "Asia/Tokyo";
+  
+  environment.systemPackages = with pkgs; 
+  [
+  	curl
+	wget
+	fcitx
+	fcitx-configtool
+	fcitx-engines.mozc
+	#f2fs-tools
+	fish
+	git
+	cryptsetup
+	firefox
+	#chromiumBeta
+	emacs24-nox
+	#deadbeef
+	#mpv
+	#neovim
+	sudo
+	vim
+	mosh
+	tmux
+	#atom
+	#yi
+	#stack
 
-#    boot =
-#    {
-#	loader =
-#    	{
-#    		systemd-boot.enable = true;
-#     		efi.canTouchEfiVariables = true;
-#		grub = 
-#			{
-#				enable = true;
-#				version = 2;
-#				efiSupport = true;
-#				#devices = "/dev/sda1";
-#				#devices = "/dev/disk/by-uuid/F178-7B0A";
-#			};   
-#	};
-#   };
-
-    networking = 
-    {
-      hostName =  "X220-16-09";
-      #wireless.enable = true;
-    };
-
-   i18n = {
-  #  consoleFont = "Lat2-Terminus16";
-     consoleKeyMap = "jp106";
-     defaultLocale = "ja.JP_UTF-8";
-   };
-
-   time.timeZone = "Asia/Tokyo";
-
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-   environment.systemPackages = with pkgs; 
-   [
-      curl
-      wget
-      fcitx
-      fcitx-configtool
-      fcitx-engines.mozc
-      #f2fs-tools
-      fish
-      git
-      cryptsetup
-      firefox
-      #chromiumBeta
-      emacs24-nox
-      #deadbeef
-      #mpv
-      #neovim
-      sudo
-      vim
-      mosh
-      tmux
-      #atom
-      #yi
-      #stack
-    ];
-
+  ];
+  
+  nixpkgs.config.allowUnfree = true;
+  
   services = 
   {
-    openssh.enable = false;
-    printing.enable = true;  #CUPS printing
-  
-    xserver = 
-    {
-      enable = true;
-      layout = "jp";
-      #xkblayout = "jp";
-      xkbOptions = "japan";
+  	openssh.enable = false;
+	#printing.enable = true;
+	xserver = 
+	{
+		enable = true;
+		layout = "jp";
+		#xkblayout = "jp";
+		xkbOptions = "japan";
+		
+		#displayManager =
+		#{
+			#kdm.enable = true;
+			#kde4.enable = true;
+		#};
+		
+		desktopManager =
+		{
+			gnome3.enable = true;
+			default = "gnome3";
+			xterm.enable = false;
+		};
+		
+		#windowManager = 
+		#{
 
-      #displayManager 
-      #{
-        #kdm.enable = true;
-        #kde4.enable = true;
-      #};
-
-      desktopManager = 
-      {
-        gnome3.enable = true;
-        default = "gnome3";
-	xterm.enable = false;
-      };
-      
-      #windowManager = 
-        #{
-          #xmonad.enable = true; 
-          #xmonad.enableContribAndExtras = true;
-        #};
-    };
-  };
+			#xmonad.enable = true;
+			#xmonad.enableContribAndExtras = true;
+		#};
+	};
+  };	
 
   # > which fish
   ## change path fish shell
   # > sudo useradd -m -g users -G wheel,sudo -s /root/.nix-profile/bin/fish USERNAME ; passwd USERNAME
-  users.extraUsers.username = 
+  users.extraUsers.username =   
   {
-    createHome = true;
-    home = "/home/USERNAME";
-    #description = "testing";
-    #extraGroups = [ sudo ];
-    isSystemUser = true;
-    useDefaultShell = true;
-    #useDefaultShell = "/usr/bin/fish";
-    #useDefaultShell = "/root/.nix-profile/bin/fish";
+  	createHome = true;
+	home = "/home/USERNAME";
+	#description = "testing";
+	#extraGroups = [ sudo ];
+	isSystemUser = true;
+	useDefaultShell = true;
+	#useDefaultShell = "/usr/bin/fish";
+	#useDefaultShell = "/root/.nix-profile/bin/fish"
   };
   
   environment.variables.PATH = ["$HOME/.local/bin"];
@@ -122,20 +113,21 @@
   programs.fish.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.extraUsers.guest = {
-  #   isNormalUser = true;
-  #   uid = 1000;
-  # };
+  # users.extraUsers.guest = 
+  #{
+  	#isNormalUser = true;
+  	#uid = 1000;
+  #};
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system =
   {
-  	stateVersion = "16.09";
+	stateVersion = "16.09";
 	autoUpgrade =
 	{
 		enable = true;
 		channel = https://nixos.org/channels/nixos-16.09;
 	};  
   };
-  
+
 }
