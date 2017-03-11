@@ -9,7 +9,7 @@ I guess because NixOS Live is readonly keymaps config.
     $ sed s'/us/jp106/'g /etc/vconsole.conf
 
 $ sed s'/us/jp106/'g /etc/vconsole.conf  
-is no ERROR, but It's nochanges.  
+is no ERROR, but It's no changes.  
 Same changes in nano editor, nano said  
 "Error writing /etc/vconsole.conf: Read-only file system"  
 
