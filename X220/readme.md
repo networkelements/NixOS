@@ -1,8 +1,8 @@
 # install NixOS(LUKS+f2fs+gnome3)
 ## 0. 1st step
-Download from [NixOS official site](http://nixos.org/nixos/download.html)
+Download from [NixOS official site](http://nixos.org/nixos/download.html)  
 
-# aria2c https://d3g5gsiof5omrk.cloudfront.net/nixos/16.09/nixos-16.09.1829.c88e67d/nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso
+    # aria2c https://d3g5gsiof5omrk.cloudfront.net/nixos/16.09/nixos-16.09.1829.c88e67d/nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso  
 
 
 
@@ -16,7 +16,7 @@ I guess because NixOS Live is readonly keymaps config.
     # loadkeys jp106
     # sed s'/us/jp106/'g /etc/vconsole.conf
 
-# sed s'/us/jp106/'g /etc/vconsole.conf  
+\# sed s'/us/jp106/'g /etc/vconsole.conf  
 is no ERROR, but It's no changes.  
 Same changes in nano editor, nano said  
 "Error writing /etc/vconsole.conf: Read-only file system"  
