@@ -8,6 +8,7 @@ I guess because NixOS Live is readonly keymaps config.
     
 ## 1. install tools
     $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
+    $ mkdir $HOME/.emacs.d
     $ cat  <<EOF > $HOME/.emacs.d/init.el
       (require 'linum)
       (global-linum-mode t)
