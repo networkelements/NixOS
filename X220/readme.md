@@ -1,5 +1,13 @@
 # install NixOS(LUKS+f2fs+gnome3)
-## 0. setup keyboard
+## 0. 1st step
+Download from [NixOS official site](http://nixos.org/nixos/download.html)
+
+$ aria2c https://d3g5gsiof5omrk.cloudfront.net/nixos/16.09/nixos-16.09.1829.c88e67d/nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso
+
+
+
+
+## 1. setup keyboard
 But,I can't change keymap...  
 
 I guess because NixOS Live is readonly keymaps config.  
@@ -14,7 +22,7 @@ Same changes in nano editor, nano said
 "Error writing /etc/vconsole.conf: Read-only file system"  
 
 
-## 1. install tools
+## 2. install tools
     $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
 vim config    
 ```
@@ -30,7 +38,7 @@ $ cat > $HOME/.emacs.d/init.el <<"EOF"
 EOF
 ```
 
-## 2. make partition
+## 3. make partition
 
 change parition like this.
 ```
@@ -41,6 +49,15 @@ Number  Size        Code  Name
   3     <the rest>  8E00  Linux LVM
 -----------------------------------------------
 ```
+
+    # sgdisk -Z /dev/sda
+    # sgdisk -n "${1}:${0}:${500M}" -t 1:ef02 -c 1:"BIOS boot" /dev/sda
+    # sgdisk -n "${2}:${0}:${+1G}" -t 2:ef00 -c 2:"UEFI boot" /dev/sda
+    # sgdisk -n "${3}:${0}:${0}" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
+
+      
+
+
 
 ```
     $ gdisk /dev/sda
@@ -74,7 +91,7 @@ Number  Size        Code  Name
 - `21. p` (print current partition table)
 - `22. q` (quit)
 
-## 3. setup LUKS 
+## 4. setup LUKS 
     $ cryptsetup luksFormat /dev/sda2
     
 - `1. YES` (type uppercase!)
@@ -88,16 +105,16 @@ Number  Size        Code  Name
     $ lvcreate -l '100%FREE' -n root vg
 ```
 
-## 4. format filesystem
+## 5. format filesystem
     $ mkfs.vfat /dev/sda1
     $ mkfs.f2fs -l root /dev/vg/root
 
-## 5. mount
+## 6. mount
     $ mount /dev/vg/root /mnt
     $ mkdir /mnt/boot
     $ mount /dev/sda1 /mnt/boot
 
-## 6. install NixOS
+## 7. install NixOS
     $ nixos-generate-config --root /mnt
     $ cd /mnt/etc/nixos
     $ mv configuration.nix _old01_configuration.nix
@@ -109,7 +126,10 @@ Number  Size        Code  Name
     $ emacs -nw hardware-configuration.nix
     $ cat configuration.nix
     $ nixos-install
-    $ reboot
+set root password
+```
+$ reboot
+```
 
 manual
 ======
@@ -118,3 +138,4 @@ manual
 [NixOSのインストール](https://github.com/Tokyo-NixOS/Tokyo-NixOS-Meetup-Wiki/wiki/install)  
 [ヒアドキュメントの変数エスケープ](http://qiita.com/mofmofneko/items/bf003d14670644dd6197)  
 [【Linux】シェルスクリプトのSMTPコマンドで終了文字列が見つからずにエラー](http://ameblo.jp/i-am-pleasure/entry-12041629875.html)  
+[sgdisk(gdisk コマンドライン版) でまとめて変更する使い方](http://takuya-1st.hatenablog.jp/entry/2016/12/16/183718)
