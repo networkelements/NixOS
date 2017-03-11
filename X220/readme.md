@@ -22,12 +22,12 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
     (parted) q 
     > sudo dd bs=4M if=nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso of=/dev/sdg
 
-
-
+## 1. Boot from USB
+    # systemctl start display-manager
+Exec Konosle - terminal application, shortcut on desktop.
 
 ## 1. setup keyboard
 But,I can't change keymap...  
-
 I guess because NixOS Live is readonly keymaps config.  
 
     # ls /etc/kbd/keymaps/1386/qwerty/jp106.map.gz
