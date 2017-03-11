@@ -2,7 +2,25 @@
 ## 0. 1st step
 Download from [NixOS official site](http://nixos.org/nixos/download.html)  
 
-    # aria2c https://d3g5gsiof5omrk.cloudfront.net/nixos/16.09/nixos-16.09.1829.c88e67d/nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso  
+    
+    > aria2c https://d3g5gsiof5omrk.cloudfront.net/nixos/16.09/nixos-16.09.1829.c88e67d/nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso  
+    > sudo parted /dev/sdg
+    [sudo] ほげ のパスワード: 
+    GNU Parted 3.2
+    /dev/sdg を使用
+    GNU Parted へようこそ！ コマンド一覧を見るには 'help' と入力してください。
+    (parted) p                                                                    
+    モデル: BUFFALO USB Flash Disk (scsi)
+    ディスク /dev/sdg: 8020MB
+    セクタサイズ (論理/物理): 512B/512B
+    パーティションテーブル: msdos
+    ディスクフラグ: 
+
+    番号  開始    終了    サイズ  タイプ   ファイルシステム  フラグ
+     1    1049kB  8020MB  8018MB  primary  fat32
+
+    (parted) q 
+    > sudo dd bs=4M if=nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso of=/dev/sdg
 
 
 
@@ -24,11 +42,15 @@ Same changes in nano editor, nano said
 
 ## 2. install tools
     # nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
-vim config    
+
+Choose editor type 1. or 2.
+
+1. vim config 
 ```
 # echo "set number" >> $HOME/.vimrc 
 ```
-emacs config
+
+2. emacs config
 ```
 # mkdir $HOME/.emacs.d
 # cat > $HOME/.emacs.d/init.el <<"EOF"
@@ -49,16 +71,17 @@ Number  Size        Code  Name
   3     <the rest>  8E00  Linux LVM
 -----------------------------------------------
 ```
-
+Choose partioning type 1. or 2.
+1. Partitioning command.
+```
+    # sgdisk -p
     # sgdisk -Z /dev/sda
-    # sgdisk -n "${1}:${0}:${500M}" -t 1:ef02 -c 1:"BIOS boot" /dev/sda
-    # sgdisk -n "${2}:${0}:${+1G}" -t 2:ef00 -c 2:"UEFI boot" /dev/sda
+    # sgdisk -L
+    # sgdisk -n "${1}:${0}:${500M}" -t 1:ef02 -c 1:"BIOS boot partition" /dev/sda
+    # sgdisk -n "${2}:${0}:${+1G}" -t 2:ef00 -c 2:"UEFI System Partition" /dev/sda
     # sgdisk -n "${3}:${0}:${0}" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
-
-      
-
-
-
+```
+2. Paritioning REPL.
 ```
     # gdisk /dev/sda
 ```
@@ -92,21 +115,21 @@ Number  Size        Code  Name
 - `22. q` (quit)
 
 ## 4. setup LUKS 
-    # cryptsetup luksFormat /dev/sda2
+    # cryptsetup luksFormat /dev/sda3
     
 - `1. YES` (type uppercase!)
 - `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
 - `3. ????` (Verify passphrase, type same passwords)
 
 ```
-    # cryptsetup luksOpen /dev/sda2 enc-pv
+    # cryptsetup luksOpen /dev/sda3 enc-pv
     # pvcreate /dev/mapper/enc-pv
     # vgcreate vg /dev/mapper/enc-pv
     # lvcreate -l '100%FREE' -n root vg
 ```
 
 ## 5. format filesystem
-    # mkfs.vfat /dev/sda1
+    # mkfs.vfat /dev/sda2
     # mkfs.f2fs -l root /dev/vg/root
 
 ## 6. mount
@@ -139,3 +162,5 @@ manual
 [ヒアドキュメントの変数エスケープ](http://qiita.com/mofmofneko/items/bf003d14670644dd6197)  
 [【Linux】シェルスクリプトのSMTPコマンドで終了文字列が見つからずにエラー](http://ameblo.jp/i-am-pleasure/entry-12041629875.html)  
 [sgdisk(gdisk コマンドライン版) でまとめて変更する使い方](http://takuya-1st.hatenablog.jp/entry/2016/12/16/183718)
+[An sgdisk Walkthrough](http://www.rodsbooks.com/gdisk/sgdisk-walkthrough.html)
+[lsblk、sgdisk、LVM 系コマンドの使用例](http://qiita.com/blp1526/items/0a88299d4bd841d01e3f)
