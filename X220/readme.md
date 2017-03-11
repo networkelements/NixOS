@@ -23,14 +23,16 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
     > sudo dd bs=4M if=nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso of=/dev/sdg
 
 ## 1. Boot from USB
+1.Enter command,after LiveISO booted.  
+
     # systemctl start display-manager
-Exec Konosle - terminal application, shortcut on desktop.
-    
-Logging.
+
+2.Exec Konosle - terminal application, shortcut on desktop.  
+3.Logging.  
 
     # script `date '+%Y%m%d'`.log
 
-## 1. setup keyboard
+## 2. setup keyboard
 But,I can't change keymap...  
 I guess because NixOS Live is readonly keymaps config.  
 
@@ -44,7 +46,7 @@ Same changes in nano editor, nano said
 "Error writing /etc/vconsole.conf: Read-only file system"  
 
 
-## 2. install tools
+## 3. install tools
     # nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
 
 Choose editor type 1. or 2.  
@@ -62,7 +64,7 @@ Choose editor type 1. or 2.
 EOF
 ```
 
-## 3. make partition
+## 4. make partition
 
 change parition like this.
 ```
@@ -121,7 +123,7 @@ Choose partioning type 1. or 2.
 - `21. p` (print current partition table)
 - `22. q` (quit)
 
-## 4. setup LUKS 
+## 5. setup LUKS 
     # cryptsetup luksFormat /dev/sda3
     
 - `1. YES` (type uppercase!)
@@ -135,16 +137,16 @@ Choose partioning type 1. or 2.
     # lvcreate -l '100%FREE' -n root vg
 ```
 
-## 5. format filesystem
+## 6. format filesystem
     # mkfs.vfat /dev/sda2
     # mkfs.f2fs -l root /dev/vg/root
 
-## 6. mount
+## 7. mount
     # mount /dev/vg/root /mnt
     # mkdir /mnt/boot
     # mount /dev/sda1 /mnt/boot
 
-## 7. install NixOS
+## 8. install NixOS
     # nixos-generate-config --root /mnt
     # cd /mnt/etc/nixos
     # mv configuration.nix _old01_configuration.nix
