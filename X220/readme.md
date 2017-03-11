@@ -6,7 +6,14 @@ I guess because NixOS Live is readonly keymaps config.
 
     $ ls /etc/kbd/keymaps/1386/qwerty/jp106.map.gz
     $ loadkeys jp106
-    
+    $ sed s'/us/jp106/'g /etc/vconsole.conf
+```
+$ sed s'/us/jp106/'g /etc/vconsole.conf
+is no ERROR, but It's nochanges.
+Same change in nano editor,nano said
+"Error writing /etc/vconsole.conf: Read-only file system"
+```
+
 ## 1. install tools
     $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
     $ echo "set number" >> $HOME/.vimrc 
