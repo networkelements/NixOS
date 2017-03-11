@@ -69,6 +69,9 @@ Number  Size        Code  Name
   3     <the rest>  8E00  Linux LVM
 -----------------------------------------------
 ```
+    # fdisk -l
+    # lsblk -O
+ 
 Choose partioning type 1. or 2.  
 1.Partitioning command.  
 
@@ -76,9 +79,9 @@ Choose partioning type 1. or 2.
     # sgdisk -p
     # sgdisk -Z /dev/sda
     # sgdisk -L
-    # sgdisk -n "${1}:${0}:${500M}" -t 1:ef02 -c 1:"BIOS boot partition" /dev/sda
-    # sgdisk -n "${2}:${0}:${+1G}" -t 2:ef00 -c 2:"UEFI System Partition" /dev/sda
-    # sgdisk -n "${3}:${0}:${0}" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
+    # sgdisk -n "${1}::${+500M}" -t 1:ef02 -c 1:"BIOS boot partition" /dev/sda
+    # sgdisk -n "${2}::${+1G}" -t 2:ef00 -c 2:"UEFI System Partition" /dev/sda
+    # sgdisk -n "${3}::" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
 ```  
 2.Paritioning REPL.  
 
