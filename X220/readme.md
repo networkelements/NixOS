@@ -152,7 +152,13 @@ Choose partioning type 1. or 2.
     # wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix
     # wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix
     # grep "device" _old01_hardware-configuration.nix >> hardware-configuration.nix
+
+1.Fix, sed s'/USERNAME/ほげほげ'g  configuration.nix
+
     # emacs -nw configuration.nix
+
+2.Add UUID,"nixos-generate-config" and fix
+
     # emacs -nw hardware-configuration.nix
     # cat configuration.nix
     # nixos-install
