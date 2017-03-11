@@ -83,4 +83,5 @@ Number  Size        Code  Name
 manual
 ======
 [Installation of NixOS with encrypted root](https://gist.github.com/martijnvermaat/76f2e24d0239470dd71050358b4d5134)
+
 [Installing NixOS](https://chris-martin.org/2015/installing-nixos)
