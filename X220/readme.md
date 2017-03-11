@@ -9,11 +9,11 @@ I guess because NixOS Live is readonly keymaps config.
 ## 1. install tools
     $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
     $ mkdir $HOME/.emacs.d
-    $ cat  <<EOF > $HOME/.emacs.d/init.el
+    $ cat  << `EOF' > $HOME/.emacs.d/init.el
       (require 'linum)
       (global-linum-mode t)
       (setq linum-format "%3d  ")
-      `EOF'
+      EOF
       
 ## 2. make partition
 
@@ -102,3 +102,5 @@ manual
 [Installing NixOS](https://chris-martin.org/2015/installing-nixos)
 
 [NixOSのインストール](https://github.com/Tokyo-NixOS/Tokyo-NixOS-Meetup-Wiki/wiki/install)
+
+[ヒアドキュメントの変数エスケープ](http://qiita.com/mofmofneko/items/bf003d14670644dd6197)
