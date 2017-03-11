@@ -59,10 +59,9 @@
           {
             name = "root";
             preLVM = true;
-            #device = "/dev/sda2";
-            device = "/dev/disk/by-uuid/bd46d9d9-8384-4672-b782-fd133004cad0";
+            device = "/dev/disk/by-uuid/748c12c1-dac0-4148-8be7-f9e59d150633";
             #allowDiscards = true;
-          };
+          }
           
           # cryptsetup default settings?
           #cryptoModules =
@@ -86,7 +85,7 @@
 
   fileSystems."/" =
     { 
-      device = "/dev/disk/by-uuid/bd46d9d9-8384-4672-b782-fd133004cad0";
+      device = "/dev/disk/by-uuid/748c12c1-dac0-4148-8be7-f9e59d150633";
       fsType = "f2fs";
     };
 
