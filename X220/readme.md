@@ -139,7 +139,7 @@ Choose partioning type 1. or 2.
 ## 7. mount
     # mount /dev/vg/root /mnt
     # mkdir /mnt/boot
-    # mount /dev/sda1 /mnt/boot
+    # mount /dev/sda2 /mnt/boot
 
 ## 8. install NixOS
     # nixos-generate-config --root /mnt
