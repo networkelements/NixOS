@@ -100,7 +100,7 @@
   [
   	chrony
 	#curl
-	wget
+	#wget
 	fcitx
 	fcitx-configtool
 	fcitx-engines.mozc
@@ -128,12 +128,12 @@
   nixpkgs.config =
   {
 	allowUnfree = true;
-	chromium =
-	{
-		enablePepperFlash = true;
-		enablepepperPDF = true;
-		enableWideVine = true;
-	};
+	#chromium =
+	#{
+	#	enablePepperFlash = true;
+	#	enablepepperPDF = true;
+	#	enableWideVine = true;
+	#};
 
   };
     
@@ -146,7 +146,7 @@
 		#inconsolata
 		ubuntu_font_family
 		unifont
-		vistafonts
+		#vistafonts
 		ipafont
 		hanazono
 		#source-code-pro
@@ -250,5 +250,4 @@
 		channel = https://nixos.org/channels/nixos-16.09;
 	};  
   };
-
 }
