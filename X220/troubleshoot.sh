@@ -17,5 +17,5 @@ mount /dev/sda1 /mnt/boot
 #systemctl start wpa_supplicant
 
 cd /mnt/etc/nixos
-wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix -O /mnt/etc/nixos/configuration.nix
-wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix -O /mnt/etc/nixos/hardware-configuration.nix
+#wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix -O /mnt/etc/nixos/configuration.nix
+#wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix -O /mnt/etc/nixos/hardware-configuration.nix
