@@ -1,7 +1,7 @@
 #!/bin/sh
 #script `date '+%Y%m%d-%H:%M:%S'`.log
 
-# nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools gptfdisk
+nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools gptfdisk
 
 # echo "set number" >> $HOME/.vimrc 
 
@@ -21,6 +21,7 @@ cryptsetup luksOpen /dev/sda3 enc-pv
 
 lvchange -a y /dev/vg/root
 mount /dev/vg/root /mnt
+mkdir -p /mnt/boot
 mount /dev/sda1 /mnt/boot
 
 #swapon /dev/vg/swap
