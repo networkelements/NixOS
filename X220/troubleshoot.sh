@@ -1,5 +1,5 @@
 #!/bin/sh
-script `date '+%Y%m%d-%H:%M:%S'`.log
+#script `date '+%Y%m%d-%H:%M:%S'`.log
 
 nix-env -i cryptsetup f2fs-tools wget vim gptfdisk
 echo "set number" >> $HOME/.vimrc 
