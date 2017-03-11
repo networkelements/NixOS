@@ -133,15 +133,18 @@ Choose partioning type 1. or 2.
 ```
 
 ## 6. format filesystem
+
     # mkfs.vfat /dev/sda2
     # mkfs.f2fs -l root /dev/vg/root
 
 ## 7. mount
+
     # mount /dev/vg/root /mnt
     # mkdir /mnt/boot
-    # mount /dev/sda2 /mnt/boot
-
+    # mount /dev/sda2 /mnt/boot
+    
 ## 8. install NixOS
+
     # nixos-generate-config --root /mnt
     # cd /mnt/etc/nixos
     # mv configuration.nix _old01_configuration.nix
