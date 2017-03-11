@@ -163,6 +163,8 @@ Choose partioning type 1. or 2.
     # cat configuration.nix
     # nixos-install
 set root password
+- `1. Enter new UNIX password:` (Enter passphrase)
+- `2. Retype new UNIX password:` (Verify passphrase, type same passwords)
 ```
 # reboot
 ```
