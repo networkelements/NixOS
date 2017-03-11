@@ -25,6 +25,10 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
 ## 1. Boot from USB
     # systemctl start display-manager
 Exec Konosle - terminal application, shortcut on desktop.
+    
+Logging.
+
+    # script `date '+%Y%m%d'`.log
 
 ## 1. setup keyboard
 But,I can't change keymap...  
