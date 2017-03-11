@@ -2,7 +2,6 @@
 ## 0. 1st step
 Download from [NixOS official site](http://nixos.org/nixos/download.html)  
 
-    
     > aria2c https://d3g5gsiof5omrk.cloudfront.net/nixos/16.09/nixos-16.09.1829.c88e67d/nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso  
     > sudo parted /dev/sdg
     [sudo] ほげ のパスワード: 
@@ -45,7 +44,6 @@ is no ERROR, but It's no changes.
 Same changes in nano editor, nano said  
 "Error writing /etc/vconsole.conf: Read-only file system"  
 
-
 ## 3. install tools
     # nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
 
@@ -65,8 +63,7 @@ EOF
 ```
 
 ## 4. make partition
-
-change parition like this.
+change parition like this.  
 ```
 -----------------------------------------------
 Number  Size        Code  Name
@@ -75,12 +72,13 @@ Number  Size        Code  Name
   3     <the rest>  8E00  Linux LVM
 -----------------------------------------------
 ```
+0.Check current disk status.  
+
     # fdisk -l
     # lsblk -O
  
 Choose partioning type 1. or 2.  
 1.Partitioning command.  
-
 ```
     # sgdisk -p
     # sgdisk -Z /dev/sda
@@ -90,11 +88,9 @@ Choose partioning type 1. or 2.
     # sgdisk -n "${3}::" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
 ```  
 2.Paritioning REPL.  
-
 ```
     # gdisk /dev/sda
 ```
-
 - `1. p` (print current partition table)
 - `2. o` (create new partition table)
 - `3. y` (exec)
@@ -114,22 +110,20 @@ Choose partioning type 1. or 2.
 - `17. Enter` (set end point)
 - `18. 8e00` (partition type  )
 - `19. w` (write partition table)
-- `20. y` (exec)
-
+- `20. y` (exec)  
 ```
     # gdisk /dev/sda
 ```
-
 - `21. p` (print current partition table)
 - `22. q` (quit)
 
 ## 5. setup LUKS 
+
     # cryptsetup luksFormat /dev/sda3
     
 - `1. YES` (type uppercase!)
 - `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
 - `3. ????` (Verify passphrase, type same passwords)
-
 ```
     # cryptsetup luksOpen /dev/sda3 enc-pv
     # pvcreate /dev/mapper/enc-pv
@@ -171,5 +165,5 @@ manual
 [ヒアドキュメントの変数エスケープ](http://qiita.com/mofmofneko/items/bf003d14670644dd6197)  
 [【Linux】シェルスクリプトのSMTPコマンドで終了文字列が見つからずにエラー](http://ameblo.jp/i-am-pleasure/entry-12041629875.html)  
 [sgdisk(gdisk コマンドライン版) でまとめて変更する使い方](http://takuya-1st.hatenablog.jp/entry/2016/12/16/183718)
-[An sgdisk Walkthrough](http://www.rodsbooks.com/gdisk/sgdisk-walkthrough.html)
-[lsblk、sgdisk、LVM 系コマンドの使用例](http://qiita.com/blp1526/items/0a88299d4bd841d01e3f)
+[An sgdisk Walkthrough](http://www.rodsbooks.com/gdisk/sgdisk-walkthrough.html)  
+[lsblk、sgdisk、LVM 系コマンドの使用例](http://qiita.com/blp1526/items/0a88299d4bd841d01e3f)  
