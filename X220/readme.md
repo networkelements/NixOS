@@ -1,11 +1,19 @@
 # install NixOS(LUKS+f2fs+gnome3)
 ## 0. setup keyboard
+But,I can't change keymap...
+I guess because NixOS Live is readonly keymaps config.
+
     $ ls /etc/kbd/keymaps/1386/qwerty/jp106.map.gz
-    
+    $ loadkeys jp106
     
 ## 1. install tools
-    $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox  
-
+    $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
+    $ cat  << EOF > $HOME/.emacs.d/init.el
+      > (require 'linum)
+      > (global-linum-mode t)
+      > (setq linum-format "%3d  ")
+      > EOF
+      
 ## 2. make partition
 
 change parition like this.
