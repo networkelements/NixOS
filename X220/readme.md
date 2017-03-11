@@ -43,14 +43,12 @@ Same changes in nano editor, nano said
 ## 2. install tools
     # nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
 
-Choose editor type 1. or 2.
-
-1. vim config 
+Choose editor type 1. or 2.  
+1.vim config  
 ```
 # echo "set number" >> $HOME/.vimrc 
 ```
-
-2. emacs config
+2.emacs config  
 ```
 # mkdir $HOME/.emacs.d
 # cat > $HOME/.emacs.d/init.el <<"EOF"
@@ -71,8 +69,9 @@ Number  Size        Code  Name
   3     <the rest>  8E00  Linux LVM
 -----------------------------------------------
 ```
-Choose partioning type 1. or 2.
-1. Partitioning command.
+Choose partioning type 1. or 2.  
+1.Partitioning command.  
+
 ```
     # sgdisk -p
     # sgdisk -Z /dev/sda
@@ -80,8 +79,9 @@ Choose partioning type 1. or 2.
     # sgdisk -n "${1}:${0}:${500M}" -t 1:ef02 -c 1:"BIOS boot partition" /dev/sda
     # sgdisk -n "${2}:${0}:${+1G}" -t 2:ef00 -c 2:"UEFI System Partition" /dev/sda
     # sgdisk -n "${3}:${0}:${0}" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
-```
-2. Paritioning REPL.
+```  
+2.Paritioning REPL.  
+
 ```
     # gdisk /dev/sda
 ```
