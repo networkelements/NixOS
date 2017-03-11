@@ -74,8 +74,8 @@
           		"aes"
           		"xts"
           		"sha256"
-              "sha1"
-              "cbc"
+			"sha1"
+			"cbc"
           	];
           };
         ];
