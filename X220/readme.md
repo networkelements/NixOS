@@ -12,8 +12,10 @@ Number  Size        Code  Name
   3     <the rest>  8E00  Linux LVM
 -----------------------------------------------
 ```
+```
     $ gdisk /dev/sda
-    
+```
+
 - `1. p` ()
 - `2. o` ()
 - `3. n` ()
@@ -33,8 +35,10 @@ Number  Size        Code  Name
 - `17. Enter` (default 8300)
 - `18. w` ()
 - `19. y` ()
-    
+
+```
     $ gdisk /dev/sda
+```
 
 - `17. p` ()
 - `18. q` ()
@@ -45,11 +49,13 @@ Number  Size        Code  Name
 - `YES` (type uppercase!)
 - `Enter passphrase` (unreccomend use symbol key on jp106)
 - `Verify passphrase` (type same passwords)
-    
+
+```
     $ cryptsetup luksOpen /dev/sda2 enc-pv
     $ pvcreate /dev/mapper/enc-pv
     $ vgcreate vg /dev/mapper/enc-pv
     $ lvcreate -l '100%FREE' -n root vg
+```
 
 ## 4. format filesystem
     $ mkfs.vfat /dev/sda1
