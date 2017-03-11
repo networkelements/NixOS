@@ -68,14 +68,16 @@
           }
           
           # cryptsetup default settings?
-          #cryptoModules =
-          #{
-          #	[
-          #		"aes"
-          #		"xts"
-          #		"sha256"
-          #	];
-          #};
+          cryptoModules =
+          {
+          	[
+          		"aes"
+          		"xts"
+          		"sha256"
+              "sha1"
+              "cbc"
+          	];
+          };
         ];
       };
     };
