@@ -71,17 +71,21 @@
 		#xkblayout = "jp";
 		xkbOptions = "japan";
 		
-		#displayManager =
-		#{
+		displayManager =
+		{	
+			gdm.enable = true;
 			#kdm.enable = true;
-			#kde4.enable = true;
-		#};
+			#lightdm.enable = true;
+			#sddm.enable = true;
+		};
 		
 		desktopManager =
 		{
 			gnome3.enable = true;
 			default = "gnome3";
 			xterm.enable = false;
+			#desktopManager.e19.enable = true;
+			#kde4.enable = true;
 		};
 		
 		#windowManager = 
@@ -89,6 +93,8 @@
 
 			#xmonad.enable = true;
 			#xmonad.enableContribAndExtras = true;
+			#windowManager.default = "xmonad";
+			#desktopManager.default = "none";
 		#};
 	};
   };	
@@ -100,6 +106,7 @@
   {
   	createHome = true;
 	home = "/home/USERNAME";
+	uid = 1000;
 	#description = "testing";
 	#extraGroups = [ sudo ];
 	isSystemUser = true;
