@@ -12,7 +12,7 @@ I guess because NixOS Live is readonly keymaps config.
       (require 'linum)
       (global-linum-mode t)
       (setq linum-format "%3d  ")
-      EOF
+      `EOF'
       
 ## 2. make partition
 
