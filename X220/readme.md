@@ -1,7 +1,7 @@
 # install NixOS(LUKS+f2fs+gnome3)
 ## 0. setup keyboard
-But,I can't change keymap...
-I guess because NixOS Live is readonly keymaps config.
+But,I can't change keymap...  
+I guess because NixOS Live is readonly keymaps config.  
 
     $ ls /etc/kbd/keymaps/1386/qwerty/jp106.map.gz
     $ loadkeys jp106
