@@ -9,6 +9,7 @@ I guess because NixOS Live is readonly keymaps config.
     
 ## 1. install tools
     $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
+    $ echo "set number" >> $HOME/.vimrc 
     $ mkdir $HOME/.emacs.d
 ```
 $ cat > $HOME/.emacs.d/init.el <<"EOF"
