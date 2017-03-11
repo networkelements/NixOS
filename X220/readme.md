@@ -1,10 +1,11 @@
 # install NixOS(LUKS+f2fs+gnome3)
 ## 1. install tools
-    $ nix-env -iA nixos. emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox  
+    $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox  
 
 ## 2. make partition
-```
+
 change parition like this.
+```
 -----------------------------------------------
 Number  Size        Code  Name
   1     500.0 MiB  EF02  BIOS boot partition
@@ -12,6 +13,7 @@ Number  Size        Code  Name
   3     <the rest>  8E00  Linux LVM
 -----------------------------------------------
 ```
+
 ```
     $ gdisk /dev/sda
 ```
