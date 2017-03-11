@@ -6,14 +6,7 @@ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools gptfdisk
 # echo "set number" >> $HOME/.vimrc 
 
 mkdir $HOME/.emacs.d
-cat > $HOME/.emacs.d/init.el <<"EOF"
-(require 'linum)
-(global-linum-mode t)
-(setq linum-format "%3d  ")
-EOF
-
-
-
+curl https://raw.githubusercontent.com/networkelements/NixOS/master/X220/.emacs.d/init.el -o $HOME/.emacs.d/init.el
 
 cryptsetup luksOpen /dev/sda3 enc-pv
 
