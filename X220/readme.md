@@ -2,7 +2,7 @@
 ## 0. 1st step
 Download from [NixOS official site](http://nixos.org/nixos/download.html)
 
-$ aria2c https://d3g5gsiof5omrk.cloudfront.net/nixos/16.09/nixos-16.09.1829.c88e67d/nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso
+# aria2c https://d3g5gsiof5omrk.cloudfront.net/nixos/16.09/nixos-16.09.1829.c88e67d/nixos-graphical-16.09.1829.c88e67d-x86_64-linux.iso
 
 
 
@@ -12,26 +12,26 @@ But,I can't change keymap...
 
 I guess because NixOS Live is readonly keymaps config.  
 
-    $ ls /etc/kbd/keymaps/1386/qwerty/jp106.map.gz
-    $ loadkeys jp106
-    $ sed s'/us/jp106/'g /etc/vconsole.conf
+    # ls /etc/kbd/keymaps/1386/qwerty/jp106.map.gz
+    # loadkeys jp106
+    # sed s'/us/jp106/'g /etc/vconsole.conf
 
-$ sed s'/us/jp106/'g /etc/vconsole.conf  
+# sed s'/us/jp106/'g /etc/vconsole.conf  
 is no ERROR, but It's no changes.  
 Same changes in nano editor, nano said  
 "Error writing /etc/vconsole.conf: Read-only file system"  
 
 
 ## 2. install tools
-    $ nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
+    # nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
 vim config    
 ```
-$ echo "set number" >> $HOME/.vimrc 
+# echo "set number" >> $HOME/.vimrc 
 ```
 emacs config
 ```
-$ mkdir $HOME/.emacs.d
-$ cat > $HOME/.emacs.d/init.el <<"EOF"
+# mkdir $HOME/.emacs.d
+# cat > $HOME/.emacs.d/init.el <<"EOF"
 (require 'linum)
 (global-linum-mode t)
 (setq linum-format "%3d  ")
@@ -60,7 +60,7 @@ Number  Size        Code  Name
 
 
 ```
-    $ gdisk /dev/sda
+    # gdisk /dev/sda
 ```
 
 - `1. p` (print current partition table)
@@ -85,50 +85,50 @@ Number  Size        Code  Name
 - `20. y` (exec)
 
 ```
-    $ gdisk /dev/sda
+    # gdisk /dev/sda
 ```
 
 - `21. p` (print current partition table)
 - `22. q` (quit)
 
 ## 4. setup LUKS 
-    $ cryptsetup luksFormat /dev/sda2
+    # cryptsetup luksFormat /dev/sda2
     
 - `1. YES` (type uppercase!)
 - `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
 - `3. ????` (Verify passphrase, type same passwords)
 
 ```
-    $ cryptsetup luksOpen /dev/sda2 enc-pv
-    $ pvcreate /dev/mapper/enc-pv
-    $ vgcreate vg /dev/mapper/enc-pv
-    $ lvcreate -l '100%FREE' -n root vg
+    # cryptsetup luksOpen /dev/sda2 enc-pv
+    # pvcreate /dev/mapper/enc-pv
+    # vgcreate vg /dev/mapper/enc-pv
+    # lvcreate -l '100%FREE' -n root vg
 ```
 
 ## 5. format filesystem
-    $ mkfs.vfat /dev/sda1
-    $ mkfs.f2fs -l root /dev/vg/root
+    # mkfs.vfat /dev/sda1
+    # mkfs.f2fs -l root /dev/vg/root
 
 ## 6. mount
-    $ mount /dev/vg/root /mnt
-    $ mkdir /mnt/boot
-    $ mount /dev/sda1 /mnt/boot
+    # mount /dev/vg/root /mnt
+    # mkdir /mnt/boot
+    # mount /dev/sda1 /mnt/boot
 
 ## 7. install NixOS
-    $ nixos-generate-config --root /mnt
-    $ cd /mnt/etc/nixos
-    $ mv configuration.nix _old01_configuration.nix
-    $ mv hardware-configuration.nix _old01_hardware-configuration.nix
-    $ wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix
-    $ wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix
-    $ grep "device" _old01_hardware-configuration.nix >> hardware-configuration.nix
-    $ emacs -nw configuration.nix
-    $ emacs -nw hardware-configuration.nix
-    $ cat configuration.nix
-    $ nixos-install
+    # nixos-generate-config --root /mnt
+    # cd /mnt/etc/nixos
+    # mv configuration.nix _old01_configuration.nix
+    # mv hardware-configuration.nix _old01_hardware-configuration.nix
+    # wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix
+    # wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix
+    # grep "device" _old01_hardware-configuration.nix >> hardware-configuration.nix
+    # emacs -nw configuration.nix
+    # emacs -nw hardware-configuration.nix
+    # cat configuration.nix
+    # nixos-install
 set root password
 ```
-$ reboot
+# reboot
 ```
 
 manual
