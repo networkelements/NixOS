@@ -71,15 +71,15 @@ Number  Size        Code  Name
     $ gdisk /dev/sda
 ```
 
-- `17. p` (print current partition table)
-- `18. q` (quit)
+- `21. p` (print current partition table)
+- `22. q` (quit)
 
 ## 3. setup LUKS 
     $ cryptsetup luksFormat /dev/sda2
     
-- `YES` (type uppercase!)
-- `Enter passphrase` (unreccomend use symbol key on jp106)
-- `Verify passphrase` (type same passwords)
+- `1. YES` (type uppercase!)
+- `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
+- `3. ????` (Verify passphrase, type same passwords)
 
 ```
     $ cryptsetup luksOpen /dev/sda2 enc-pv
