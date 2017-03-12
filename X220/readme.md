@@ -165,6 +165,7 @@ Choose partioning type 1. or 2.
 
     # emacs -nw hardware-configuration.nix
     # cat configuration.nix
+    # cat hardware-configuration.nix
     # nixos-install
 set root password
 - `1. Enter new UNIX password:` (Enter passphrase)
