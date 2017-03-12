@@ -129,7 +129,7 @@ Choose partioning type 1. or 2.
 ```    
     # cryptsetup luksOpen /dev/sda3 enc-pv  
 ```
-- `Enter passphrase`
+- `Enter passphrase for /dev/sda3`
 ```
     # pvcreate /dev/mapper/enc-pv
     # vgcreate vg /dev/mapper/enc-pv
