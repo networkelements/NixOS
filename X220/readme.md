@@ -45,11 +45,12 @@ Same changes in nano editor, nano said
 "Error writing /etc/vconsole.conf: Read-only file system"  
 
 ## 3. install tools
-    # nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools wget vim gptfdisk firefox
+    # nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools gptfdisk
 
 Choose editor type 1. or 2.  
 1.vim config  
 ```
+# nix-env -i vim
 # echo "set number" >> $HOME/.vimrc 
 ```
 2.emacs config  
@@ -125,8 +126,11 @@ Choose partioning type 1. or 2.
 - `1. YES` (type uppercase!)
 - `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
 - `3. ????` (Verify passphrase, type same passwords)
+```    
+    # cryptsetup luksOpen /dev/sda3 enc-pv  
 ```
-    # cryptsetup luksOpen /dev/sda3 enc-pv
+- `Enter passphrase`
+```
     # pvcreate /dev/mapper/enc-pv
     # vgcreate vg /dev/mapper/enc-pv
     # lvcreate -l '100%FREE' -n root vg
@@ -149,8 +153,8 @@ Choose partioning type 1. or 2.
     # cd /mnt/etc/nixos
     # mv configuration.nix _old01_configuration.nix
     # mv hardware-configuration.nix _old01_hardware-configuration.nix
-    # wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix
-    # wget https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix
+    # curl https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix -o /mnt/etc/nixos/configuration.nix
+    # curl https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix -o /mnt/etc/nixos/hardware-configuration.nix
     # grep "device" _old01_hardware-configuration.nix >> hardware-configuration.nix
 
 1.Fix, sed s'/USERNAME/ほげほげ'g  configuration.nix
