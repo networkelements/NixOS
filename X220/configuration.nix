@@ -220,13 +220,12 @@
   {
   	createHome = true;
 	home = "/home/USERNAME";
-	uid = 1000;
+	#uid = 1000;
 	#description = "testing";
 	#extraGroups = [ sudo ];
 	isSystemUser = true;
 	useDefaultShell = true;
-	#useDefaultShell = "/usr/bin/fish";
-	#useDefaultShell = "/root/.nix-profile/bin/fish"
+	shell = "/nix/var/nixprofiles/default/bin/fish";
   };
   
   environment.variables.PATH = ["$HOME/.local/bin"];
