@@ -96,6 +96,19 @@
   
   time.timeZone = "Asia/Tokyo";
   
+  security = 
+  {
+  	sudo =
+	{
+		enable = true;
+		sudo.wheelNeedsPassword = true;
+	};
+	
+	rtkit.enable = true;
+	polkit.enable = true;
+	rngd.enable = true;  
+  };
+  
   environment.systemPackages = with pkgs; 
   [
   	chrony
@@ -164,6 +177,9 @@
   {
   	openssh.enable = false;
 	#printing.enable = true;
+	#virtualbox.enable = true;
+	#ntp.servers = [ "ntp.nict.jp" ];
+	acpid.enable = true;
 
 	chrony =
 	{
