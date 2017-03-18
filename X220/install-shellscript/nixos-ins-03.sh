@@ -4,7 +4,10 @@ pvcreate /dev/mapper/enc-pv
 vgcreate vg /dev/mapper/enc-pv
 lvcreate -l '100%FREE' -n root vg
 mkfs.fat -F32 /dev/sda1
-
+mkfs.fat -F32 /dev/sda1
+mkfs.ext2 -L boot /dev/mapper/cryptboot
+mkfs.f2fs -l root /dev/vg/root
+   
 mount /dev/vg/root /mnt
 mkdir /mnt/boot
 mount /dev/mapper/cryptboot /mnt/boot
