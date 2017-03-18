@@ -140,6 +140,7 @@
   fonts =
   {
 	enableFontDir = true;
+	enableFontConfig = true;
 	enableGhostscriptFonts = true;
 	fonts = with pkgs;
 	[
