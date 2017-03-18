@@ -77,7 +77,7 @@
   
   i18n = 
   {
-  	consoleFont = "ipafont inconsolata ubuntu_font_family";
+  	consoleFont = "ipafont";
 	consoleKeyMap = "jp106";
 	defaultLocale = "ja.JP_UTF-8";
 	inputMethod =
@@ -101,7 +101,7 @@
   	sudo =
 	{
 		enable = true;
-		sudo.wheelNeedsPassword = true;
+		wheelNeedsPassword = true;
 	};
 	
 	rtkit.enable = true;
@@ -135,7 +135,6 @@
 	#atom
 	#yi
 	#stack
-
   ];
   
   nixpkgs.config =
@@ -153,7 +152,12 @@
   fonts =
   {
 	enableFontDir = true;
-	enableFontConfig = true;
+	fontconfig =
+	{
+		enable = true;
+		antialias = true;
+	};
+	
 	enableGhostscriptFonts = true;
 	fonts = with pkgs;
 	[
