@@ -87,8 +87,8 @@ Choose partioning type 1. or 2.
     # sgdisk -Z /dev/sda
     # sgdisk -L
     # sgdisk -n "1::+512M" -t 1:ef00 -c 1:"UEFI System Partition" /dev/sda
-    # sgdisk -n "2::+1G" -t 3:8300 -c 2:"Linux boot" /dev/sda
-    # sgdisk -n "2::" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
+    # sgdisk -n "2::+1G" -t 2:8300 -c 2:"Linux boot" /dev/sda
+    # sgdisk -n "3::" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
     # sgdisk -p /dev/sda
 ```  
 2.Paritioning REPL.  
