@@ -48,12 +48,8 @@ Same changes in nano editor, nano said
     # nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools gptfdisk
 
 Choose editor type 1. or 2.  
-1.vim config  
-```
-# nix-env -i vim
-# echo "set number" >> $HOME/.vimrc 
-```
-2.emacs config  
+
+1.emacs config  
 ```
 # mkdir $HOME/.emacs.d
 # cat > $HOME/.emacs.d/init.el <<"EOF"
@@ -62,6 +58,12 @@ Choose editor type 1. or 2.
 (setq linum-format "%3d  ")
 EOF
 ```
+2.vim config  
+```
+# nix-env -i vim
+# echo "set number" >> $HOME/.vimrc 
+```
+
 
 ## 4. make partition
 change parition like this.  
@@ -85,6 +87,7 @@ Choose partioning type 1. or 2.
     # sgdisk -Z /dev/sda
     # sgdisk -L
     # sgdisk -n "1::+512M" -t 1:ef00 -c 1:"UEFI System Partition" /dev/sda
+    # sgdisk -n "2::+1G" -t 3:8300 -c 2:"Linux boot" /dev/sda
     # sgdisk -n "2::" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
     # sgdisk -p /dev/sda
 ```  
@@ -98,13 +101,13 @@ Choose partioning type 1. or 2.
 - `4. n` (create new partition)
 - `5. 1` (partition number 1)
 - `6. Enter` (set starting point)
-- `7. 500M` (set end point)
-- `8. ef02` (partition type BIOS boot for LUKS)
+- `7. 512M` (set end point)
+- `8. ef02` (partition type UEFI boot)
 - `9. n` (create new partition)
 - `10. 2` (partition number 2)
 - `11. Enter` (set starting point)
 - `12. +1G` (set end point)
-- `13. ef00` (partition type UEFI boot)
+- `13. 8300` (boot for LUKS)
 - `14. n` (create new partition)
 - `15. 3` (partition number 3)
 - `16. Enter` (set starting point)
@@ -130,6 +133,7 @@ Choose partioning type 1. or 2.
 ```
 - `Enter passphrase for /dev/sda3`
 ```
+    # cryptsetup open /dev/sda2 cryptboot 
     # pvcreate /dev/mapper/enc-pv
     # vgcreate vg /dev/mapper/enc-pv
     # lvcreate -l '100%FREE' -n root vg
@@ -138,13 +142,17 @@ Choose partioning type 1. or 2.
 ## 6. format filesystem
 
     # mkfs.fat -F32 /dev/sda1
+    # mkfs.f2fs -l boot /dev/mapper/cryptboot
     # mkfs.f2fs -l root /dev/vg/root
 
 ## 7. mount
 
     # mount /dev/vg/root /mnt
     # mkdir /mnt/boot
-    # mount /dev/sda1 /mnt/boot
+    # mount /dev/mapper/cryptboot /mnt/boot
+    # mkdir /mnt/boot/efi
+    # mount /dev/sda1 /mnt/boot/efi
+    # lsblk
     
 ## 8. install NixOS
 
