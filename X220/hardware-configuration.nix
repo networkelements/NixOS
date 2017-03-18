@@ -18,11 +18,11 @@
       
       grub =
       {
-        enable = true;
         version = 2;
+	enable = true;
         efiSupport = true;
-        device = "nodev";
-        #device = "/dev/sda";
+        #device = "nodev";
+        device = "/dev/sda";
         #device = "/dev/sda1";
         #devices = [ "/dev/sda1" ];
         #devices = [ "/dev/sda2" ];
@@ -40,6 +40,12 @@
         "sd_mod"
         "sr_mod"
         "sdhci_pci"
+	"ata_piix"
+	"ohci_hcd"
+	"usbhid"
+	"btrfs"
+	"ext4"
+	"ntfs" 
       ];
       
       # https://bugzilla.kernel.org/show_bug.cgi?id=110941
@@ -52,6 +58,7 @@
         "fbcon"
         "kvm-intel"
         "tp_smapi"
+	"zram"
       ];
       
       luks =
