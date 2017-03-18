@@ -5,97 +5,27 @@
 
 {
   imports =
-    [
-      <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+    [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
-  boot =
-  {
-    loader =
-    {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      
-      grub =
-      {
-        version = 2;
-	enable = true;
-        efiSupport = true;
-        #device = "nodev";
-        device = "/dev/sda";
-        #device = "/dev/sda1";
-        #devices = [ "/dev/sda1" ];
-        #devices = [ "/dev/sda2" ];
-      };
-    };
-    
-    initrd = 
-    {
-      availableKernelModules = 
-      [
-        "ehci_pci" 
-        "ahci"
-        "xhci_pci"
-        "usb_storage"
-        "sd_mod"
-        "sr_mod"
-        "sdhci_pci"
-	"ata_piix"
-	"ohci_hcd"
-	"usbhid"
-	"btrfs"
-	"ext4"
-	"ntfs" 
-      ];
-      
-      # https://bugzilla.kernel.org/show_bug.cgi?id=110941
-      #kernelParams = [ "intel_pstate=no_hwp" ];
-      
-      kernelModules = 
-      [
-        "usb_storage"
-        "dm_snapshot"
-        "fbcon"
-        "kvm-intel"
-        "tp_smapi"
-	"zram"
-      ];
-      
-      luks =
-      {
-        mitigateDMAAttacks = true;
-        
-        devices =
-        [
-          {
-            name = "root";
-            preLVM = true;
-            device = "/dev/disk/by-uuid/cef76270-2fbb-418c-80c3-41bd339b10b9";
-          }
-        ];
-   
-        #cryptoModules =
-	#{
-        #  	[ "aes" "xts" "sha256" "sha1" "cbc" ];
-        #};
-      };
-    };
-    
-    extraModulePackages =
-    [
-      config.boot.kernelPackages.tp_smapi
-    ];
-  };
+  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "xhci_pci" "usb_storage" "sd_mod" "sr_mod" "sdhci_pci" ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { 
-      device = "/dev/disk/by-uuid/cef76270-2fbb-418c-80c3-41bd339b10b9";
+    { device = "/dev/disk/by-uuid/71d6856b-1ac5-406f-83ba-c523a35673d3";
       fsType = "f2fs";
     };
 
   fileSystems."/boot" =
-    { 
-      device = "/dev/disk/by-uuid/8FE0-BB9B";
+    { device = "/dev/disk/by-uuid/bb112a16-d770-4c4f-86e1-233088dfae7d";
+      fsType = "f2fs";
+    };
+
+  boot.initrd.luks.devices."cryptboot".device = "/dev/disk/by-uuid/3057935f-ed92-471d-a65b-28efd3b5c18d";
+
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/90AC-5521";
       fsType = "vfat";
     };
 
