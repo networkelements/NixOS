@@ -13,17 +13,21 @@
     loader =
     {
       systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
       
       grub =
       {
         version = 2;
         enable = true;
         efiSupport = true;
-        efiSysMountPoint = "/boot/efi";
-        device = "/dev/sda";
+	device = "/dev/sda";
       };
-    };
+      
+      efi =
+      {
+	canTouchEfiVariables = true;
+	efiSysMountPoint = "/boot/efi";
+      };
+  };
     
     initrd = 
     {
@@ -67,9 +71,9 @@
         devices =
         [
           {
-            name = "root";
             preLVM = true;
-            device."cryptboot".device = "/dev/disk/by-uuid/3057935f-ed92-471d-a65b-28efd3b5c18d";
+	    name = "cryptboot";
+            device = "/dev/disk/by-uuid/3057935f-ed92-471d-a65b-28efd3b5c18d";
           }
         ];
    
