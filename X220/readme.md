@@ -70,8 +70,8 @@ change parition like this.
 ```
 -----------------------------------------------
 Number  Size        Code  Name
-  1     500.0 MiB   EF02  BIOS boot partition
-  2     1 GiB       EF00  EFI System Partition
+  1     512.0 MiB   EF02  EFI System partition
+  2     1 GiB       8300  Linux boot
   3     <the rest>  8E00  Linux LVM
 -----------------------------------------------
 ```
@@ -124,7 +124,6 @@ Choose partioning type 1. or 2.
 ## 5. setup LUKS 
 
     # cryptsetup luksFormat /dev/sda3
-    
 - `1. YES` (type uppercase!)
 - `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
 - `3. ????` (Verify passphrase, type same passwords)
@@ -133,8 +132,16 @@ Choose partioning type 1. or 2.
 ```
 - `Enter passphrase for /dev/sda3`
 ```
-    # cryptsetup luksFormat /dev/sda2
+    # cryptsetup luksFormat /dev/sda2  
+```
+- `1. YES` (type uppercase!)
+- `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
+- `3. ????` (Verify passphrase, type same passwords)
+```    
     # cryptsetup open /dev/sda2 cryptboot 
+```
+- `Enter passphrase for /dev/sda2`
+```
     # pvcreate /dev/mapper/enc-pv
     # vgcreate vg /dev/mapper/enc-pv
     # lvcreate -l '100%FREE' -n root vg
@@ -188,6 +195,7 @@ troubleshoot
 
 manual
 -------
+[boot パーティションの暗号化 (GRUB)](https://wiki.archlinuxjp.org/index.php/Dm-crypt/システム全体の暗号化#boot_.E3.83.91.E3.83.BC.E3.83.86.E3.82.A3.E3.82.B7.E3.83.A7.E3.83.B3.E3.81.AE.E6.9A.97.E5.8F.B7.E5.8C.96_.28GRUB.29)  
 [Installation of NixOS with encrypted root](https://gist.github.com/martijnvermaat/76f2e24d0239470dd71050358b4d5134)  
 [Installing NixOS](https://chris-martin.org/2015/installing-nixos)  
 [NixOSのインストール](https://github.com/Tokyo-NixOS/Tokyo-NixOS-Meetup-Wiki/wiki/install)  
