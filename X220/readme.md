@@ -133,6 +133,7 @@ Choose partioning type 1. or 2.
 ```
 - `Enter passphrase for /dev/sda3`
 ```
+    # cryptsetup luksFormat /dev/sda2
     # cryptsetup open /dev/sda2 cryptboot 
     # pvcreate /dev/mapper/enc-pv
     # vgcreate vg /dev/mapper/enc-pv
