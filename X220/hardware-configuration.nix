@@ -20,7 +20,8 @@
         version = 2;
         enable = true;
         efiSupport = true;
-        efiSysMountPoint = "/boot1/efi";
+        efiSysMountPoint = "/boot/efi";
+        device = "/dev/sda";
       };
     };
     
