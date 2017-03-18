@@ -13,7 +13,7 @@
   
   networking = 
   {
-  	hostName =  "X220-16-09";
+  	#hostName = "X220-16-09";
 	#wireless.enable = true;
 	firewall =
 	{
