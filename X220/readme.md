@@ -84,9 +84,8 @@ Choose partioning type 1. or 2.
     # sgdisk -p /dev/sda
     # sgdisk -Z /dev/sda
     # sgdisk -L
-    # sgdisk -n "1::+500M" -t 1:ef02 -c 1:"BIOS boot partition" /dev/sda
-    # sgdisk -n "2::+1G" -t 2:ef00 -c 2:"UEFI System Partition" /dev/sda
-    # sgdisk -n "3::" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
+    # sgdisk -n "1::+512M" -t 1:ef00 -c 1:"UEFI System Partition" /dev/sda
+    # sgdisk -n "2::" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
     # sgdisk -p /dev/sda
 ```  
 2.Paritioning REPL.  
@@ -138,14 +137,14 @@ Choose partioning type 1. or 2.
 
 ## 6. format filesystem
 
-    # mkfs.vfat /dev/sda2
+    # mkfs.fat -F32 /dev/sda1
     # mkfs.f2fs -l root /dev/vg/root
 
 ## 7. mount
 
     # mount /dev/vg/root /mnt
     # mkdir /mnt/boot
-    # mount /dev/sda2 /mnt/boot
+    # mount /dev/sda1 /mnt/boot
     
 ## 8. install NixOS
 
