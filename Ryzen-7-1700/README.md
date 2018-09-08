@@ -69,6 +69,7 @@ Number  Size        Code  Name
 -----------------------------------------------
 ```
 0.Check current disk status.  
+
     # grep -H "" /sys/block/sd*/device/model
     # fdisk -l
     # lsblk -O
@@ -76,13 +77,13 @@ Number  Size        Code  Name
 Choose partioning type 1. or 2.  
 1.Partitioning command.  
 ```
-    # sgdisk -p /dev/sda
-    # sgdisk -Z /dev/sda
+    # sgdisk -p /dev/nvme0n1
+    # sgdisk -Z /dev/nvme0n1
     # sgdisk -L
-    # sgdisk -n "1::+512M" -t 1:ef00 -c 1:"UEFI System Partition" /dev/sda
-    # sgdisk -n "2::+1G" -t 2:8300 -c 2:"Linux boot" /dev/sda
-    # sgdisk -n "3::" -t 3:8e00 -c 3:"Linux LVM" /dev/sda
-    # sgdisk -p /dev/sda
+    # sgdisk -n "1::+512M" -t 1:ef00 -c 1:"UEFI System Partition" /dev/nvme0n1
+    # sgdisk -n "2::+1G" -t 2:8300 -c 2:"Linux boot" /dev/nvme0n1
+    # sgdisk -n "3::" -t 3:8e00 -c 3:"Linux LVM" /dev/nvme0n1
+    # sgdisk -p /dev/nvme0n1
 ```  
 2.Paritioning REPL.  
 ```
