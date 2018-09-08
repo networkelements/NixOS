@@ -87,7 +87,7 @@ Choose partioning type 1. or 2.
 ```  
 2.Paritioning REPL.  
 ```
-    # gdisk /dev/sda
+    # gdisk /dev/nvme0n1
 ```
 - `1. p` (print current partition table)
 - `2. o` (create new partition table)
@@ -110,31 +110,31 @@ Choose partioning type 1. or 2.
 - `19. w` (write partition table)
 - `20. y` (exec)  
 ```
-    # gdisk /dev/sda
+    # gdisk /dev/nvme0n1
 ```
 - `21. p` (print current partition table)
 - `22. q` (quit)
 
 ## 5. setup LUKS 
 
-    # cryptsetup luksFormat /dev/sda3
+    # cryptsetup luksFormat /dev/nvme0n3
 - `1. YES` (type uppercase!)
 - `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
 - `3. ????` (Verify passphrase, type same passwords)
 ```    
-    # cryptsetup luksOpen /dev/sda3 enc-pv  
+    # cryptsetup luksOpen /dev/nvme0n3 enc-pv  
 ```
-- `Enter passphrase for /dev/sda3`
+- `Enter passphrase for /dev/nvme0n3`
 ```
-    # cryptsetup luksFormat /dev/sda2  
+    # cryptsetup luksFormat /dev/nvme0n2  
 ```
 - `1. YES` (type uppercase!)
 - `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
 - `3. ????` (Verify passphrase, type same passwords)
 ```    
-    # cryptsetup open /dev/sda2 cryptboot 
+    # cryptsetup open /dev/nvme0n2 cryptboot 
 ```
-- `Enter passphrase for /dev/sda2`
+- `Enter passphrase for /dev/nvme0n2`
 ```
     # pvcreate /dev/mapper/enc-pv
     # vgcreate vg /dev/mapper/enc-pv
@@ -144,7 +144,7 @@ Choose partioning type 1. or 2.
 ## 6. format filesystem
 
 
-    # mkfs.fat -F32 /dev/sda1  
+    # mkfs.fat -F32 /dev/nvme0n1
     # mkfs.ext2  -j -T small -L boot /dev/mapper/cryptboot  
     # mkfs.f2fs -l root /dev/vg/root  
 
@@ -155,7 +155,7 @@ Choose partioning type 1. or 2.
     # mkdir /mnt/boot
     # mount /dev/mapper/cryptboot /mnt/boot
     # mkdir /mnt/boot/efi
-    # mount /dev/sda1 /mnt/boot/efi
+    # mount /dev/nvme0n1 /mnt/boot/efi
     # lsblk
     
 ## 8. install NixOS
