@@ -38,7 +38,7 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
     # setxkbmap -layout jp
 
 ## 3. install tools
-    # nix-env -i emacs neovim ; nix-env -i cryptsetup f2fs-tools gptfdisk
+    # nix-env -i emacs neovim ; nix-env -i cryptsetup ; nix-env -i f2fs-tools ; nix-env -i gptfdisk
 
 Choose editor type 1. or 2.  
 
@@ -95,7 +95,7 @@ Choose partioning type 1. or 2.
 - `5. 1` (partition number 1)
 - `6. Enter` (set starting point)
 - `7. 512M` (set end point)
-- `8. ef02` (partition type UEFI boot)
+- `8. ef00` (partition type UEFI boot)
 - `9. n` (create new partition)
 - `10. 2` (partition number 2)
 - `11. Enter` (set starting point)
