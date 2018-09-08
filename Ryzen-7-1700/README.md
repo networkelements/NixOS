@@ -143,7 +143,7 @@ Choose partioning type 1. or 2.
 
 
     # mkfs.fat -F32 /dev/sda1  
-    # mkfs.ext2 -L boot /dev/mapper/cryptboot  
+    # mkfs.ext2  -j -T small -L boot /dev/mapper/cryptboot  
     # mkfs.f2fs -l root /dev/vg/root  
 
 
