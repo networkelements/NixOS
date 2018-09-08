@@ -32,6 +32,7 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
     # script `date '+%Y%m%d-%H%M%S'`.log
 
 ## 2. setup keyboard
+
     # ls /etc/kbd/keymaps/1386/qwerty/jp106.map.gz
     # loadkeys jp106
     # setxkbmap -layout jp
