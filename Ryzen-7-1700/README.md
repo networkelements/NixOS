@@ -32,15 +32,12 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
     # script `date '+%Y%m%d-%H:%M:%S'`.log
 
 ## 2. setup keyboard
-But,I can't change keymap...  
-I guess because NixOS Live is readonly keymaps config.  
-
     # ls /etc/kbd/keymaps/1386/qwerty/jp106.map.gz
     # loadkeys jp106
     # setxkbmap -layout jp
 
 ## 3. install tools
-    # nix-env -iA nixos.emacs24-nox ; nix-env -i cryptsetup f2fs-tools gptfdisk
+    # nix-env -iA nixos.emacs nixpkgs.neovim ; nix-env -i nixos.cryptsetup nixos.f2fs-tools nixos.gptfdisk
 
 Choose editor type 1. or 2.  
 
