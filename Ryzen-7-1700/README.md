@@ -68,7 +68,7 @@ Number  Size        Code  Name
 -----------------------------------------------
 ```
 0.Check current disk status.  
-
+    # grep -H "" /sys/block/sd*/device/model
     # fdisk -l
     # lsblk -O
  
