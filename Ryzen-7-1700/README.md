@@ -37,7 +37,7 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
     # setxkbmap -layout jp
 
 ## 3. install tools
-    # nix-env -iA nixos.emacs nixpkgs.neovim ; nix-env -i nixos.cryptsetup nixos.f2fs-tools nixos.gptfdisk
+    # nix-env -iA emacs neovim ; nix-env -i cryptsetup f2fs-tools gptfdisk
 
 Choose editor type 1. or 2.  
 
@@ -162,8 +162,8 @@ Choose partioning type 1. or 2.
     # cd /mnt/etc/nixos
     # mv configuration.nix _old01_configuration.nix
     # mv hardware-configuration.nix _old01_hardware-configuration.nix
-    # curl https://raw.githubusercontent.com/networkelements/NixOS/master/X220/configuration.nix -o /mnt/etc/nixos/configuration.nix
-    # curl https://raw.githubusercontent.com/networkelements/NixOS/master/X220/hardware-configuration.nix -o /mnt/etc/nixos/hardware-configuration.nix
+    # curl https://raw.githubusercontent.com/networkelements/NixOS/master/Ryzen-7-1700/configuration.nix -o /mnt/etc/nixos/configuration.nix
+    # curl https://raw.githubusercontent.com/networkelements/NixOS/master/Ryzen-7-1700/hardware-configuration.nix -o /mnt/etc/nixos/hardware-configuration.nix
     # grep "device" _old01_hardware-configuration.nix >> hardware-configuration.nix
 
 1.Fix, sed s'/USERNAME/ほげほげ'g  configuration.nix
