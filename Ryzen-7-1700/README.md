@@ -38,7 +38,7 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
     # setxkbmap -layout jp
 
 ## 3. install tools
-    # nix-env -iA emacs neovim ; nix-env -i cryptsetup f2fs-tools gptfdisk
+    # nix-env -i emacs neovim ; nix-env -i cryptsetup f2fs-tools gptfdisk
 
 Choose editor type 1. or 2.  
 
