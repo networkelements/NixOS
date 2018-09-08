@@ -29,7 +29,7 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
 2.Exec Konosle - terminal application, shortcut on desktop.  
 3.Logging.  
 
-    # script `date '+%Y%m%d-%H:%M:%S'`.log
+    # script `date '+%Y%m%d-%H%M%S'`.log
 
 ## 2. setup keyboard
     # ls /etc/kbd/keymaps/1386/qwerty/jp106.map.gz
