@@ -38,13 +38,13 @@
 	 # antialias = true;
 	 #};
 	
-	 enableGhostscriptFonts = true;
+
 	 fonts = with pkgs;
 	 [
 		 ubuntu_font_family
 		 unifont
 	 	 ipafont
-	   hanazono
+	         hanazono
 		 hack-font
 	 ];
   };
@@ -57,7 +57,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     emacs fish tmux openssh
+     emacs fish tmux openssh wireguard wireguard-tools 
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
