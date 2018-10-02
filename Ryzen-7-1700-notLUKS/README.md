@@ -1,4 +1,4 @@
-# install NixOS(LUKS+f2fs+KDE5)
+# install NixOS(f2fs+KDE Plasma5)
 ## 0. 1st step
 Download from [NixOS official site](http://nixos.org/nixos/download.html)  
 
