@@ -4,6 +4,7 @@ Download from [NixOS official site](http://nixos.org/nixos/download.html)
 
     > aria2c https://d3g5gsiof5omrk.cloudfront.net/nixos/18.03/nixos-18.03.133245.d16a7abceb7/nixos-graphical-18.03.133245.d16a7abceb7-x86_64-linux.iso
     > sha256sum nixos-graphical-18.03.133245.d16a7abceb7-x86_64-linux.iso | grep 2e838439b06cfedf1ceebdf7feb7c82662da5d4f344db346823164fb13c8ee37
+    > grep -H "" /sys/block/sdg/device/model
     > sudo parted /dev/sdg
     [sudo] ほげ のパスワード: 
     GNU Parted 3.2
