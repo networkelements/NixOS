@@ -113,7 +113,7 @@ Choose partioning type 1. or 2.
 ```
 - `21. p` (print current partition table)
 - `22. q` (quit)
-```
+
 
 ## 6. format filesystem
 
