@@ -119,7 +119,7 @@ Choose partioning type 1. or 2.
 
 
     # mkfs.fat -F32 /dev/nvme0n1p1
-    # mkfs.f2fs -l root /dev/nvme0n1p2
+    # mkfs.f2fs -f -l root /dev/nvme0n1p2
 
 
 ## 7. mount
