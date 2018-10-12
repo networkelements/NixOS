@@ -80,9 +80,8 @@ Choose partioning type 1. or 2.
     # sgdisk -p /dev/nvme0n1
     # sgdisk -Z /dev/nvme0n1
     # sgdisk -L
-    # sgdisk -n "1::+512M" -t 1:ef00 -c 1:"UEFI System Partition" /dev/nvme0n1
-    # sgdisk -n "2::+1G" -t 2:8300 -c 2:"Linux boot" /dev/nvme0n1
-    # sgdisk -n "3::" -t 3:8e00 -c 3:"Linux LVM" /dev/nvme0n1
+    # sgdisk -n "1::+1G" -t 1:ef00 -c 1:"UEFI System Partition" /dev/nvme0n1
+    # sgdisk -n "2::" -t 2:8300 -c 2:"Linux filesystem" /dev/nvme0n1
     # sgdisk -p /dev/nvme0n1
 ```  
 2.Paritioning REPL.  
