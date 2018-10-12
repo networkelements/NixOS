@@ -119,14 +119,14 @@ Choose partioning type 1. or 2.
 
 
     # mkfs.fat -F32 /dev/nvme0n1p1
-    # mkfs.f2fs -f -l root /dev/nvme0n1p2
+    # mkfs.f2fs -f -l nixos /dev/nvme0n1p2
 
 
 ## 7. mount
 
     # mount /dev/disk/by-label/nixos /mnt
     # mkdir -p /mnt/boot
-    # mount /dev/disk/by-label/boot /mnt/boot
+    # mount /dev/nvme0n1p1 /mnt/boot
     # lsblk
     
 ## 8. install NixOS
