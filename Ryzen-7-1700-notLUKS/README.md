@@ -63,9 +63,9 @@ EOF
 change parition like this.  
 ```
 -----------------------------------------------
-Number  Start   End     Size    File system  Name              Flags
- 1      1049kB  1075MB  1074MB  fat32        EFI System        boot, esp
- 2      1075MB  480GB   479GB                Linux filesystem
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048         2099199   1024.0 MiB  EF00  UEFI System Partition
+   2         2099200       937703054   446.1 GiB   8300  Linux filesystem
 -----------------------------------------------
 ```
 0.Check current disk status.  
