@@ -64,9 +64,8 @@ change parition like this.
 ```
 -----------------------------------------------
 Number  Size        Code  Name
-  1     512.0 MiB   EF02  EFI System partition
-  2     1 GiB       8300  Linux boot
-  3     <the rest>  8E00  Linux LVM
+  1     1 GiB       EF02  EFI System partition
+  2     <the rest>  8300  
 -----------------------------------------------
 ```
 0.Check current disk status.  
@@ -115,48 +114,20 @@ Choose partioning type 1. or 2.
 ```
 - `21. p` (print current partition table)
 - `22. q` (quit)
-
-## 5. setup LUKS 
-
-    # cryptsetup luksFormat /dev/nvme0n1p3
-- `1. YES` (type uppercase!)
-- `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
-- `3. ????` (Verify passphrase, type same passwords)
-```    
-    # cryptsetup luksOpen /dev/nvme0n1p3 enc-pv  
-```
-- `Enter passphrase for /dev/nvme0n1p3`
-```
-    # cryptsetup luksFormat /dev/nvme0n1p2  
-```
-- `1. YES` (type uppercase!)
-- `2. ????` (Enter passphrase, unreccomend use symbol key on jp106)
-- `3. ????` (Verify passphrase, type same passwords)
-```    
-    # cryptsetup open /dev/nvme0n1p2 cryptboot 
-```
-- `Enter passphrase for /dev/nvme0n1p2`
-```
-    # pvcreate /dev/mapper/enc-pv
-    # vgcreate vg /dev/mapper/enc-pv
-    # lvcreate -l '100%FREE' -n root vg
 ```
 
 ## 6. format filesystem
 
 
     # mkfs.fat -F32 /dev/nvme0n1p1
-    # mkfs.ext2  -j -T small -L boot /dev/mapper/cryptboot  
-    # mkfs.f2fs -l root /dev/vg/root  
+    # mkfs.f2fs -l root /dev/nvme0n1p2
 
 
 ## 7. mount
 
-    # mount /dev/vg/root /mnt
-    # mkdir /mnt/boot
-    # mount /dev/mapper/cryptboot /mnt/boot
-    # mkdir /mnt/boot/efi
-    # mount /dev/nvme0n1p1 /mnt/boot/efi
+    # mount /dev/disk/by-label/nixos /mnt
+    # mkdir -p /mnt/boot
+    # mount /dev/disk/by-label/boot /mnt/boot
     # lsblk
     
 ## 8. install NixOS
